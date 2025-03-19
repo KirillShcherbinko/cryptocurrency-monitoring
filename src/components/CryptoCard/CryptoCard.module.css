@@ -1,0 +1,4 @@
+.CryptoCard {
+  display: flex;
+  flex-direction: column;
+}
