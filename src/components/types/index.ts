@@ -1,4 +1,5 @@
-export type PercentageColor = 'red' | 'white' | 'green';
+export type PercentageColor = '#A13D2F' | '#2FA15D';
+export type PercentageArrow = 'income' | 'expenses';
 
 export interface ICryptoData {
   id: string;

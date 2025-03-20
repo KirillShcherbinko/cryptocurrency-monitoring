@@ -1,0 +1,1 @@
+export { default as CryptoMarket } from './components/CryptoMarket/CryptoMarket'

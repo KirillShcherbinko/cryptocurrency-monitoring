@@ -7,7 +7,8 @@ import { rounded } from "../../../utils";
 export default async function fetchCryptoMarketData(
   currency: string,
   cryptoPerPage: number,
-  pageNumber: number
+  pageNumber: number,
+  order: string
 ) {
   try {
     const config = {
@@ -15,10 +16,11 @@ export default async function fetchCryptoMarketData(
         vs_currency: currency,
         per_page: cryptoPerPage,
         page: pageNumber,
+        order: order,
         sparkline: true,
       },
     };
-    const response = await axios.get(`${BASE_URL}/coins/market`, config);
+    const response = await axios.get(`${BASE_URL}/coins/markets`, config);
     const data: ICryptoData[] = response.data.map((item: any) => {
       return {
         id: item.id,

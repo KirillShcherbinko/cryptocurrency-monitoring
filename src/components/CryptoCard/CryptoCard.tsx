@@ -1,6 +1,5 @@
 import Style from "./CryptoCard.module.css";
 import { ICryptoData, PercentageColor } from "../types";
-import { rounded } from "../../utils";
 
 interface ICryptoDataProps {
   data: ICryptoData;
@@ -10,9 +9,8 @@ interface ICryptoDataProps {
 export default function CryptoCard({ data, onClick }: ICryptoDataProps) {
   // Вычисление цвета в зависимости от процента
   function setColor(priceChangePercentage: number): PercentageColor {
-    if (priceChangePercentage < 0) return "red";
-    else if (priceChangePercentage === 0) return "white";
-    return "green";
+    if (priceChangePercentage <= 0) return '#A13D2F';
+    return '#2FA15D';
   }
 
   return (
