@@ -19,17 +19,10 @@ export default function CryptoCardList({
 }: ICryptoCardListProps) {
   const { data, isError, isLoading, error } = useCryptoCards(currency, cryptoPerPage, pageNumber, order);
 
-  if (isError) {
-    return <div>Loading error: {error.message}</div>;
-  }
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (!data || data.length === 0) {
-    return <div>No data</div>;
-  }
+  // Обработка полученных данных
+  if (isError) return <div>Loading error: {error.message}</div>;
+  if (isLoading) return <div>Loading...</div>;
+  if (!data || data.length === 0) return <div>No data</div>;
 
   return (
     <div className={Style.CryptoCardList}>
