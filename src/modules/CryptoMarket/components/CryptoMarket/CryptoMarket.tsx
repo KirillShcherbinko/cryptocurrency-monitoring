@@ -1,23 +1,42 @@
 import Filter from "../../../../components/Filter/Filter";
 import { useCryptoCards } from "../../hooks/useCryptoCards";
-import { ICryptoData } from "../../types";
-import List from "../CryptoCardList/List";
+import { ICryptoData, ICryptoParams } from "../../types";
+import List from "../../../../components/List/List";
 import Card from "../../../../components/Card/Card";
 import SearchProvider from "../../../../contexts/search/SearchProvider";
 import DataProvider from "../../../../contexts/data/DataProvider";
+import CryptoMarketModal from "../CryptoMarketModal/CryptoMarketModal";
+import { useReducer } from "react";
+import cryptoParamsReducer from "../../reducers/cryptoParamsReducer";
 
 export default function CryptoMarket() {
-  const currency = "usd";
-  const cryptoPerPage = 4;
-  const pageNumber = 1;
-  const order = "market_cap_desk";
+
+  const initialState: { params: ICryptoParams } = {
+    params: {
+      currency: 'usd',
+      cryptoPerPage: 4,
+      pageNumber: 1,
+      order: 'market_cap_desc',
+    }
+  };
+
+  const [cryptoParamsState, cryptoParamsDispatch] = useReducer(cryptoParamsReducer, initialState);
 
   const { data, isError, isLoading, error } = useCryptoCards(
-    currency,
-    cryptoPerPage,
-    pageNumber,
-    order
-  );
+    cryptoParamsState.params.currency,
+    cryptoParamsState.params.cryptoPerPage,
+    cryptoParamsState.params.pageNumber,
+    cryptoParamsState.params.order
+  ); 
+  
+  
+  const handleSubmit = (params: Partial<ICryptoParams>) => {
+    cryptoParamsDispatch({
+      type: "updateParams",
+      payload: params
+    });
+  };
+  
 
   return (
     <SearchProvider>

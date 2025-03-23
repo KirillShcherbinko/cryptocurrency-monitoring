@@ -1,3 +1,12 @@
+export type CurrencyType = 'usd' | 'rub' | 'eur';
+
+export type OrderType = 'market_cap_asc'
+  | 'market_cap_desc'
+  | 'volume_asc'
+  | 'volume_decs'
+  | 'id_asc'
+  | 'id_desc'
+
 export interface ICryptoData {
   id: string,
   symbol: string,
@@ -11,4 +20,11 @@ export interface ICryptoData {
   sparklineIn7d: {
     price: number[];
   };
+}
+
+export interface ICryptoParams {
+  currency: CurrencyType;
+  cryptoPerPage: number;
+  pageNumber: number;
+  order: OrderType;
 }

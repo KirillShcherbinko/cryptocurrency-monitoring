@@ -1,5 +1,5 @@
 import Style from './Modal.module.css';
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 
@@ -11,7 +11,7 @@ interface IModalProps {
 
 export default function Modal({isOpen, onClose, children}: IModalProps) {
   const handleBackgroundClick = (e: React.MouseEvent) => {
-    e.stopPropagation(); // Остановим всплытие, чтобы случайно не сработал родительский обработчик
+    e.stopPropagation();
     onClose();
   };
 
