@@ -1,0 +1,13 @@
+.CryptoCard {
+  display: flex;
+  flex-direction: row;
+  background-color: #2A2A2D;
+  border-radius: 10px;
+}
+
+.CryptoCardBadge {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+

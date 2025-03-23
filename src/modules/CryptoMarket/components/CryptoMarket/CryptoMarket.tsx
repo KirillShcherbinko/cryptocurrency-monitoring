@@ -5,6 +5,6 @@ export default function CryptoMarket() {
     currency="usd"
     cryptoPerPage={4}
     pageNumber={1}
-    order="market_cap_asc"
+    order="market_cap_desc"
   />;
 }

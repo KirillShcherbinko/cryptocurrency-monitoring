@@ -1,12 +1,7 @@
-.PercentageIndicator {
+.CryptoInfo {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  gap: 1px;
-  
-}
-
-.PercentageArrow {
-  
+  gap: 13px;
 }
