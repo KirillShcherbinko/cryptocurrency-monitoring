@@ -1,11 +1,11 @@
-.CryptoCard {
+.Card {
   display: flex;
   flex-direction: row;
   background-color: #2A2A2D;
   border-radius: 10px;
 }
 
-.CryptoCardBadge {
+.CardBadge {
   display: flex;
   flex-direction: row;
   justify-content: space-between;

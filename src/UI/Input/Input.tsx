@@ -1,14 +1,14 @@
-import { useState } from "react";
+import { useSearch } from "../../hooks/useSearch";
 
 export default function Input() {
-  const [value, setValue] = useState<string | undefined>("");
+  const { search, setSearch } = useSearch();
 
   return (
     <input
       type="text"
       placeholder="Поиск"
-      value={value}
-      onChange={(evt) => setValue(evt.target.value)}
+      value={search}
+      onChange={(evt) => setSearch(evt.target.value)}
     />
   );
   //<>🔎</>
