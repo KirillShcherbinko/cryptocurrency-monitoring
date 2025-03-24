@@ -2,24 +2,25 @@ import Style from './Modal.module.css';
 import { ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useModal } from '../../hooks/useModal';
 
 interface IModalProps {
-  isOpen: boolean;
-  onClose: () => void;
   children: ReactNode;
 }
 
-export default function Modal({isOpen, onClose, children}: IModalProps) {
-  const handleBackgroundClick = (e: React.MouseEvent) => {
+export default function Modal({children}: IModalProps) {
+  const { isOpen, closeModal } = useModal();
+
+  const handleClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    onClose();
+    closeModal();
   };
 
   return createPortal (
     <AnimatePresence>
       {isOpen && (<motion.div
         className={Style.ModalOverlay}
-        onClick={handleBackgroundClick}
+        onClick={handleClick}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, transition: { duration: 0.2 } }}
         exit={{ opacity: 0, transition: { duration: 0.2 } }}

@@ -5,5 +5,5 @@ interface ICryptoMarketModalProps {
 }
 
 export default function CryptoMarketModal({ onSubmit }: ICryptoMarketModalProps) {
-  <button onClick={() => {}}></button>
+  return <button onClick={() => {}}></button>
 }
