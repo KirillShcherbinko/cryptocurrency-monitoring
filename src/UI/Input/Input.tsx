@@ -1,12 +1,14 @@
+import Style from './Input.module.css';
 import { useSearch } from "../../hooks/useSearch";
 
 export default function Input() {
-  const { search, setSearch } = useSearch();
+  const { type, placeholder, search, setSearch } = useSearch();
 
   return (
     <input
-      type="text"
-      placeholder="Поиск"
+      className={Style.Input}
+      type={type}
+      placeholder={placeholder}
       value={search}
       onChange={(evt) => setSearch(evt.target.value)}
     />

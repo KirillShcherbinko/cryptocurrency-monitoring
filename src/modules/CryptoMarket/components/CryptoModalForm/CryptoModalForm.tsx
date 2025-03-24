@@ -1,3 +1,5 @@
+import SearchProvider from "../../../../contexts/search/SearchProvider";
+import Input from "../../../../UI/Input/Input";
 import { ICryptoParams } from "../../types";
 
 interface ICryptoMarketModalProps {
@@ -5,5 +7,13 @@ interface ICryptoMarketModalProps {
 }
 
 export default function CryptoMarketModal({ onSubmit }: ICryptoMarketModalProps) {
-  return <button onClick={() => {}}></button>
+  
+  return (
+    <div>
+      <SearchProvider type="number" placeholder="Введите номер страницы">
+        <Input/>
+      </SearchProvider>
+      <button onClick={() => {}}></button>
+    </div>
+  )
 }

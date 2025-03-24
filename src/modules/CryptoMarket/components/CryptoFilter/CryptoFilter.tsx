@@ -1,3 +1,4 @@
+import Style from './CryptoFilter.module.css';
 import { JSX } from "react";
 import { useSearch } from "../../../../hooks/useSearch";
 import Input from "../../../../UI/Input/Input";
@@ -28,9 +29,11 @@ export default function CryptoFilter<T>({
   );
 
   return (
-    <div>
-      <Button name="Фильтр" onClick={openModal} />
-      <Input />
+    <div className={Style.CryptoFilter}>
+      <div className={Style.CryptoFilterHeader}>
+        <Button name="Фильтр" onClick={openModal} />
+        <Input />
+      </div>
       {render(filteredItems)}
       <Modal>
         <CryptoModalForm onSubmit={onSubmit}/>

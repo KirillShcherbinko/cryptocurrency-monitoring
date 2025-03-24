@@ -39,7 +39,7 @@ export default function CryptoMarket() {
   };
 
   return (
-    <SearchProvider>
+    <SearchProvider type="text" placeholder="Поиск 🔎">
       <ModalProvider>
         <CryptoFilter
           items={data || []}
