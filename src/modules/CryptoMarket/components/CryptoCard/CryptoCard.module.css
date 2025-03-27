@@ -1,0 +1,16 @@
+.CryptoCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  background-color: #2a2a2d;
+  border-radius: 10px;
+  width: 15vw;
+  padding: 20px;
+}
+
+.CryptoCardBadge {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

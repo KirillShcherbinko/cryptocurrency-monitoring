@@ -13,5 +13,4 @@ export default function Input() {
       onChange={(evt) => setSearch(evt.target.value)}
     />
   );
-  //<>🔎</>
 }

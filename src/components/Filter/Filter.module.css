@@ -1,12 +1,13 @@
-.CryptoFilter {
+.Filter {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 1280px;
   padding: 20px;
 }
 
-.CryptoFilterHeader {
+.FilterHeader {
   display: flex;
   flex-direction: row;
   justify-content: space-between;

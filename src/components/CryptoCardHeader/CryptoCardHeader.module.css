@@ -1,7 +1,7 @@
-.CryptoInfo {
+.CryptoCardHeader {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: start;
   align-items: center;
-  gap: 13px;
+  gap: 15px;
 }

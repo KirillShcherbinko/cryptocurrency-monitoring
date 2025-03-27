@@ -1,19 +1,18 @@
-import CryptoFilter from "../CryptoFilter/CryptoFilter";
-import { useCryptoCards } from "../../hooks/useCryptoCards";
+import Style from "./CryptoMarket.module.css";
+import Filter from "../../../../components/Filter/Filter";
+import { useCryptoCryptoCards } from "../../hooks/useCryptoCards";
 import { ICryptoData, ICryptoParams } from "../../types";
-import List from "../../../../components/List/List";
-import Card from "../../../../components/Card/Card";
-import SearchProvider from "../../../../contexts/search/SearchProvider";
-import DataProvider from "../../../../contexts/data/DataProvider";
 import { useReducer } from "react";
 import cryptoParamsReducer from "../../reducers/cryptoParamsReducer";
-import ModalProvider from "../../../../contexts/modal/ModalProvider";
+import CryptoCardList from "../CryptoCardList/CryptoCardList";
+import FilterProvider from "../../../../contexts/filter/FilterProvider";
+import CryptoMarketModal from "../CryptoModalForm/CryptoModalForm";
 
 export default function CryptoMarket() {
   const initialState: { params: ICryptoParams } = {
     params: {
       currency: "usd",
-      cryptoPerPage: 4,
+      cryptoPerPage: 12,
       pageNumber: 1,
       order: "market_cap_desc",
     },
@@ -24,7 +23,7 @@ export default function CryptoMarket() {
     initialState
   );
 
-  const { data, isError, isLoading, error } = useCryptoCards(
+  const { data, isError, isLoading, error } = useCryptoCryptoCards(
     cryptoParamsState.params.currency,
     cryptoParamsState.params.cryptoPerPage,
     cryptoParamsState.params.pageNumber,
@@ -39,31 +38,21 @@ export default function CryptoMarket() {
   };
 
   return (
-    <SearchProvider type="text" placeholder="Поиск 🔎">
-      <ModalProvider>
-        <CryptoFilter
-          items={data || []}
-          filterKey="name"
-          onSubmit={handleSubmit}
+    <div className={Style.CryptoMarket}>
+      <FilterProvider
+        items={data || []}
+        filterKey={"name"}
+        filterContent={<CryptoMarketModal onSubmit={handleSubmit} />}
+      >
+        <Filter
           render={function (filteredItems: ICryptoData[]) {
-            isError && <div>Loading error: {error.message}</div>;
-            isLoading && <div>Loading...</div>;
-            (!data || data.length === 0) && <div>No data</div>;
-            return (
-              <List
-                items={filteredItems}
-                render={(card) => (
-                  <DataProvider data={card}>
-                    <ModalProvider>
-                      <Card key={card.id} />
-                    </ModalProvider>
-                  </DataProvider>
-                )}
-              />
-            );
+            if (isError) return <div>Loading error: {error.message}</div>;
+            if (isLoading) return <div>Loading...</div>;
+            if (!data || data.length === 0) return <div>No data</div>;
+            return <CryptoCardList cards={filteredItems} />;
           }}
         />
-      </ModalProvider>
-    </SearchProvider>
+      </FilterProvider>
+    </div>
   );
 }

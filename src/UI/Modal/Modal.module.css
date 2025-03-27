@@ -10,6 +10,7 @@
   inset: 0;
   background-color: rgba(0, 0, 0, 0.6);
   z-index: 10;
+  pointer-events: auto;
 }
 
 .ModalPosition {
@@ -17,6 +18,7 @@
   inset: 0;
   overflow-y: auto;
   z-index: 11;
+  pointer-events: auto;
 }
 
 .ModalContent {
