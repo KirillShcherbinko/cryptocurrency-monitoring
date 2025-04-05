@@ -1,7 +1,6 @@
 import axios from "axios";
 import { BASE_URL } from "../constants/apiConstants";
 import { ICryptoData } from "../types";
-import { convertJsonKeysToCamelCase } from "../../../utils";
 
 export default async function fetchCryptoMarketData(
   currency: string,
@@ -18,7 +17,7 @@ export default async function fetchCryptoMarketData(
       sparkline: true,
     },
   };
-  const response = await axios.get<ICryptoData>(`${BASE_URL}/coins/markets`, config);
-  const data: ICryptoData[] = convertJsonKeysToCamelCase(response.data);
+  const response = await axios.get<ICryptoData[]>(`${BASE_URL}/coins/markets`, config);
+  const data: ICryptoData[] = response.data;
   return data;
 }

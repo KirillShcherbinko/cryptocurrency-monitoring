@@ -1,7 +1,10 @@
 import Style from './Symbol.module.css';
-import { useData } from "../../hooks/useData";
+import { ReactNode } from 'react';
 
-export default function Symbol() {
-  const data = useData<{symbol: string}>();
-  return data?.symbol && <h4 className={Style.Symbol}>{data.symbol}</h4>
+interface SymbolProps {
+  children: ReactNode;
+}
+
+export default function Symbol({children}: SymbolProps) {
+  return <h4 className={Style.Symbol}>{children}</h4>
 }
