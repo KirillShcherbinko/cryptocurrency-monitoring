@@ -1,4 +1,4 @@
-export type CurrencyType = 'usd' | 'rub' | 'eur';
+import { CurrencyType } from "../../../types";
 
 export type OrderType = 'market_cap_asc'
   | 'market_cap_desc'
@@ -20,6 +20,7 @@ export interface ICryptoData {
   sparkline_in_7d: {
     price: number[];
   };
+  currency: string;
 }
 
 export interface ICryptoParams {

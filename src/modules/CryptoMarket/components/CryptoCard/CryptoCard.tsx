@@ -2,11 +2,13 @@ import Style from "./CryptoCard.module.css";
 import PercentageIndicator from "../../../../components/PercentageIndicator/PercentageIndicator";
 import { useData } from "../../../../hooks/useData";
 import { useModal } from "../../../../hooks/useModal";
-import { AnimatePresence, motion } from "framer-motion";
 import Icon from "../../../../UI/Icon/Icon";
 import Symbol from "../../../../UI/Symbol/Symbol";
 import Paragraph from "../../../../UI/Paragraph/Paragraph";
 import { ICryptoData } from "../../types";
+import { rounded } from "../../../../utils";
+import { PRICE_DECIMALS, PERCENTAGE_DECIMALS } from "../../constants/decimalsConstants";
+import Card from "../../../../components/Card/Card";
 
 
 export default function CryptoCard() {
@@ -14,20 +16,18 @@ export default function CryptoCard() {
   const { openModal } = useModal();
 
   return data && (
-    <AnimatePresence>
-      <motion.div 
-        className={Style.CryptoCard}
-        onClick={openModal}
-        whileHover={{ scale: 1.1 }}
-      >
-        <Icon
-          iconSrc={data.image}
-          iconAlt={data.name}
-        />
+    <Card
+      className={Style.CryptoCard}
+      onClick={openModal}
+      hoverEffect={{ scale: 1.1, transition: { duration: 0.2 } }}
+    >
+        <Icon iconSrc={data.image} iconAlt={data.name}/>
         <Symbol>{data.symbol}</Symbol>
-        <Paragraph>{data.current_price}</Paragraph>
-        <PercentageIndicator percentage={data.price_change_percentage_24h} />
-      </motion.div>
-    </AnimatePresence>
+        <Paragraph>{data.name}</Paragraph>
+        <Paragraph>{rounded(data.current_price, PRICE_DECIMALS)}</Paragraph>
+        <PercentageIndicator
+          percentage={rounded(data.price_change_percentage_24h, PERCENTAGE_DECIMALS)}
+        />
+    </Card>
   );
 }

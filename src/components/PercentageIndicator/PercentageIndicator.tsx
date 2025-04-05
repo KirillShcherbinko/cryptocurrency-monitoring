@@ -1,29 +1,33 @@
 import Style from './PercentageIndicator.module.css';
-import { PercentageColor } from "../types";
 import percentageExpensesArrowImage  from '../../assets/expenses.png'
 import percentageIncomeArrowImage  from '../../assets/income.png'
 
+type ColorType = '#A13D2F' | '#2FA15D' | '#AB9F9F';
+type ArrowType = typeof  percentageIncomeArrowImage
+                | typeof percentageExpensesArrowImage
+                | '';
 
 interface PercentageIndicatorProps {
   percentage: number;
 }
 
-export default function PercentageIndicator({percentage}: PercentageIndicatorProps) {
+export default function PercentageIndicator({ percentage }: PercentageIndicatorProps) {
+  const getColor = (): ColorType => {
+    if (percentage > 0) return '#2FA15D';
+    if (percentage < 0) return '#A13D2F';
+    return '#AB9F9F';
+  };
 
-  const percentageColor: PercentageColor = percentage <= 0 ? '#A13D2F' : '#2FA15D';
-  const percentageArrow = percentage <= 0 ? percentageExpensesArrowImage : percentageIncomeArrowImage;
+  const getArrow = (): ArrowType => {
+    if (percentage > 0) return percentageIncomeArrowImage;
+    if (percentage < 0) return percentageExpensesArrowImage;
+    return '';
+  };
 
   return (
     <div className={Style.PercentageIndicator}>
-      <img
-        src={percentageArrow}
-        alt={`${percentageArrow} arrow`}
-      />
-      <p
-        style ={{ color: percentageColor }}
-      >
-        {`${percentage}%`}
-      </p>
+      {getArrow() && <img src={getArrow()} alt="arrow" />}
+      <p style={{ color: getColor() }}>{`${percentage}%`}</p>
     </div>
-  )
+  );
 }

@@ -2,7 +2,7 @@ import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import fetchCryptoMarketData from "../api/fetchCryptoMarketData";
 import { ICryptoData } from "../types";
 
-export const useCryptoCryptoCards = (
+export const useCryptoCards = (
   currency: string,
   cryptoPerPage: number,
   pageNumber: number,
@@ -10,7 +10,7 @@ export const useCryptoCryptoCards = (
 ): UseQueryResult<ICryptoData[]> => {
   // Кэшируем данные списка карточек
   const cards = useQuery<ICryptoData[]>({
-    queryKey: ["cards"],
+    queryKey: ["cards", currency, cryptoPerPage, pageNumber, order],
     queryFn: () =>
       fetchCryptoMarketData(currency, cryptoPerPage, pageNumber, order),
     staleTime: 30000,

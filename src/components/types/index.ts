@@ -1,1 +1,0 @@
-export type PercentageColor = "#A13D2F" | "#2FA15D";

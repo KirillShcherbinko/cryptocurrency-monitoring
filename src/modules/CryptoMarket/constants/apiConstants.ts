@@ -1,9 +1,10 @@
-export const BASE_URL = import.meta.env.VITE_BASE_URL
+import { ICryptoParams } from "../types";
 
-export const API_CONFIG = {
-  params: {
-    currency: 'usd',
-    cryptoNumber: 500,
-    sparkline: true
-  }
-}
+export const INITIAL_STATE: { params: ICryptoParams } = {
+    params: {
+      currency: "usd",
+      cryptoPerPage: 12,
+      pageNumber: 1,
+      order: "market_cap_desc",
+    },
+  };
