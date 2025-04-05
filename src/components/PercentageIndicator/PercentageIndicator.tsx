@@ -1,11 +1,7 @@
 import Style from './PercentageIndicator.module.css';
-import percentageExpensesArrowImage  from '../../assets/expenses.png'
-import percentageIncomeArrowImage  from '../../assets/income.png'
 
 type ColorType = '#A13D2F' | '#2FA15D' | '#AB9F9F';
-type ArrowType = typeof  percentageIncomeArrowImage
-                | typeof percentageExpensesArrowImage
-                | '';
+type SignType = '-' | '+' | ''
 
 interface PercentageIndicatorProps {
   percentage: number;
@@ -18,16 +14,15 @@ export default function PercentageIndicator({ percentage }: PercentageIndicatorP
     return '#AB9F9F';
   };
 
-  const getArrow = (): ArrowType => {
-    if (percentage > 0) return percentageIncomeArrowImage;
-    if (percentage < 0) return percentageExpensesArrowImage;
+  const getSign = (): SignType => {
+    if (percentage > 0) return '+';
+    if (percentage < 0) return '-';
     return '';
   };
 
   return (
     <div className={Style.PercentageIndicator}>
-      {getArrow() && <img src={getArrow()} alt="arrow" />}
-      <p style={{ color: getColor() }}>{`${percentage}%`}</p>
+      <p style={{ color: getColor() }}>{getSign()}{`${percentage}%`}</p>
     </div>
   );
 }

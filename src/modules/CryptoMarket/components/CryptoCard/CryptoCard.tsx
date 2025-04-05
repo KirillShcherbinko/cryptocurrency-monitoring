@@ -7,7 +7,7 @@ import Symbol from "../../../../UI/Symbol/Symbol";
 import Paragraph from "../../../../UI/Paragraph/Paragraph";
 import { ICryptoData } from "../../types";
 import { rounded } from "../../../../utils";
-import { PRICE_DECIMALS, PERCENTAGE_DECIMALS } from "../../constants/decimalsConstants";
+import { PRICE_DECIMALS, PERCENTAGE_DECIMALS } from "../../../../constants";
 import Card from "../../../../components/Card/Card";
 
 

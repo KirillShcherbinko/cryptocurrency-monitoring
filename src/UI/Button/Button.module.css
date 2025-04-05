@@ -1,5 +1,10 @@
 .Button {
   max-width: 320px;
-  color: black;
+  color: #FFFFFF;
   background-color: #50A542;
+  border: none;
+}
+
+.Button:hover {
+  background-color: #3F8636;
 }
