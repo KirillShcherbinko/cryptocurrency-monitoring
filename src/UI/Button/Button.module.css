@@ -2,9 +2,36 @@
   max-width: 320px;
   color: #FFFFFF;
   background-color: #50A542;
+  margin: 0;
+  padding: 10px;
   border: none;
 }
 
 .Button:hover {
+  color: #EDEDED;
   background-color: #3F8636;
+}
+
+.Button:active {
+  border: none;
+}
+
+.Button:focus {
+  outline: none;
+}
+
+.Disabled {
+  color: #CCCCCC;
+  background-color: #8DBB78;
+}
+
+.Disabled:hover {
+  border: none;
+  color: #CCCCCC;
+  background-color: #8DBB78;
+  cursor: default;
+}
+
+.Disabled:active {
+  border: none;
 }

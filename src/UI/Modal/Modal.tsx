@@ -30,8 +30,11 @@ export default function Modal({ children }: ModalProps) {
             animate={{ opacity: 1, y: 0, transition: { duration: 0.2 } }}
             exit={{ opacity: 0, y: 30, transition: { duration: 0.2 } }}
           >
-            <motion.div className={Style.ModalContent} onClick={handleClick}>
-              <div className={Style.Modal}>{children}</div>
+            <motion.div className={Style.ModalContent}>
+              <div className={Style.Modal}>
+                <button className={Style.CloseButton} onClick={handleClick}>✕</button>
+                {children}
+              </div>
             </motion.div>
           </motion.div>
         </motion.div>

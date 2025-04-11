@@ -1,0 +1,64 @@
+.Select {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  position: relative;
+}
+
+.SelectButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  text-align: start;
+  border-radius: 30px;
+  background-color: #645F5F;
+  border: none;
+  width: 80%;
+}
+
+.SelectButton:hover {
+  border: none
+}
+
+.SelectButton:active {
+  border: none;
+}
+
+.SelectButton:focus {
+  outline: none;
+}
+
+.SelectIcon {
+  max-width: 20px;
+}
+
+.OptionGroup {
+  position: absolute;
+  top: calc(100% - 5px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 80%;
+  background-color: #645F5F;
+  padding: 8px 0px;
+  gap: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  transform-origin: top;
+}
+
+.Option {
+  color: #FFFFFF;
+  box-sizing: border-box;
+  width: 100%;
+  list-style-type: none;
+  padding: 16px;
+}
+
+.Option:hover {
+  background-color: #504B4B;
+}

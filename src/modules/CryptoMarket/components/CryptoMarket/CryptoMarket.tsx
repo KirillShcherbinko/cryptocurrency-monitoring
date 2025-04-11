@@ -7,19 +7,19 @@ import cryptoParamsReducer from "../../reducers/cryptoParamsReducer";
 import CryptoCardList from "../CryptoCardList/CryptoCardList";
 import FilterProvider from "../../../../contexts/filter/FilterProvider";
 import CryptoMarketModal from "../CryptoModalForm/CryptoModalForm";
-import { INITIAL_STATE } from "../../constants/apiConstants";
+import { initialState } from "../../constants/apiConstants";
 
 export default function CryptoMarket() {
   const [cryptoParamsState, cryptoParamsDispatch] = useReducer(
     cryptoParamsReducer,
-    INITIAL_STATE
+    initialState
   );
 
   const { data, isError, isLoading, error } = useCryptoCards(
-    cryptoParamsState.params.currency,
-    cryptoParamsState.params.cryptoPerPage,
-    cryptoParamsState.params.pageNumber,
-    cryptoParamsState.params.order
+    cryptoParamsState.currency,
+    cryptoParamsState.cryptoPerPage,
+    cryptoParamsState.pageNumber,
+    cryptoParamsState.order
   );
 
   const handleSubmit = (params: Partial<ICryptoParams>) => {

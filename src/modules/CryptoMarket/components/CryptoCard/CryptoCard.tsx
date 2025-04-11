@@ -19,7 +19,7 @@ export default function CryptoCard() {
     <Card
       className={Style.CryptoCard}
       onClick={openModal}
-      hoverEffect={{ scale: 1.1, transition: { duration: 0.2 } }}
+      hoverEffect={{ scale: 1.05, transition: { duration: 0.2 } }}
     >
         <Icon iconSrc={data.image} iconAlt={data.name}/>
         <Symbol>{data.symbol}</Symbol>

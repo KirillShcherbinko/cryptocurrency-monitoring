@@ -1,7 +1,9 @@
 .Counter {
   display: flex;
   flex-direction: row;
-  background-color: #645f5f;
+  justify-content: space-between;
+  max-width: 50%;
+  background-color: #645F5F;
   border-radius: 30px;
   padding: 8px;
 }
@@ -12,16 +14,20 @@
   align-items: center;
   width: 40px;
   aspect-ratio: 1 / 1;
-  color: #FFFFFF;
   font-size: 30px;
   line-height: 1;
-  background-color: #50A542;
   border-radius: 50%;
-  margin: 0;
   padding: 0;
+}
+
+.CounterInput {
+  max-width: 25%;
+  text-align: center;
+  background-color: #645F5F;
+  font-size: 20px;
   border: none;
 }
 
-.CounterButton:hover {
-  background-color: #3F8636;
+.CounterInput:focus {
+  outline: none;
 }

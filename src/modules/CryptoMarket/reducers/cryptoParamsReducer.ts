@@ -6,16 +6,12 @@ type Action = {
 };
 
 
-interface ICryptoState {
-  params: ICryptoParams;
-}
-
-export default function cryptoParamsReducer(state: ICryptoState, action: Action) {
+export default function cryptoParamsReducer(state: ICryptoParams, action: Action) {
   switch (action.type) {
     case "updateParams":
       return {
         ...state,
-        params: { ...state.params, ...action.payload },
+        ...action.payload,
       };
     default:
       return state;
