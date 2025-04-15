@@ -1,11 +1,5 @@
-import { CurrencyType } from "../../../types";
-
-export type OrderType = 'market_cap_asc'
-  | 'market_cap_desc'
-  | 'volume_asc'
-  | 'volume_decs'
-  | 'id_asc'
-  | 'id_desc'
+export type CurrencyType = 'usd' | 'rub' | 'eur';
+export type OrderType = 'market_cap' | 'volume' | 'id';
 
 export interface ICryptoData {
   id: string,

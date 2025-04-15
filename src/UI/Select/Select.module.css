@@ -32,7 +32,7 @@
 }
 
 .SelectIcon {
-  max-width: 20px;
+  max-width: 16px;
 }
 
 .OptionGroup {
@@ -49,6 +49,7 @@
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   transform-origin: top;
+  z-index: 100;
 }
 
 .Option {

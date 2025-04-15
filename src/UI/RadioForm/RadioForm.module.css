@@ -1,0 +1,39 @@
+.RadioForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  gap: 20px;
+  align-self: start;
+}
+
+.RadioField {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  gap: 12px;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+.RadioButton {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #50A542;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+input[type="radio"]:checked + .RadioButton::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  background-color: #50A542;
+  border-radius: 50%;
+}

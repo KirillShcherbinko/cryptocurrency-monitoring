@@ -19,8 +19,8 @@ export default function Counter({minValue, maxValue, initialValue, onChange}: Co
   const decrement = () => setValue((prev) => Number(prev) - 1);
   const increment = () => setValue((prev) => Number(prev) + 1);
 
-  const handleChange = (evt: ChangeEvent<HTMLInputElement>) => {
-    const inputValue: string = evt.target.value;
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const inputValue: string = e.target.value;
     
     if (inputValue === '') {
       setValue('');
