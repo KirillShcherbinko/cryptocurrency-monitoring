@@ -17,6 +17,8 @@ import Slider from "../../../../UI/Slider/Slider";
 import RadioForm from "../../../../UI/RadioForm/RadioForm";
 import Title from "../../../../UI/Title/Title";
 import Button from "../../../../UI/Button/Button";
+import { initialState } from "../../constants/apiConstants";
+import { useModal } from "../../../../hooks/useModal";
 
 interface ICryptoMarketModalProps {
   initialParams: ICryptoParams;
@@ -27,10 +29,14 @@ export default function CryptoMarketModal({
   initialParams,
   onSubmit,
 }: ICryptoMarketModalProps) {
+  const { closeModal } = useModal();
+
   const splitedOrder = initialParams.order.split('_');
 
   const initialChange: ChangeType = splitedOrder[splitedOrder.length - 1] as ChangeType;
-  const initialOrder: OrderType = splitedOrder.slice(0, splitedOrder.length - 1).join('_') as OrderType;
+  const initialOrder: OrderType = splitedOrder
+    .slice(0, splitedOrder.length - 1)
+    .join('_') as OrderType;
 
   const [change, setChange] = useState<ChangeType>(initialChange);
   const [order, setOrder] = useState<OrderType>(initialOrder);
@@ -86,18 +92,27 @@ export default function CryptoMarketModal({
           onChange={setCurrency}
         />
       </div>
-      <Button
-        className={Style.CryptoModalCenter}
-        disabled={isSubmitDisabled}
-        onClick={() => onSubmit({
-          currency: currency,
-          perPage: perPage,
-          pageNumber: pageNumber || 1,
-          order: `${order}_${change}`,
-        })}
-      >
-        Update
-      </Button>
+      <div className={Style.CryptoModalButtonContainer}>
+        <Button
+          className={Style.CryptoModalButton}
+          onClick={() => {
+            onSubmit(initialState);
+            closeModal();
+          }}>Reset</Button>
+        <Button
+          className={Style.CryptoModalButton}
+          disabled={isSubmitDisabled}
+          onClick={() => {
+            onSubmit({
+              currency: currency,
+              perPage: perPage,
+              pageNumber: pageNumber || 1,
+              order: `${order}_${change}`,
+            });
+            closeModal();
+          }}
+        >Update</Button>
+      </div>
     </div>
   );
 }

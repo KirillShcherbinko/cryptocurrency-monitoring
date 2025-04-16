@@ -61,11 +61,13 @@
 .SliderThumb::-webkit-slider-thumb:hover {
   border: 2px solid #4CAF50;
   box-shadow: 0 0 5px rgba(76, 175, 80, 0.6);
+  cursor: pointer;
 }
 
 .SliderThumb::-moz-range-thumb:hover {
   border: 2px solid #4CAF50;
   box-shadow: 0 0 5px rgba(76, 175, 80, 0.6);
+  cursor: pointer;
 }
 
 .SliderTooltip {
@@ -81,6 +83,8 @@
   border-radius: 5px;
   background-color: #645F5F;
   color: #FFFFFF;
+  font-size: 16px;
+  font-family: "Poppins-Regular", "Arial", sans-serif;
   transition: 0.2s ease-in-out transform;
   text-align: center;
 }

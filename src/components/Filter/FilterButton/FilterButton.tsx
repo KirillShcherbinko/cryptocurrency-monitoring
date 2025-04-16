@@ -6,7 +6,7 @@ export default function FilterButton() {
 
   return (
     <div>
-      <Button  onClick={openModal}>Filter</Button>
+      <Button onClick={openModal}>Filter</Button>
     </div>
   );
 }

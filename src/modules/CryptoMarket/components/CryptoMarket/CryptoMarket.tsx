@@ -8,6 +8,7 @@ import CryptoCardList from "../CryptoCardList/CryptoCardList";
 import FilterProvider from "../../../../contexts/filter/FilterProvider";
 import CryptoMarketModal from "../CryptoModalForm/CryptoModalForm";
 import { initialState } from "../../constants/apiConstants";
+import Pagination from "../../../../components/Pagination/Pagination";
 
 export default function CryptoMarket() {
   const [cryptoParamsState, cryptoParamsDispatch] = useReducer(
@@ -22,12 +23,19 @@ export default function CryptoMarket() {
     cryptoParamsState.order
   );
 
-  const handleSubmit = (params: ICryptoParams) => {
+  const handleSubmit = (params: Partial<ICryptoParams>) => {
     cryptoParamsDispatch({
       type: "updateParams",
       payload: params,
     });
   };
+
+  const handlePagination = (pageNumber: number) => {
+    cryptoParamsDispatch({
+      type: "updateParams",
+      payload: {pageNumber},
+    })
+  }
 
   return (
     <div className={Style.CryptoMarket}>
@@ -48,6 +56,11 @@ export default function CryptoMarket() {
           }}
         />
       </FilterProvider>
+      {<Pagination
+        pageNumber={cryptoParamsState.pageNumber}
+        isData={!!data}
+        onSubmit={handlePagination}
+      />}
     </div>
   );
 }

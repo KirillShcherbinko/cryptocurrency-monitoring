@@ -1,6 +1,8 @@
 .Button {
   max-width: 320px;
   color: #FFFFFF;
+  font-family: "Poppins-Medium", "Arial", sans-serif;
+  font-weight: 550;
   background-color: #50A542;
   margin: 0;
   padding: 10px;

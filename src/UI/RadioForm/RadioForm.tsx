@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import Style from "./RadioForm.module.css";
 import { ChangeEvent, useEffect, useMemo, useState } from "react";
+import classNames from "classnames";
 
 interface RadioProps<T extends string> {
   items: Record<T, string>;
@@ -35,7 +36,7 @@ export default function Radio<T extends string>({
             checked={selected === `${keys[index]}`}
             onChange={handleChange}
           />
-          <span className={Style.RadioButton}>
+          <span className={classNames(Style.RadioButton, selected === `${keys[index]}` ? Style.RadioButtonChecked : null)}>
             <AnimatePresence>
               {selected === `${keys[index]}` && (<motion.span
                 className={Style.RadioDot}

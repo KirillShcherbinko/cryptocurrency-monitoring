@@ -13,6 +13,9 @@
   justify-content: start;
   align-items: center;
   gap: 12px;
+  font-family: "Poppins-Regular", "Arial", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
 }
 
 input[type="radio"] {
@@ -28,7 +31,18 @@ input[type="radio"] {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.RadioButton:hover {
   cursor: pointer;
+}
+
+.RadioButtonChecked {
+  cursor: default;
+}
+
+.RadioButtonChecked:hover {
+  cursor: default;
 }
 
 .RadioDot {
