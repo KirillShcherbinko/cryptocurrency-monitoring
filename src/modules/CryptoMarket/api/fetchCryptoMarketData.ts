@@ -4,14 +4,14 @@ import { ICryptoData } from "../types";
 
 export default async function fetchCryptoMarketData(
   currency: string,
-  cryptoPerPage: number,
+  perPage: number,
   pageNumber: number,
   order: string
 ): Promise<ICryptoData[]> {
   const config = {
     params: {
       vs_currency: currency,
-      per_page: cryptoPerPage,
+      per_page: perPage,
       page: pageNumber,
       order: order,
       sparkline: true,

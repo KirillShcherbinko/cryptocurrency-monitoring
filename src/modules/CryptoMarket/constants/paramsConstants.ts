@@ -22,7 +22,6 @@ export const orderItems = {
 export const MIN_PER_PAGE_VALUE = 3;
 export const MAX_PER_PAGE_VALUE = 24;
 export const PER_PAGE_STEP = 3;
-export const DEFAULT_VALUE = 12;
 
 // Константы для номеров страниц
 export const MIN_PAGE_NUMBER = 1;

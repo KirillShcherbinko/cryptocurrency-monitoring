@@ -5,6 +5,7 @@ import { countProgress } from "../../utils";
 import { AnimatePresence, motion } from "framer-motion";
 
 interface SliderProps {
+  className?: string;
   min: number;
   max: number;
   step: number;
@@ -12,7 +13,14 @@ interface SliderProps {
   onChange?: Dispatch<SetStateAction<number>>;
 }
 
-export default function Slider({min, max, step, defaultValue, onChange}: SliderProps) {
+export default function Slider({
+    className,
+    min,
+    max,
+    step,
+    defaultValue,
+    onChange
+}: SliderProps) {
   const [value, setValue] = useState<number>(defaultValue);
   const [progress, setProgress] = useState<number>(countProgress(defaultValue, min, max));
   const [isTooltipOpen, setIsTooltipOpen] = useState<boolean>(false);
@@ -37,7 +45,7 @@ export default function Slider({min, max, step, defaultValue, onChange}: SliderP
   }, [progress, isTooltipOpen]);
 
   return (
-    <div className={Style.SliderContainer}>
+    <div className={classNames(Style.SliderContainer, `${className}`)}>
       <div className={Style.SliderWrapper}>
         <input
           className={classNames(Style.Slider, Style.SliderThumb, Style.SliderTrack)}

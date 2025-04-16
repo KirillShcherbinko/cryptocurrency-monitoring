@@ -3,21 +3,26 @@ import SelectIcon from "../../assets/icon-down.png";
 import { ReactNode, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useClickOutside } from "../../hooks/useClickOutside";
+import classNames from "classnames";
 
 interface SelectProps<T extends string> {
   items: Record<T, string>;
+  defaultValue: T;
+  className?: string; 
   onChange?: (value: T) => void;
 }
 
 export default function Select<T extends string>({
   items,
+  defaultValue,
+  className,
   onChange,
 }: SelectProps<T>) {
   const keys: T[] = useMemo(() => Object.keys(items) as T[], [items]);
   const values: string[] = useMemo(() => Object.values(items), [items]);
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [selected, setSelected] = useState<string>(values[0]);
+  const [selected, setSelected] = useState<string>(items[defaultValue]);
 
   const selectRef = useRef<HTMLDivElement>(null);
 
@@ -29,7 +34,7 @@ export default function Select<T extends string>({
   useClickOutside(selectRef, () => setIsOpen(false));
 
   return (
-    <div className={Style.Select} ref={selectRef}>
+    <div className={classNames(Style.Select, `${className}`)} ref={selectRef}>
       <motion.button
         className={Style.SelectButton}
         onClick={() => setIsOpen(!isOpen)}

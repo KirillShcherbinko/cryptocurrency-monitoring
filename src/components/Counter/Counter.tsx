@@ -2,18 +2,20 @@ import Style from './Counter.module.css';
 import { ChangeEvent, useEffect, useState } from "react";
 import { isAppropriateValue } from "../../utils";
 import Button from '../../UI/Button/Button';
+import classNames from 'classnames';
 
 interface CounterProps {
+  className?: string;
   minValue: number;
   maxValue: number;
   initialValue: number | '';
-  onChange?: (value: number) => void;
+  onChange?: (value: number | '') => void;
 }
 
-export default function Counter({minValue, maxValue, initialValue, onChange}: CounterProps) {
+export default function Counter({className, minValue, maxValue, initialValue, onChange}: CounterProps) {
   const [value, setValue] = useState<number | ''>(initialValue);
 
-  const isIncrementDisabled = value === maxValue || !value;
+  const isIncrementDisabled = value === maxValue;
   const isDecrementDisabled = value === minValue || !value;
 
   const decrement = () => setValue((prev) => Number(prev) - 1);
@@ -30,11 +32,11 @@ export default function Counter({minValue, maxValue, initialValue, onChange}: Co
   };
 
   useEffect(() => {
-    if (typeof value === 'number') onChange?.(value);
+    onChange?.(value);
   }, [value, onChange]);
 
   return (
-    <div className={Style.Counter}>
+    <div className={classNames(Style.Counter, `${className}`)}>
       <Button
         className={Style.CounterButton}
         onClick={decrement}

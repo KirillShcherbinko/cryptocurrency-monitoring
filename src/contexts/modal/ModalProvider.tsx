@@ -11,7 +11,7 @@ export default function ModalProvider( { content, children }: ModalProviderProps
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const openModal = () => setIsOpen(true);
-  const closeModal = () => {setIsOpen(false); console.log('closed');}
+  const closeModal = () => setIsOpen(false);
 
   return (
     <ModalContext.Provider value={{ isOpen, openModal, closeModal, content }}>

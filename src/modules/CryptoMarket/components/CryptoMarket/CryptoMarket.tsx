@@ -17,12 +17,12 @@ export default function CryptoMarket() {
 
   const { data, isError, isLoading, error } = useCryptoCards(
     cryptoParamsState.currency,
-    cryptoParamsState.cryptoPerPage,
+    cryptoParamsState.perPage,
     cryptoParamsState.pageNumber,
     cryptoParamsState.order
   );
 
-  const handleSubmit = (params: Partial<ICryptoParams>) => {
+  const handleSubmit = (params: ICryptoParams) => {
     cryptoParamsDispatch({
       type: "updateParams",
       payload: params,
@@ -34,7 +34,10 @@ export default function CryptoMarket() {
       <FilterProvider
         items={data || []}
         filterKey={"name"}
-        filterContent={<CryptoMarketModal onSubmit={handleSubmit} />}
+        filterContent={<CryptoMarketModal
+          initialParams={cryptoParamsState}
+          onSubmit={handleSubmit}
+        />}
       >
         <Filter
           render={function (filteredItems: ICryptoData[]) {

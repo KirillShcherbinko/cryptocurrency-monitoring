@@ -4,15 +4,15 @@ import { ICryptoData } from "../types";
 
 export const useCryptoCards = (
   currency: string,
-  cryptoPerPage: number,
+  perPage: number,
   pageNumber: number,
   order: string
 ): UseQueryResult<ICryptoData[]> => {
   // Кэшируем данные списка карточек
   const cards = useQuery<ICryptoData[]>({
-    queryKey: ["cards", currency, cryptoPerPage, pageNumber, order],
+    queryKey: ["cards", currency, perPage, pageNumber, order],
     queryFn: () =>
-      fetchCryptoMarketData(currency, cryptoPerPage, pageNumber, order),
+      fetchCryptoMarketData(currency, perPage, pageNumber, order),
     staleTime: 30000,
   });
 
