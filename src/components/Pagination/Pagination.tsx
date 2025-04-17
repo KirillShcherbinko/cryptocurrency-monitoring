@@ -1,6 +1,8 @@
 import Style from "./Pagination.module.css";
-import nextIcon from "../../assets/icon-right.png";
+import nextIcon from "../../assets/icon-next.png";
+import prevIcon from "../../assets/icon-prev.png";
 import Button from "../../UI/Button/Button";
+import classNames from "classnames";
 
 interface PaginationProps {
   pageNumber: number;
@@ -31,29 +33,29 @@ export default function Pagination({
 
   return (
     <div className={Style.Pagination}>
-      <Button
+      {(pageNumber > 1) && <Button
         className={Style.PaginationButton}
         onClick={() => onSubmit(pageNumber - 1)}
       >
-        <img className={Style.PaginationButtonIcon} src={nextIcon} alt="Prev" />
-      </Button>
+        <img className={Style.PaginationButtonIcon} src={prevIcon} alt="Prev" />
+      </Button>}
       <div className={Style.GroupButton}>
         {pageNumbers.map((item, index) => (
           <Button
             key={index}
-            className={Style.PaginationButton}
+            className={classNames(Style.PaginationButton, pageNumber === item ? Style.Selected : null)}
             onClick={() => onSubmit(pageNumbers[index])}
           >
             {item}
           </Button>
         ))}
       </div>
-      <Button
+      {isData && <Button
         className={Style.PaginationButton}
         onClick={() => onSubmit(pageNumber + 1)}
       >
         <img className={Style.PaginationButtonIcon} src={nextIcon} alt="Next" />
-      </Button>
+      </Button>}
     </div>
   );
 }

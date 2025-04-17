@@ -10,8 +10,16 @@ interface ModalProviderProps {
 export default function ModalProvider( { content, children }: ModalProviderProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const openModal = () => setIsOpen(true);
-  const closeModal = () => setIsOpen(false);
+  const openModal = () => {
+    setIsOpen(true);
+    document.documentElement.classList.add('no-scroll');
+    document.body.classList.add('.no-scroll');
+  }
+  const closeModal = () => {
+    setIsOpen(false);
+    document.documentElement.classList.remove('no-scroll');
+    document.body.classList.remove('.no-scroll');
+  }
 
   return (
     <ModalContext.Provider value={{ isOpen, openModal, closeModal, content }}>

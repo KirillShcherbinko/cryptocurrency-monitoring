@@ -15,17 +15,31 @@
 }
 
 .PaginationButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 50px;
   aspect-ratio: 1/1;
   background-color: #1E1E1E;
   border-radius: 50%;
 }
 
-.PaginationButtonIcon {
-  max-width: 16px;
-  aspect-ratio: 1/1;
-}
-
 .PaginationButton:hover {
+  cursor: pointer;
   background-color: #2A2A2D;
 }
+
+.Selected {
+  background-color: #2A2A2D;
+}
+
+.Selected:hover {
+  cursor: default;
+}
+
+.PaginationButtonIcon {
+  max-width: 12px;  
+}
+
+
+

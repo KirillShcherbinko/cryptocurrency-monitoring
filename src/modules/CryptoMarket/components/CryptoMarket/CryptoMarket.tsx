@@ -56,11 +56,11 @@ export default function CryptoMarket() {
           }}
         />
       </FilterProvider>
-      {<Pagination
+      <Pagination
         pageNumber={cryptoParamsState.pageNumber}
-        isData={!!data}
+        isData={!!data || isLoading}
         onSubmit={handlePagination}
-      />}
+      />
     </div>
   );
 }

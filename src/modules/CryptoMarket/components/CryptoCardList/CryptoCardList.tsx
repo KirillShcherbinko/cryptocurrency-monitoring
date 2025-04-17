@@ -2,6 +2,7 @@ import Style from "./CryptoCardList.module.css";
 import DataProvider from "../../../../contexts/data/DataProvider";
 import ModalProvider from "../../../../contexts/modal/ModalProvider";
 import CryptoCard from "../CryptoCard/CryptoCard";
+import CryptoCardModal from "../CryptoCardModal/CryptoCardModal";
 
 interface Identifiable {
   id: string | number;
@@ -19,7 +20,7 @@ export default function CryptoCardList<T extends Identifiable>({
       {cards?.map((card, index) => (
         <div key={card.id ? card.id : index}>
           <DataProvider data={card}>
-            <ModalProvider content={<p>something</p>}>
+            <ModalProvider content={<CryptoCardModal />}>
               <CryptoCard />
             </ModalProvider>
           </DataProvider>
