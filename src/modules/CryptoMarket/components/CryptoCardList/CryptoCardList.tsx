@@ -3,30 +3,25 @@ import DataProvider from "../../../../contexts/data/DataProvider";
 import ModalProvider from "../../../../contexts/modal/ModalProvider";
 import CryptoCard from "../CryptoCard/CryptoCard";
 import CryptoCardModal from "../CryptoCardModal/CryptoCardModal";
+import { ICryptoData } from "../../types";
+import List from "../../../../components/List/List";
 
-interface Identifiable {
-  id: string | number;
+interface CryptoCardListProps {
+  cards: ICryptoData[];
 }
 
-interface CryptoCardListProps<T> {
-  cards: T[];
-}
-
-export default function CryptoCardList<T extends Identifiable>({
-  cards,
-}: CryptoCardListProps<T>) {
-
+export default function CryptoCardList({ cards }: CryptoCardListProps) {
   return (
-    <ul className={Style.CryptoCardList}>
-      {cards?.map((card, index) => (
-        <div key={card.id ? card.id : index}>
-          <DataProvider data={card}>
-            <ModalProvider content={<CryptoCardModal />}>
-              <CryptoCard />
-            </ModalProvider>
-          </DataProvider>
-        </div>
-      ))}
-    </ul>
+    <List
+      items={cards}
+      className={Style.CryptoCardList}
+      render={(card) => (
+        <DataProvider data={card}>
+          <ModalProvider content={<CryptoCardModal />}>
+            <CryptoCard />
+          </ModalProvider>
+        </DataProvider>
+      )}
+    />
   );
 }

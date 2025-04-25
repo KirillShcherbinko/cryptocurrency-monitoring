@@ -1,0 +1,25 @@
+.CryptoChatButton {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  pointer-events: auto;
+  border-radius: 50%;
+  background-color: #2a2a2d;
+  border: none;
+  width: 80px;
+  aspect-ratio: 1/1;
+  padding: 10px;
+  z-index: 5;
+}
+
+.CryptoChatButton:hover {
+  background-color: #645f5f;
+}
+
+.CryptoChatButton:active {
+  border: none;
+}
+
+.CryptoChatButton:focus {
+  outline: none;
+}

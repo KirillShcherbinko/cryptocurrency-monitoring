@@ -1,8 +1,5 @@
 .CryptoCardList {
-  display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
-  list-style-type: none;
-  padding: 0;
+  justify-content: center;
   gap: 25px;
 }

@@ -1,5 +1,10 @@
-import Style from "./CryptoModalForm.module.css";
-import { ChangeType, CurrencyType, ICryptoParams, OrderType } from "../../types";
+import Style from "./CryptoFormModal.module.css";
+import {
+  ChangeType,
+  CurrencyType,
+  ICryptoParams,
+  OrderType,
+} from "../../types";
 import Counter from "../../../../components/Counter/Counter";
 import { useState } from "react";
 import {
@@ -31,23 +36,27 @@ export default function CryptoMarketModal({
 }: ICryptoMarketModalProps) {
   const { closeModal } = useModal();
 
-  const splitedOrder = initialParams.order.split('_');
+  const splitedOrder = initialParams.order.split("_");
 
-  const initialChange: ChangeType = splitedOrder[splitedOrder.length - 1] as ChangeType;
+  const initialChange: ChangeType = splitedOrder[
+    splitedOrder.length - 1
+  ] as ChangeType;
   const initialOrder: OrderType = splitedOrder
     .slice(0, splitedOrder.length - 1)
-    .join('_') as OrderType;
+    .join("_") as OrderType;
 
   const [change, setChange] = useState<ChangeType>(initialChange);
   const [order, setOrder] = useState<OrderType>(initialOrder);
   const [currency, setCurrency] = useState<CurrencyType>(initialParams.currency);
   const [perPage, setPerPage] = useState<number>(initialParams.perPage);
-  const [pageNumber, setPageNumber] = useState<number | ''>(initialParams.pageNumber);
+  const [pageNumber, setPageNumber] = useState<number | "">(
+    initialParams.pageNumber
+  );
 
-  const isSubmitDisabled = pageNumber === '';
+  const isSubmitDisabled = pageNumber === "";
 
   return (
-    <div className={Style.CryptoModalForm}>
+    <div className={Style.CryptoFormModal}>
       <div className={Style.CryptoModalSection}>
         <Title>Sort by</Title>
         <RadioForm
@@ -98,7 +107,10 @@ export default function CryptoMarketModal({
           onClick={() => {
             onSubmit(initialState);
             closeModal();
-          }}>Reset</Button>
+          }}
+        >
+          Reset
+        </Button>
         <Button
           className={Style.CryptoModalButton}
           disabled={isSubmitDisabled}
@@ -111,7 +123,9 @@ export default function CryptoMarketModal({
             });
             closeModal();
           }}
-        >Update</Button>
+        >
+          Update
+        </Button>
       </div>
     </div>
   );

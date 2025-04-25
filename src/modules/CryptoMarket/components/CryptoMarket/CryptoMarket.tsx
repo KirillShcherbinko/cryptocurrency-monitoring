@@ -2,38 +2,31 @@ import Style from "./CryptoMarket.module.css";
 import Filter from "../../../../components/Filter/Filter";
 import { useCryptoCards } from "../../hooks/useCryptoCards";
 import { ICryptoData, ICryptoParams } from "../../types";
-import { useReducer } from "react";
-import cryptoParamsReducer from "../../reducers/cryptoParamsReducer";
+import { useState } from "react";
 import CryptoCardList from "../CryptoCardList/CryptoCardList";
 import FilterProvider from "../../../../contexts/filter/FilterProvider";
-import CryptoMarketModal from "../CryptoModalForm/CryptoModalForm";
+import CryptoMarketModal from "../CryptoFormModal/CryptoFormModal";
 import { initialState } from "../../constants/apiConstants";
 import Pagination from "../../../../components/Pagination/Pagination";
 
 export default function CryptoMarket() {
-  const [cryptoParamsState, cryptoParamsDispatch] = useReducer(
-    cryptoParamsReducer,
-    initialState
-  );
+  const [cryptoParams, setCryptoParams] = useState<ICryptoParams>(initialState);
 
   const { data, isError, isLoading, error } = useCryptoCards(
-    cryptoParamsState.currency,
-    cryptoParamsState.perPage,
-    cryptoParamsState.pageNumber,
-    cryptoParamsState.order
+    cryptoParams.currency,
+    cryptoParams.perPage,
+    cryptoParams.pageNumber,
+    cryptoParams.order
   );
 
-  const handleSubmit = (params: Partial<ICryptoParams>) => {
-    cryptoParamsDispatch({
-      type: "updateParams",
-      payload: params,
-    });
+  const handleSubmit = (params: ICryptoParams) => {
+    setCryptoParams(params);
   };
 
   const handlePagination = (pageNumber: number) => {
-    cryptoParamsDispatch({
-      type: "updateParams",
-      payload: {pageNumber},
+    setCryptoParams({
+      ...cryptoParams,
+      pageNumber,
     })
   }
 
@@ -43,7 +36,7 @@ export default function CryptoMarket() {
         items={data || []}
         filterKey={"name"}
         filterContent={<CryptoMarketModal
-          initialParams={cryptoParamsState}
+          initialParams={cryptoParams}
           onSubmit={handleSubmit}
         />}
       >
@@ -57,7 +50,7 @@ export default function CryptoMarket() {
         />
       </FilterProvider>
       <Pagination
-        pageNumber={cryptoParamsState.pageNumber}
+        pageNumber={cryptoParams.pageNumber}
         isData={!!data || isLoading}
         onSubmit={handlePagination}
       />

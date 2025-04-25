@@ -1,8 +1,8 @@
-import './App.css'
-import { CryptoMarket } from './modules/CryptoMarket'
+import "./App.css";
+import Home from "./pages/Home/Home";
 
 function App() {
-  return <CryptoMarket/>
+  return <Home />;
 }
 
-export default App
+export default App;
