@@ -15,6 +15,7 @@ interface CryptoCardListProps<T> {
 export default function CryptoCardList<T extends Identifiable>({
   cards,
 }: CryptoCardListProps<T>) {
+
   return (
     <ul className={Style.CryptoCardList}>
       {cards?.map((card, index) => (

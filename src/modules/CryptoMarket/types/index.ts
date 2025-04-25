@@ -1,6 +1,13 @@
+import { TimeScaleOptions, CartesianScaleOptions } from "chart.js";
+import { TypedScale } from "../../../UI/LineChart/LineChart";
+
 export type CurrencyType = "usd" | "rub" | "eur";
 export type ChangeType = "asc" | "desc";
 export type OrderType = "market_cap" | "volume" | "id";
+
+export type XAxisConfig = TypedScale<"time", TimeScaleOptions>;
+export type YAxisConfig = TypedScale<"linear", CartesianScaleOptions>;
+
 export type SortType =
   | "market_cap_asc"
   | "market_cap_desc"

@@ -15,5 +15,5 @@ export function useClickOutside(
     return () => {
       document.removeEventListener('click', handleClick);
     }
-  })
+  });
 }
