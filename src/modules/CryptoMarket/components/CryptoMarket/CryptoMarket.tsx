@@ -27,18 +27,20 @@ export default function CryptoMarket() {
     setCryptoParams({
       ...cryptoParams,
       pageNumber,
-    })
-  }
+    });
+  };
 
   return (
     <div className={Style.CryptoMarket}>
       <FilterProvider
         items={data || []}
         filterKey={"name"}
-        filterContent={<CryptoMarketModal
-          initialParams={cryptoParams}
-          onSubmit={handleSubmit}
-        />}
+        filterContent={
+          <CryptoMarketModal
+            initialParams={cryptoParams}
+            onSubmit={handleSubmit}
+          />
+        }
       >
         <Filter
           render={function (filteredItems: ICryptoData[]) {

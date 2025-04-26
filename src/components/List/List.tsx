@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { ReactNode } from "react";
 
 interface Identifiable {
-  id: string | number;
+  id?: string | number;
 }
 
 interface ListProps<T> {

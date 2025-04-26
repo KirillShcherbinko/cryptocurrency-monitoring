@@ -1,3 +1,11 @@
+import CryptoChatBody from "./CryptoChatBody/CryptoChatBody";
+import CryptoChatFooter from "./CryptoChatFooter/CryptoChatFooter";
+
 export default function CryptoChatModal() {
-  return <div>chat</div>
+  return (
+    <div>
+      <CryptoChatBody>chat</CryptoChatBody>
+      <CryptoChatFooter />
+    </div>
+  );
 }

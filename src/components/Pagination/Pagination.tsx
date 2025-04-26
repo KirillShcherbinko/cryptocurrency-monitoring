@@ -22,7 +22,8 @@ export default function Pagination({
       pageNumbers.push(i);
     }
   } else if (!isData) {
-    for (let i = pageNumber - 4; i <= pageNumber; i++) {
+    const firstPageNumber = pageNumber >= 5 ? pageNumber - 4 : 1; 
+    for (let i = firstPageNumber; i <= firstPageNumber + 4; i++) {
       pageNumbers.push(i);
     }
   } else {

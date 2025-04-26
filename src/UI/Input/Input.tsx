@@ -1,16 +1,31 @@
-import Style from './Input.module.css';
-import { useSearch } from "../../hooks/useSearch";
+import Style from "./Input.module.css";
+import { useInput } from "../../hooks/useInput";
+import classNames from "classnames";
 
-export default function Input() {
-  const { type, placeholder, search, setSearch } = useSearch();
+interface InputProps {
+  className?: string;
+  placeholder?: string;
+  minLength?: number;
+  maxLength?: number;
+}
+
+export default function Input({
+  className,
+  placeholder,
+  minLength,
+  maxLength,
+}: InputProps) {
+  const { input, setinput } = useInput();
 
   return (
     <input
-      className={Style.Input}
-      type={type}
+      className={classNames(Style.Input, className ? className : null)}
+      type="text"
       placeholder={placeholder}
-      value={search}
-      onChange={(evt) => setSearch(evt.target.value)}
+      minLength={minLength}
+      maxLength={maxLength}
+      value={input}
+      onChange={(evt) => setinput(evt.target.value)}
     />
   );
 }

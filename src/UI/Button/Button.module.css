@@ -23,6 +23,7 @@
 }
 
 .Disabled {
+  cursor: default;
   color: #CCCCCC;
   background-color: #8DBB78;
 }
@@ -31,7 +32,6 @@
   border: none;
   color: #CCCCCC;
   background-color: #8DBB78;
-  cursor: default;
 }
 
 .Disabled:active {

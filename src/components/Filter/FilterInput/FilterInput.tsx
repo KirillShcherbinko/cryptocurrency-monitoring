@@ -1,29 +1,26 @@
 import { useEffect, useMemo } from "react";
 import { useFilter } from "../../../hooks/useFilter";
-import { useSearch } from "../../../hooks/useSearch";
+import { useInput } from "../../../hooks/useInput";
 import Input from "../../../UI/Input/Input";
 
-interface FilterSearchProps<T> {
+interface FilterInputProps<T> {
   onFilter: (filteredItems: T[]) => void;
 }
 
-export default function FilterSearch<T>({ onFilter }: FilterSearchProps<T>) {
-  const { search } = useSearch();
+export default function FilterInput<T>({ onFilter }: FilterInputProps<T>) {
+  const { input } = useInput();
   const { items, filterKey } = useFilter<T>();
-  
-  
+
   // Используем useMemo для фильтрации данных
   const filteredItems = useMemo(() => {
     return items.filter((item) =>
-      String(item[filterKey]).toLowerCase().startsWith(search.toLowerCase())
+      String(item[filterKey]).toLowerCase().startsWith(input.toLowerCase())
     );
-  }, [search, items, filterKey]);
+  }, [input, items, filterKey]);
 
   useEffect(() => {
     onFilter(filteredItems);
   }, [filteredItems, onFilter]);
 
-  return (
-    <Input/>
-  );
+  return <Input placeholder="Search"/>;
 }

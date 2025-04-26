@@ -1,9 +1,9 @@
 import Style from "./Filter.module.css";
 import ModalProvider from "../../contexts/modal/ModalProvider";
-import SearchProvider from "../../contexts/search/SearchProvider";
+import InputProvider from "../../contexts/input/InputProvider";
 import { useFilter } from "../../hooks/useFilter";
 import FilterButton from "./FilterButton/FilterButton";
-import FilterSearch from "./FilterSearch/FilterSearch";
+import FilterInput from "./FilterInput/FilterInput";
 import { JSX, useState } from "react";
 
 interface FilterProps<T> {
@@ -20,9 +20,9 @@ export default function Filter<T>({ render }: FilterProps<T>) {
         <ModalProvider content={filterContent}>
           <FilterButton />
         </ModalProvider>
-        <SearchProvider type="text" placeholder="Поиск 🔎">
-          <FilterSearch onFilter={setFilteredItems}/>
-        </SearchProvider>
+        <InputProvider>
+          <FilterInput onFilter={setFilteredItems} />
+        </InputProvider>
       </div>
       {render(filteredItems)}
     </div>
