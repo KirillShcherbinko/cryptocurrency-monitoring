@@ -8,10 +8,10 @@ interface inputProviderProps {
 export default function inputProvider({
   children,
 }: inputProviderProps) {
-  const [input, setinput] = useState<string>("");
+  const [input, setInput] = useState<string>("");
 
   return (
-    <InputContext.Provider value={{ input, setinput }}>
+    <InputContext.Provider value={{ input, setInput }}>
       {children}
     </InputContext.Provider>
   );

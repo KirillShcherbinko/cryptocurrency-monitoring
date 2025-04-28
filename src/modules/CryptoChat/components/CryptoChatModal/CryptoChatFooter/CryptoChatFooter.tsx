@@ -1,39 +1,75 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import Button from "../../../../../UI/Button/Button";
 import Icon from "../../../../../UI/Icon/Icon";
-import Input from "../../../../../UI/Input/Input";
 import SendIcon from "../../../../../assets/icon-send.png";
-//import io from "socket.io-client";
 import InputProvider from "../../../../../contexts/input/InputProvider";
-import { useInput } from "../../../../../hooks/useInput";
+import DataProvider from "../../../../../contexts/data/DataProvider";
+import { JoinMessage, UserMessage } from "../../../types";
+import {
+  initialChatState,
+  MAX_MESSAGE_LENGTH,
+  MAX_USERNAME_LENGTH,
+  MIN_MESSAGE_LENGTH,
+  MIN_USERNAME_LENGTH,
+} from "../../../constants/paramsConstants";
+import CryptoChatInput from "./CryptoChatInput/CryptoChatInput";
+import Socket = SocketIOClient.Socket;
 
-export default function CryptoChatFooter() {
-  const [placeholder, setPlaceholder] = useState<string>("Enter your name");
-  const [username, setUsername] = useState<string>('');
 
-  const {input} = useInput();
+interface CryptoChatFooterProps {
+  socket: Socket | null,
+}
 
-  //const socket = io('https://simple-chat-api-six.vercel.app/');
-  const joinChat = () => {
-    if (input.length >= 3 && input.length <= 15) {
-      setUsername(input);
-      setPlaceholder('Message');
-      console.log(username);
+export default function CryptoChatFooter({socket}: CryptoChatFooterProps) {
+
+  const [messageData, setMessageData] = useState<UserMessage | JoinMessage>(initialChatState);
+
+  const sendMessage = useCallback(async() => {
+    if (!socket) return;
+
+    const type = messageData.type;
+    const { text } = messageData.data;
+
+    if (
+      type === 'join' &&
+      text.length >= MIN_USERNAME_LENGTH &&
+      text.length <= MAX_USERNAME_LENGTH
+    ) {
+      socket.emit('join chat', messageData.data);
+      setMessageData({
+        type: 'user',
+        data: {
+          ...messageData.data,
+          username: text,
+        }
+      });
+    } else if (
+      type === 'user' &&
+      text.length >= MIN_MESSAGE_LENGTH &&
+      text.length <= MAX_MESSAGE_LENGTH
+    ) {
+      socket.emit('send message', messageData.data);
     }
-  }
+
+    setMessageData(prev => ({
+      ...prev, 
+      data: { 
+        ...prev.data, 
+        text: '',
+      }
+    }));
+  }, [socket, messageData]);
 
   return (
-    <form>
-      <InputProvider>
-        <Input
-          placeholder={placeholder}
-          minLength={3}
-          maxLength={15}
-        />
-      </InputProvider>
-      <Button onClick={() => joinChat()}>
-        <Icon iconSrc={SendIcon} iconAlt="Send icon" />
-      </Button>
-    </form>
+    <div>
+      <DataProvider data={messageData}>
+        <InputProvider>
+          <CryptoChatInput onChat={setMessageData} />
+        </InputProvider>
+        <Button onClick={() => sendMessage()}>
+          <Icon iconSrc={SendIcon} iconAlt="Send icon" />
+        </Button>
+      </DataProvider>
+    </div>
   );
 }
