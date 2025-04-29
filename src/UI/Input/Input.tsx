@@ -1,9 +1,11 @@
 import Style from "./Input.module.css";
-import { useInput } from "../../hooks/useInput";
 import classNames from "classnames";
+import { ChangeEvent } from "react";
 
 interface InputProps {
   className?: string;
+  value: string;
+  onChange: (evt: ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
   minLength?: number;
   maxLength?: number;
@@ -11,11 +13,12 @@ interface InputProps {
 
 export default function Input({
   className,
+  value,
+  onChange,
   placeholder,
   minLength,
   maxLength,
 }: InputProps) {
-  const { input, setinput } = useInput();
 
   return (
     <input
@@ -24,8 +27,8 @@ export default function Input({
       placeholder={placeholder}
       minLength={minLength}
       maxLength={maxLength}
-      value={input}
-      onChange={(evt) => setinput(evt.target.value)}
+      value={value}
+      onChange={onChange}
     />
   );
 }

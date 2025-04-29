@@ -1,6 +1,7 @@
 import Style from "./CryptoChatBody.module.css";
 import Message from "./Message/Message";
 import { MessageType } from "../../../types";
+import SystemMessage from "./SystemMessage/SystemMessage";
 
 interface CryptoChatBodyProps {
   messages: MessageType[];
@@ -20,12 +21,10 @@ export default function CryptoChatBody({ messages }: CryptoChatBodyProps) {
           );
         } else if (message.type === 'system') {
           return (
-            <div 
+            <SystemMessage 
               key={index} 
-              className={Style.systemMessage}
-            >
-              {message.data.text}
-            </div>
+              text={message.data.text}
+            />
           );
         }
         return null;

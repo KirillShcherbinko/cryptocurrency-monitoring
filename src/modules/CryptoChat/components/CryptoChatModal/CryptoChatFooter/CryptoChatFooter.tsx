@@ -2,7 +2,6 @@ import { useCallback, useState } from "react";
 import Button from "../../../../../UI/Button/Button";
 import Icon from "../../../../../UI/Icon/Icon";
 import SendIcon from "../../../../../assets/icon-send.png";
-import InputProvider from "../../../../../contexts/input/InputProvider";
 import DataProvider from "../../../../../contexts/data/DataProvider";
 import { JoinMessage, UserMessage } from "../../../types";
 import {
@@ -21,7 +20,7 @@ interface CryptoChatFooterProps {
 }
 
 export default function CryptoChatFooter({socket}: CryptoChatFooterProps) {
-
+  const [isEmpty, setIsEmpty] = useState<boolean>(false);
   const [messageData, setMessageData] = useState<UserMessage | JoinMessage>(initialChatState);
 
   const sendMessage = useCallback(async() => {
@@ -58,14 +57,14 @@ export default function CryptoChatFooter({socket}: CryptoChatFooterProps) {
         text: '',
       }
     }));
+    setIsEmpty(true);
   }, [socket, messageData]);
+
 
   return (
     <div>
       <DataProvider data={messageData}>
-        <InputProvider>
-          <CryptoChatInput onChat={setMessageData} />
-        </InputProvider>
+        <CryptoChatInput isEmpty={isEmpty} onEmpty={setIsEmpty} onChat={setMessageData} />
         <Button onClick={() => sendMessage()}>
           <Icon iconSrc={SendIcon} iconAlt="Send icon" />
         </Button>

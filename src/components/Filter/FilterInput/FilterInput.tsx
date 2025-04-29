@@ -1,6 +1,5 @@
-import { useEffect, useMemo } from "react";
+import { ChangeEvent, useEffect, useMemo, useState } from "react";
 import { useFilter } from "../../../hooks/useFilter";
-import { useInput } from "../../../hooks/useInput";
 import Input from "../../../UI/Input/Input";
 
 interface FilterInputProps<T> {
@@ -8,7 +7,7 @@ interface FilterInputProps<T> {
 }
 
 export default function FilterInput<T>({ onFilter }: FilterInputProps<T>) {
-  const { input } = useInput();
+  const [input, setInput] = useState<string>("");
   const { items, filterKey } = useFilter<T>();
 
   // Используем useMemo для фильтрации данных
@@ -22,5 +21,13 @@ export default function FilterInput<T>({ onFilter }: FilterInputProps<T>) {
     onFilter(filteredItems);
   }, [filteredItems, onFilter]);
 
-  return <Input placeholder="Search"/>;
+  return (
+    <Input
+      value={input}
+      onChange={(evt: ChangeEvent<HTMLInputElement>) =>
+        setInput(evt.target.value)
+      }
+      placeholder="Search"
+    />
+  );
 }

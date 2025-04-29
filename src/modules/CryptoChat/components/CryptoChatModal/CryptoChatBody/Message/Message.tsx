@@ -10,7 +10,7 @@ interface MessageProps {
 export default function Message({ username, text }: MessageProps) {
   return (
     <div className={classNames(Style.Message, username === 'me' ? Style.MyMessage: null)}>
-      <Paragraph>
+      <Paragraph className={Style.Text}>
         {text}
       </Paragraph>
     </div>

@@ -1,12 +1,14 @@
+import classNames from "classnames";
 import Style from "./Paragraph.module.css";
 import { ReactNode } from "react";
 
 interface ParagraphProps {
   children: ReactNode;
+  className?: string;
 }
 
-export default function Paragraph({ children }: ParagraphProps) {
+export default function Paragraph({ children, className }: ParagraphProps) {
   return (
-    <p className={Style.Paragraph}>{children}</p>
+    <p className={classNames(Style.Paragraph, className ? className : null)}>{children}</p>
   )
 }
