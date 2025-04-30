@@ -9,6 +9,8 @@ interface ParagraphProps {
 
 export default function Paragraph({ children, className }: ParagraphProps) {
   return (
-    <p className={classNames(Style.Paragraph, className ? className : null)}>{children}</p>
-  )
+    <p className={classNames(Style.Paragraph, className ? className : null)}>
+      {children}
+    </p>
+  );
 }

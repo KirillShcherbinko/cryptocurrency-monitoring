@@ -1,34 +1,49 @@
 import Style from "./CryptoChatBody.module.css";
-import Message from "./Message/Message";
 import { MessageType } from "../../../types";
-import SystemMessage from "./SystemMessage/SystemMessage";
+import classNames from "classnames";
+import Paragraph from "../../../../../UI/Paragraph/Paragraph";
+import ScrollToBottom from "react-scroll-to-bottom";
 
 interface CryptoChatBodyProps {
+  id: string;
   messages: MessageType[];
 }
 
-export default function CryptoChatBody({ messages }: CryptoChatBodyProps) {
+export default function CryptoChatBody({
+  id,
+  messages,
+}: CryptoChatBodyProps) {
   return (
-    <div className={Style.CryptoChatBody}>
-      {messages.map((message, index) => {
-        if (message.type === 'user') {
-          return (
-            <Message 
-              key={index} 
-              username={message.data.username} 
-              text={message.data.text} 
-            />
-          );
-        } else if (message.type === 'system') {
-          return (
-            <SystemMessage 
-              key={index} 
-              text={message.data.text}
-            />
-          );
-        }
-        return null;
-      })}
-    </div>
+    <ScrollToBottom className={Style.ScrollContainer}>
+      <div className={Style.CryptoChatBody}>
+        {messages.map((message, index) => {
+          if (message.type === "user") {
+            return (
+              <Paragraph
+                key={index}
+                className={
+                  classNames(
+                    Style.Message,
+                    message.data.id === id
+                      ? Style.MyMessage
+                      : null,
+                    Style.Text,
+                  )
+                }
+              >
+                {message.data.text}
+              </Paragraph>
+            );
+          } else if (message.type === "system") {
+            return (
+              <div key={index} className={Style.SystemMessage}>
+                {message.data.text}
+              </div>
+            );
+          }
+          return null;
+        })}
+      </div>
+    </ScrollToBottom>
   );
 }

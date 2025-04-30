@@ -13,4 +13,5 @@ body.no-scroll {
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  scrollbar-width: thin;
 }

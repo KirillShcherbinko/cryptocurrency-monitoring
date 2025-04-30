@@ -1,0 +1,20 @@
+.Textarea {
+  background-color: #645F5F;
+  color: #FFFFFF;
+  width: 100%;
+  font-size: 16px;
+  font-family: "Poppins-Regular", "Arial", sans-serif;
+  font-weight: 400;
+  line-height: 1.4;
+  padding: 8px 12px;
+  resize: none;
+  overflow-y: auto;
+  box-sizing: border-box;
+  border: none;
+  scrollbar-width: none;
+}
+
+.Textarea::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}

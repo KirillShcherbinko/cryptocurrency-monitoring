@@ -23,6 +23,7 @@ export default function FilterInput<T>({ onFilter }: FilterInputProps<T>) {
 
   return (
     <Input
+      name="Filter"
       value={input}
       onChange={(evt: ChangeEvent<HTMLInputElement>) =>
         setInput(evt.target.value)

@@ -1,16 +1,18 @@
-import { ChangeEvent, useEffect, useState } from "react";
-import Input from "../../../../../../UI/Input/Input";
+import Style from "./CryptoChatInput.module.css";
+import { ChangeEvent, KeyboardEvent, useEffect, useState } from "react";
 import { JoinMessage, UserMessage } from "../../../../types";
 import { useData } from "../../../../../../hooks/useData";
 import { MAX_MESSAGE_LENGTH, MIN_MESSAGE_LENGTH } from "../../../../constants/paramsConstants";
+import Textarea from "../../../../../../UI/Textarea/Textarea";
 
 interface CryptoChatInputProps {
   isEmpty: boolean;
   onEmpty: (value: boolean) => void;
   onChat: (message: UserMessage | JoinMessage) => void;
+  onKeyDown: (evt: KeyboardEvent<HTMLTextAreaElement>) => void;
 }
 
-export default function CryptoChatInput({ isEmpty, onEmpty, onChat }: CryptoChatInputProps) {
+export default function CryptoChatInput({ isEmpty, onEmpty, onChat, onKeyDown }: CryptoChatInputProps) {
   const data = useData<UserMessage | JoinMessage>();
   const [input, setInput] = useState<string>('');
 
@@ -35,14 +37,17 @@ export default function CryptoChatInput({ isEmpty, onEmpty, onChat }: CryptoChat
   }, [isEmpty, input, onChat]);
 
   return(
-    <Input
-      value={input}
-      onChange={(evt: ChangeEvent<HTMLInputElement>) =>
-        setInput(evt.target.value)
-      }
+    <Textarea
+      className={Style.CryptoChatInput}
+      name="Chat"
       placeholder={placeholder}
       minLength={MIN_MESSAGE_LENGTH}
       maxLength={MAX_MESSAGE_LENGTH}
+      value={input}
+      onChange={(evt: ChangeEvent<HTMLTextAreaElement>) =>
+        setInput(evt.target.value)
+      }
+      onKeyDown={onKeyDown}
     />
   );
 }

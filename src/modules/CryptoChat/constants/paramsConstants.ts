@@ -1,6 +1,7 @@
 import { JoinMessage, UserMessageType } from "../types";
 
 const data: UserMessageType = {
+  id: '',
   username: '',
   text: '',
   timestamp: '',

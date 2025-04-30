@@ -1,0 +1,9 @@
+.CryptoChatModal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  width: 60vw;
+  height: 80vh;
+  padding: 20px;
+}

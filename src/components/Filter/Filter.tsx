@@ -1,6 +1,5 @@
 import Style from "./Filter.module.css";
 import ModalProvider from "../../contexts/modal/ModalProvider";
-import InputProvider from "../../contexts/input/InputProvider";
 import { useFilter } from "../../hooks/useFilter";
 import FilterButton from "./FilterButton/FilterButton";
 import FilterInput from "./FilterInput/FilterInput";
@@ -20,9 +19,7 @@ export default function Filter<T>({ render }: FilterProps<T>) {
         <ModalProvider content={filterContent}>
           <FilterButton />
         </ModalProvider>
-        <InputProvider>
-          <FilterInput onFilter={setFilteredItems} />
-        </InputProvider>
+        <FilterInput onFilter={setFilteredItems} />
       </div>
       {render(filteredItems)}
     </div>

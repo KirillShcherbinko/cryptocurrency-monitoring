@@ -1,10 +1,12 @@
 export type UserMessageType = {
+  id: string;
   username: string,
   text: string,
   timestamp: string,
 }
 
 export type SystemMessageType = {
+  id: string;
   text: string,
   timestamp: string,
 }

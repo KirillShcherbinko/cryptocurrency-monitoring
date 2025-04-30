@@ -1,0 +1,22 @@
+.CryptoChatFooter {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: end;
+  gap: 12px;
+  width: 100%;
+  margin-top: auto;
+  background-color: #645F5F;
+  border-radius: 24px;
+  padding: 12px;
+}
+
+.CryptoChatButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  aspect-ratio: 1/1;
+}

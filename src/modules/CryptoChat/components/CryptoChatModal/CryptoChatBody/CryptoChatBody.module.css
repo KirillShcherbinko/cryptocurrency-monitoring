@@ -1,9 +1,50 @@
+.ScrollContainer {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
 .CryptoChatBody {
   background-color: transparent;
   display: flex;
+  width: calc(100% - 2*10px);
   flex-direction: column;
-  width: 60vw;
-  height: 80vh;
   overflow: auto;
   gap: 20px;
+  padding: 0 10px;
+}
+
+.Message {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  padding: 5px 10px;
+  width: fit-content;
+  max-width: 40%;
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 14px 14px 14px 0px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.MyMessage {
+  align-self: end;
+  background-color: #2FCC59;
+  border-radius: 14px 14px 0px 14px;
+}
+
+.SystemMessage {
+  align-self: center;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  border-radius: 15px;
+}
+
+.Text {
+  font-size: 16px !important; 
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
