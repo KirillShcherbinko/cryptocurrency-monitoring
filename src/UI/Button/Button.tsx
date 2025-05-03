@@ -1,8 +1,9 @@
 import classNames from "classnames";
 import Style from "./Button.module.css";
-import { ReactNode } from "react";
+import { ReactNode, RefObject } from "react";
 
 interface IButtonProps {
+  ref?: RefObject<HTMLButtonElement>
   className?: string;
   onClick: () => void;
   disabled?: boolean;
@@ -10,6 +11,7 @@ interface IButtonProps {
 }
 
 export default function Button({
+  ref,
   className,
   onClick,
   disabled,
@@ -17,6 +19,7 @@ export default function Button({
 }: IButtonProps) {
   return (
     <button
+      ref={ref}
       className={classNames(
         Style.Button,
         disabled ? Style.Disabled : null,

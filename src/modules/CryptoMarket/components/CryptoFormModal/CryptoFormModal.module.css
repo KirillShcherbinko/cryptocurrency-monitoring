@@ -4,7 +4,32 @@
   justify-content: center;
   align-items: start;
   gap: 30px;
+  width: 25vw;
   padding: 0 25px 15px;
+}
+
+@media screen and (max-width: 1024px) {
+  .CryptoFormModal {
+    width: 35vw;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .CryptoFormModal {
+    width: 40vw;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .CryptoFormModal {
+    width: 50vw;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .CryptoFormModal {
+    width: 60vw;
+  }
 }
 
 .CryptoModalSection {

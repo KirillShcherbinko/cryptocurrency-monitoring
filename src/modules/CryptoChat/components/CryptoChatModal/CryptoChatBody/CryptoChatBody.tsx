@@ -2,34 +2,34 @@ import Style from "./CryptoChatBody.module.css";
 import { MessageType } from "../../../types";
 import classNames from "classnames";
 import Paragraph from "../../../../../UI/Paragraph/Paragraph";
-import ScrollToBottom from "react-scroll-to-bottom";
+import ScrollWrapper from "../../../../../components/ScrollWrapper/ScrollWrapper";
+import { useEffect, useState } from "react";
 
 interface CryptoChatBodyProps {
   id: string;
   messages: MessageType[];
 }
 
-export default function CryptoChatBody({
-  id,
-  messages,
-}: CryptoChatBodyProps) {
+export default function CryptoChatBody({ id, messages }: CryptoChatBodyProps) {
+  const [lastId, setLastId] = useState<string>(id);
+
+  useEffect(() => {
+    if (messages.length) setLastId(messages[messages.length - 1].data.id);
+  }, [messages]);
+
   return (
-    <ScrollToBottom className={Style.ScrollContainer}>
+    <ScrollWrapper id={id} lastId={lastId}>
       <div className={Style.CryptoChatBody}>
         {messages.map((message, index) => {
           if (message.type === "user") {
             return (
               <Paragraph
                 key={index}
-                className={
-                  classNames(
-                    Style.Message,
-                    message.data.id === id
-                      ? Style.MyMessage
-                      : null,
-                    Style.Text,
-                  )
-                }
+                className={classNames(
+                  Style.Message,
+                  message.data.id === id ? Style.MyMessage : null,
+                  Style.Text
+                )}
               >
                 {message.data.text}
               </Paragraph>
@@ -44,6 +44,6 @@ export default function CryptoChatBody({
           return null;
         })}
       </div>
-    </ScrollToBottom>
+    </ScrollWrapper>
   );
 }

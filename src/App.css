@@ -1,12 +1,40 @@
-body {
+html, body {
   margin: 0;
   padding: 0;
   background-color: #1E1E1E;
+  overscroll-behavior: none;
+}
+
+@supports (-moz-appearance: none) {
+  html, body {
+    scrollbar-width: thin;
+    scrollbar-color: #555555 #1E1E1E;
+  }
 }
 
 html.no-scroll,
 body.no-scroll {
   overflow: hidden;
+}
+
+body::-webkit-scrollbar {
+  width: 8px;
+  background: #1E1E1E;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #555555;
+  border-radius: 20px;
+}
+
+body::-webkit-scrollbar-button {
+  display: none;
+  height: 0;
+  width: 0;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background-color: #777777;
 }
 
 #root {

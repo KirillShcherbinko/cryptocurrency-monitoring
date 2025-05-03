@@ -37,17 +37,18 @@ export default function CryptoChatInput({ isEmpty, onEmpty, onChat, onKeyDown }:
   }, [isEmpty, input, onChat]);
 
   return(
-    <Textarea
-      className={Style.CryptoChatInput}
-      name="Chat"
-      placeholder={placeholder}
-      minLength={MIN_MESSAGE_LENGTH}
-      maxLength={MAX_MESSAGE_LENGTH}
-      value={input}
-      onChange={(evt: ChangeEvent<HTMLTextAreaElement>) =>
-        setInput(evt.target.value)
-      }
-      onKeyDown={onKeyDown}
-    />
+    <div className={Style.CryptoChatInput}>
+      <Textarea
+        name="Chat"
+        placeholder={placeholder}
+        minLength={MIN_MESSAGE_LENGTH}
+        maxLength={MAX_MESSAGE_LENGTH}
+        value={input}
+        onChange={(evt: ChangeEvent<HTMLTextAreaElement>) =>
+          setInput(evt.target.value)
+        }
+        onKeyDown={onKeyDown}
+      />
+    </div>
   );
 }
