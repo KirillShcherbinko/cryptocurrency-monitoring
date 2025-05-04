@@ -8,11 +8,14 @@ import FilterProvider from "../../../../contexts/filter/FilterProvider";
 import CryptoMarketModal from "../CryptoFormModal/CryptoFormModal";
 import { initialState } from "../../constants/apiConstants";
 import Pagination from "../../../../components/Pagination/Pagination";
+import ErrorScreen from "../../../../components/ErrorScreen/ErrorScreen";
+import NotFoundScreen from "../../../../assets/not-found-screen.png";
+import NetworkErrorScreen from "../../../../assets/network-error-screen.png";
 
 export default function CryptoMarket() {
   const [cryptoParams, setCryptoParams] = useState<ICryptoParams>(initialState);
 
-  const { data, isError, isLoading, error } = useCryptoCards(
+  const { data, isError, isLoading, refetch } = useCryptoCards(
     cryptoParams.currency,
     cryptoParams.perPage,
     cryptoParams.pageNumber,
@@ -44,16 +47,32 @@ export default function CryptoMarket() {
       >
         <Filter
           render={function (filteredItems: ICryptoData[]) {
-            if (isError) return <div>Loading error: {error.message}</div>;
+            if (isError) return (
+              <ErrorScreen 
+                title="Network Error"
+                description="Whoops... network error. Try again later"
+                image={NetworkErrorScreen}
+                buttonText="Retry"
+                onClick={refetch}
+              />
+            );
             if (isLoading) return <div>Loading...</div>;
-            if (!data || data.length === 0) return <div>No data</div>;
+            if (!data || data.length === 0) return (
+              <ErrorScreen 
+                title="Result Not Found"
+                description="Whoops ... this information is not available for a moment"
+                image={NotFoundScreen}
+                buttonText="Go back"
+                onClick={() => handleSubmit(initialState)}
+              />
+            );
             return <CryptoCardList cards={filteredItems} />;
           }}
         />
       </FilterProvider>
       <Pagination
         pageNumber={cryptoParams.pageNumber}
-        isData={!!data || isLoading}
+        isData={!!data && !!data.length}
         onSubmit={handlePagination}
       />
     </div>

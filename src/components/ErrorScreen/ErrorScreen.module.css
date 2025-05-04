@@ -1,0 +1,22 @@
+.ErrorScreen {
+  align-items: center;
+  gap: 12px;
+  padding: 20px 0;
+  width: 100%;
+}
+
+.ErrorImage {
+  width: 30%;
+}
+
+.ErrorTitle {
+  font-size: 40px;
+}
+
+.ErrorParagraph {
+  font-size: 14px;
+}
+
+.ErrorButton {
+  width: 15%;
+}

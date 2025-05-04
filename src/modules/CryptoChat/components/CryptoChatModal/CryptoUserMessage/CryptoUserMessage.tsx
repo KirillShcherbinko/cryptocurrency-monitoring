@@ -4,41 +4,31 @@ import { useData } from "../../../../../hooks/useData";
 import { ChatDataType, UserMessageType } from "../../../types";
 import classNames from "classnames";
 import Paragraph from "../../../../../UI/Paragraph/Paragraph";
-import { useRef } from "react";
+import Title from "../../../../../UI/Title/Title";
 
-interface CryptoMessageProps {
+interface CryptoUserMessageProps {
   message: UserMessageType;
 }
 
-export default function CryptoMessage({ message }: CryptoMessageProps) {
+export default function CryptoUserMessage({ message }: CryptoUserMessageProps) {
   const userData = useData<ChatDataType>();
 
   if (!userData) return null;
-
-  const cardRef = useRef<HTMLDivElement>(null!);
-  const textRef = useRef<HTMLParagraphElement>(null!);
-  const timestampRef = useRef<HTMLParagraphElement>(null!);
 
   const { id, username, text, timestamp } = message;
   const { userId } = userData;
 
   return (
     <Card
-      ref={cardRef}
       className={classNames(
         Style.CryptoUserMessage,
         userId === id ? Style.MyCryptoUserMessage : null
       )}
     >
-      <div className={Style.CryptoMessageName}>{username}</div>
+      <Title className={Style.CryptoMessageName}>{username}</Title>
       <div className={Style.CryptoMessageBody}>
-        <Paragraph ref={textRef} className={Style.CryptoMessageParagraph}>{text}</Paragraph>
-        <p
-          ref={timestampRef}
-          className={Style.CryptoMessageTimestamp}
-        >
-          {timestamp}
-        </p>
+        <Paragraph className={Style.CryptoMessageParagraph}>{text}</Paragraph>
+        <p className={Style.CryptoMessageTimestamp}>{timestamp}</p>
       </div>
     </Card>
   );

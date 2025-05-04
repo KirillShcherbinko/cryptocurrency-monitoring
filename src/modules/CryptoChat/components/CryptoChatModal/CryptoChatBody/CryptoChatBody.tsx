@@ -3,10 +3,10 @@ import { ChatDataType } from "../../../types";
 import List from "../../../../../components/List/List";
 import { useData } from "../../../../../hooks/useData";
 import CryptoUserMessage from "../CryptoUserMessage/CryptoUserMessage";
+import CryptoSystemMessage from "../CryptoSystemMessage/CryptoSystemMessage";
 
 export default function CryptoChatBody() {
   const data = useData<ChatDataType>();
-
   if (!data) return null;
 
   const { messages } = data;
@@ -19,7 +19,7 @@ export default function CryptoChatBody() {
         message.type === "user" ? (
           <CryptoUserMessage message={message.data} />
         ) : message.type === "system" ? (
-          <div className={Style.SystemMessage}>{message.data.text}</div>
+          <CryptoSystemMessage message={message.data} />
         ) : null
       }
     />

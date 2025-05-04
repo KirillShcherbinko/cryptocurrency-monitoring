@@ -3,8 +3,8 @@ import Title from "../../../../../UI/Title/Title";
 
 export default function CryptoChatHeader() {
   return (
-    <div >
-      <Title className={Style.CryptoChatHeader}>Crypto Chat</Title>
+    <div className={Style.CryptoChatHeader}>
+      <Title className={Style.CryptoChatHeaderTitle}>Crypto Chat</Title>
     </div>
   );
 }

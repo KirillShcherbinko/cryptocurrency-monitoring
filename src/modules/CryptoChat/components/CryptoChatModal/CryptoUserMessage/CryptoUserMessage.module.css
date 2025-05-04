@@ -37,10 +37,11 @@
   text-align: left;
   overflow-wrap: break-word;
   word-break: break-word;
+  font-size: 16px;
 }
 
 .CryptoMessageTimestamp {
-  font-size: 12px;
+  font-size: 9px;
   color: #DDDDDD;
   font-family: "Poppins-Regular", "Arial", sans-serif;
   margin: 0;

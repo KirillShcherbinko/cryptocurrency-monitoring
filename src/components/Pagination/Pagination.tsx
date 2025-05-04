@@ -17,6 +17,7 @@ export default function Pagination({
 }: PaginationProps) {
   const pageNumbers: number[] = [];
 
+
   if (pageNumber <= 2) {
     for (let i = 1; i <= 5; i++) {
       pageNumbers.push(i);
@@ -27,6 +28,7 @@ export default function Pagination({
       pageNumbers.push(i);
     }
   } else {
+    console.log(pageNumber, isData);
     for (let i = pageNumber - 2; i <= pageNumber + 2; i++) {
       pageNumbers.push(i);
     }
