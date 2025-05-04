@@ -7,6 +7,8 @@ interface DataProviderProps<T> {
 }
 
 export default function DataProvider<T>({ data, children }: DataProviderProps<T>) {
+  if(!data) return null;
+
   return (
     <DataContext.Provider value={{ data }}>
       {children}

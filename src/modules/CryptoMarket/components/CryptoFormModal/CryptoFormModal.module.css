@@ -51,6 +51,10 @@
   width: 100%;
 }
 
+.CryptoModalTitle {
+  font-size: 20px;
+}
+
 .CryptoModalButton {
   width: 40%;
 }

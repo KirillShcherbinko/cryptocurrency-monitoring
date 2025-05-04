@@ -5,23 +5,23 @@ import { useSticky } from "../../hooks/useSticky";
 import Style from "./ScrollWrapper.module.css";
 import { ReactNode, useRef } from "react";
 
-interface ScrollWrapperProps {
-  id: string;
-  lastId: string;
+interface ScrollWrapperProps<T> {
+  data: T[];
+  isScroll?: boolean;
   children: ReactNode;
 }
 
-export default function ScrollWrapper({
-  id,
-  lastId,
+export default function ScrollWrapper<T>({
+  data,
+  isScroll,
   children,
-}: ScrollWrapperProps) {
+}: ScrollWrapperProps<T>) {
   const endRef = useRef<HTMLDivElement>(null!);
   const scrollConentRef = useRef<HTMLDivElement>(null!);
 
   const isEndSticky = useSticky(endRef, scrollConentRef);
 
-  useScrollToBottom(endRef, lastId, isEndSticky && (id === lastId));
+  useScrollToBottom<T>(endRef, data, isScroll || isEndSticky);
 
   return (
     <div className={Style.ScrollWrapper}>

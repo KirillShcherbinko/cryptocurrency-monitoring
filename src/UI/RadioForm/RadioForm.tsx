@@ -18,11 +18,12 @@ export default function Radio<T extends string>({
   const values: string[] = useMemo(() => Object.values(items), [items]);
 
   const [selected, setSelected] = useState<T>(defaultValue);
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => setSelected(e.target.value as T);
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) =>
+    setSelected(e.target.value as T);
 
   useEffect(() => {
     onChange?.(selected);
-  }, [selected])
+  }, [selected]);
 
   return (
     <form className={Style.RadioForm}>
@@ -32,24 +33,31 @@ export default function Radio<T extends string>({
             type="radio"
             id={`radio-button-${index}`}
             value={`${keys[index]}`}
-            name='radio'
+            name="radio"
             checked={selected === `${keys[index]}`}
             onChange={handleChange}
           />
-          <span className={classNames(Style.RadioButton, selected === `${keys[index]}` ? Style.RadioButtonChecked : null)}>
-            <AnimatePresence>
-              {selected === `${keys[index]}` && (<motion.span
-                className={Style.RadioDot}
-                initial={{ scale: 0 }}
-                animate={{
-                  scale: [0, 1.4, 1],
-                  transition: {
-                    duration: 0.2,
-                    times: [0, 0.9, 1],
-                  }
-                }}
-                exit={{ scale: 0 }}
-              />)}
+          <span
+            className={classNames(
+              Style.RadioButton,
+              selected === `${keys[index]}` ? Style.RadioButtonChecked : null
+            )}
+          >
+            <AnimatePresence initial={false}>
+              {selected === `${keys[index]}` && (
+                <motion.span
+                  className={Style.RadioDot}
+                  initial={{ scale: 0 }}
+                  animate={{
+                    scale: [0, 1.4, 1],
+                    transition: {
+                      duration: 0.2,
+                      times: [0, 0.9, 1],
+                    },
+                  }}
+                  exit={{ scale: 0 }}
+                />
+              )}
             </AnimatePresence>
           </span>
           {value}

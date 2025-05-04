@@ -1,0 +1,50 @@
+.CryptoUserMessage {
+  position: relative;
+  align-items: start;
+  padding: 8px 10px;
+  width: fit-content;
+  max-width: 60%;
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 14px 14px 14px 0px;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+
+.MyCryptoUserMessage {
+  align-self: end;
+  background-color: #2FCC59;
+  border-radius: 14px 14px 0px 14px;
+}
+
+.CryptoMessageName {
+  color: #FFFFFF;
+  font-size: 18px;
+  font-weight: 750;
+  font-family: "Poppins-Medium", "Arial", sans-serif;
+  line-height: 1.1;
+}
+
+.CryptoMessageBody {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  flex-wrap: wrap;
+}
+
+.CryptoMessageParagraph {
+  flex-shrink: 1;
+  flex-grow: 1;
+  text-align: left;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.CryptoMessageTimestamp {
+  font-size: 12px;
+  color: #DDDDDD;
+  font-family: "Poppins-Regular", "Arial", sans-serif;
+  margin: 0;
+  margin-left: 5px;
+  white-space: nowrap;
+  align-self: end;
+}

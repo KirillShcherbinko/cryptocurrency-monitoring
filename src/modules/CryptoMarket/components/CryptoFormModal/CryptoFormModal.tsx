@@ -58,7 +58,7 @@ export default function CryptoMarketModal({
   return (
     <div className={Style.CryptoFormModal}>
       <div className={Style.CryptoModalSection}>
-        <Title>Sort by</Title>
+        <Title className={Style.CryptoModalTitle}>Sort by</Title>
         <RadioForm
           items={changeItems as Record<ChangeType, string>}
           defaultValue={change}
@@ -72,7 +72,7 @@ export default function CryptoMarketModal({
         />
       </div>
       <div className={Style.CryptoModalSection}>
-        <Title>Cards per page</Title>
+        <Title className={Style.CryptoModalTitle}>Cards per page</Title>
         <Slider
           className={Style.CryptoModalCenter}
           min={MIN_PER_PAGE_VALUE}
@@ -83,7 +83,7 @@ export default function CryptoMarketModal({
         />
       </div>
       <div className={Style.CryptoModalSection}>
-        <Title>Page number</Title>
+        <Title className={Style.CryptoModalTitle}>Page number</Title>
         <Counter
           className={Style.CryptoModalCenter}
           minValue={MIN_PAGE_NUMBER}
@@ -93,7 +93,7 @@ export default function CryptoMarketModal({
         />
       </div>
       <div className={Style.CryptoModalSection}>
-        <Title>Currency</Title>
+        <Title className={Style.CryptoModalTitle}>Currency</Title>
         <Select
           items={currencyItems as Record<CurrencyType, string>}
           defaultValue={currency}

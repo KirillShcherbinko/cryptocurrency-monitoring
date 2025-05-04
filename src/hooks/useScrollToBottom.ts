@@ -1,13 +1,12 @@
 import { RefObject, useEffect } from "react";
 
-export const useScrollToBottom = (
+export const useScrollToBottom = <T>(
   ref: RefObject<HTMLElement>,
-  lastId: string,
-  isScroll: boolean,
+  data: T[],
+  isScroll: boolean = true,
 ) => {
   useEffect(() => {
-    if (ref.current && isScroll) {
-      ref.current.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [ref, lastId]);
+    if (!ref.current || !isScroll) return;
+    ref.current.scrollIntoView({ behavior: "smooth" });
+  }, [ref, data]);
 };

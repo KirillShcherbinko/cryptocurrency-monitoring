@@ -7,7 +7,11 @@ import { ICryptoData, XAxisConfig, YAxisConfig } from "../../types";
 
 export default function CryptoLineChart() {
   const data = useData<ICryptoData>();
-  const sparkline = data?.sparkline_in_7d.price || [];
+
+  if (!data) return null;
+
+  const {id, sparkline_in_7d} = data;
+  const sparkline = sparkline_in_7d.price || [];
 
   const labels = Array.from(
     sparkline.map((_, i) => {
@@ -62,11 +66,10 @@ export default function CryptoLineChart() {
   };
 
   return (
-    data && (
       <div>
         {sparkline.length ? (
           <LineChart
-            labelName={data.id}
+            labelName={id}
             sparkline={sparkline}
             labels={labels}
             tooltipConfig={tooltipConfig}
@@ -77,6 +80,5 @@ export default function CryptoLineChart() {
           <p>No data</p>
         )}
       </div>
-    )
   );
 }

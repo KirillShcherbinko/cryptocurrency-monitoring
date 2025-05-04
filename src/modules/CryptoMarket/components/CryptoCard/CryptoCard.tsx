@@ -10,24 +10,27 @@ import { rounded } from "../../../../utils";
 import { PRICE_DECIMALS, PERCENTAGE_DECIMALS } from "../../../../constants";
 import Card from "../../../../components/Card/Card";
 
-
 export default function CryptoCard() {
   const data = useData<ICryptoData>();
   const { openModal } = useModal();
 
-  return data && (
+  if (!data) return null;
+
+  const { name, image, symbol, current_price, price_change_percentage_24h } = data;
+
+  return (
     <Card
       className={Style.CryptoCard}
       onClick={openModal}
       hoverEffect={{ scale: 1.05, transition: { duration: 0.2 } }}
     >
-        <Icon iconSrc={data.image} iconAlt={data.name}/>
-        <Symbol>{data.symbol}</Symbol>
-        <Paragraph>{data.name}</Paragraph>
-        <Paragraph>{rounded(data.current_price, PRICE_DECIMALS)}</Paragraph>
-        <PercentageIndicator
-          percentage={rounded(data.price_change_percentage_24h, PERCENTAGE_DECIMALS)}
-        />
+      <Icon iconSrc={image} iconAlt={name} />
+      <Symbol>{symbol}</Symbol>
+      <Paragraph>{name}</Paragraph>
+      <Paragraph>{rounded(current_price, PRICE_DECIMALS)}</Paragraph>
+      <PercentageIndicator
+        percentage={rounded(price_change_percentage_24h, PERCENTAGE_DECIMALS)}
+      />
     </Card>
   );
 }

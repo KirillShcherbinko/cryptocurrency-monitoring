@@ -3,16 +3,16 @@ import classNames from "classnames";
 import { ReactNode } from "react";
 
 interface Identifiable {
-  id?: string | number;
+  id: string | number;
 }
 
 interface ListProps<T> {
   items: T[];
   render: (item: T, index: number) => ReactNode;
-  className: string;
+  className?: string;
 }
 
-export default function List<T extends Identifiable>({
+export default function List<T extends object>({
   items,
   render,
   className,
@@ -20,7 +20,12 @@ export default function List<T extends Identifiable>({
   return (
     <ul className={classNames(Style.List, className ? className : null)}>
       {items.map((item, index) => (
-        <li key={item.id ? item.id : index}>{render(item, index)}</li>
+        <li
+          className={Style.ListElement}
+          key={item && "id" in item ? (item as Identifiable).id : index}
+        >
+          {render(item, index)}
+        </li>
       ))}
     </ul>
   );

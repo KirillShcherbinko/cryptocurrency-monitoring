@@ -4,6 +4,6 @@ export interface DataContextType<T> {
   data: T | null;
 }
 
-const DataContext = createContext<DataContextType<any> | null>(null);
+const DataContext = createContext<DataContextType<unknown> | null>(null);
 
 export default DataContext;

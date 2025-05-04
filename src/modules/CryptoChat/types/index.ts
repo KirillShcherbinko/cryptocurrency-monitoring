@@ -21,3 +21,8 @@ export type UserMessage = BaseMessageType<UserMessageType> & { type: 'user' };
 export type SystemMessage = BaseMessageType<SystemMessageType> & { type: 'system' };
 
 export type MessageType = JoinMessage | UserMessage | SystemMessage;
+
+export type ChatDataType = {
+  userId: string,
+  messages: MessageType[];
+}

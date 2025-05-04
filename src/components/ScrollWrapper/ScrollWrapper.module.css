@@ -46,6 +46,7 @@
   padding: 8px 10px;
   aspect-ratio: 1/1;
   border-radius: 50%;
+  z-index: 13;
 }
 
 .ScrollButtonImage {
