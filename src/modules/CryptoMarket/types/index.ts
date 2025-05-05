@@ -1,5 +1,6 @@
 import { TimeScaleOptions, CartesianScaleOptions } from "chart.js";
 import { TypedScale } from "../../../UI/LineChart/LineChart";
+import { CurrencySymbolType } from "../../../types";
 
 export type CurrencyType = "usd" | "rub" | "eur";
 export type ChangeType = "asc" | "desc";
@@ -16,7 +17,7 @@ export type SortType =
   | "id_asc"
   | "id_desc";
 
-export interface ICryptoData {
+export interface CryptoData {
   id: string;
   symbol: string;
   name: string;
@@ -32,9 +33,14 @@ export interface ICryptoData {
   currency: string;
 }
 
-export interface ICryptoParams {
+export interface CryptoParams {
   currency: CurrencyType;
   perPage: number;
   pageNumber: number;
   order: SortType;
 }
+
+export type CryptoCardData = {
+  card: CryptoData;
+  currensySymbol: CurrencySymbolType;
+};

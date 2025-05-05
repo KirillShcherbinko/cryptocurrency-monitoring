@@ -19,9 +19,10 @@
   justify-content: center;
   align-items: center;
   width: 50px;
-  aspect-ratio: 1/1;
-  background-color: #1E1E1E;
+  height: 50px;
+  background-color: transparent;
   border-radius: 50%;
+  font-size: 18px;
 }
 
 .PaginationButton:hover {
@@ -39,7 +40,41 @@
 }
 
 .PaginationButtonIcon {
-  max-width: 12px;  
+  width: 12px;
+  height: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .Pagination {
+    gap: 10px;
+  }
+
+  .GroupButton {
+    gap: 10px;
+  }
+
+  .PaginationButton {
+    width: calc(50px - (768px - 100vw) * 25 / 343);
+    height: calc(50px - (768px - 100vw) * 25 / 343);
+    font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .Pagination {
+    align-self: start;
+    padding-left: 10px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .Pagination {
+    gap: 5px;
+  }
+
+  .GroupButton {
+    gap: 5px;
+  }
 }
 
 

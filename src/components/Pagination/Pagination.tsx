@@ -17,13 +17,12 @@ export default function Pagination({
 }: PaginationProps) {
   const pageNumbers: number[] = [];
 
-
   if (pageNumber <= 2) {
     for (let i = 1; i <= 5; i++) {
       pageNumbers.push(i);
     }
   } else if (!isData) {
-    const firstPageNumber = pageNumber >= 5 ? pageNumber - 4 : 1; 
+    const firstPageNumber = pageNumber >= 5 ? pageNumber - 4 : 1;
     for (let i = firstPageNumber; i <= firstPageNumber + 4; i++) {
       pageNumbers.push(i);
     }
@@ -36,29 +35,44 @@ export default function Pagination({
 
   return (
     <div className={Style.Pagination}>
-      {(pageNumber > 1) && <Button
-        className={Style.PaginationButton}
-        onClick={() => onSubmit(pageNumber - 1)}
-      >
-        <img className={Style.PaginationButtonIcon} src={prevIcon} alt="Prev" />
-      </Button>}
+      {pageNumber > 1 && (
+        <Button
+          className={Style.PaginationButton}
+          onClick={() => onSubmit(pageNumber - 1)}
+        >
+          <img
+            className={Style.PaginationButtonIcon}
+            src={prevIcon}
+            alt="Prev"
+          />
+        </Button>
+      )}
       <div className={Style.GroupButton}>
         {pageNumbers.map((item, index) => (
           <Button
             key={index}
-            className={classNames(Style.PaginationButton, pageNumber === item ? Style.Selected : null)}
+            className={classNames(
+              Style.PaginationButton,
+              pageNumber === item ? Style.Selected : null
+            )}
             onClick={() => onSubmit(pageNumbers[index])}
           >
             {item}
           </Button>
         ))}
       </div>
-      {isData && <Button
-        className={Style.PaginationButton}
-        onClick={() => onSubmit(pageNumber + 1)}
-      >
-        <img className={Style.PaginationButtonIcon} src={nextIcon} alt="Next" />
-      </Button>}
+      {isData && (
+        <Button
+          className={Style.PaginationButton}
+          onClick={() => onSubmit(pageNumber + 1)}
+        >
+          <img
+            className={Style.PaginationButtonIcon}
+            src={nextIcon}
+            alt="Next"
+          />
+        </Button>
+      )}
     </div>
   );
 }

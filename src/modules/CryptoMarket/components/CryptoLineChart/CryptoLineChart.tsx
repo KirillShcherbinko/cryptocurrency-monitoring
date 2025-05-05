@@ -1,16 +1,16 @@
 import { CHART_DECIMALS } from "../../../../constants";
 import { useData } from "../../../../hooks/useData";
-import LineChart, { TooltipConfig, } from "../../../../UI/LineChart/LineChart";
+import LineChart, { TooltipConfig } from "../../../../UI/LineChart/LineChart";
 import { rounded } from "../../../../utils";
-import { ICryptoData, XAxisConfig, YAxisConfig } from "../../types";
-
+import { CryptoCardData, XAxisConfig, YAxisConfig } from "../../types";
 
 export default function CryptoLineChart() {
-  const data = useData<ICryptoData>();
+  const data = useData<CryptoCardData>();
 
   if (!data) return null;
 
-  const {id, sparkline_in_7d} = data;
+  const { card } = data;
+  const { id, sparkline_in_7d } = card;
   const sparkline = sparkline_in_7d.price || [];
 
   const labels = Array.from(
@@ -66,19 +66,19 @@ export default function CryptoLineChart() {
   };
 
   return (
-      <div>
-        {sparkline.length ? (
-          <LineChart
-            labelName={id}
-            sparkline={sparkline}
-            labels={labels}
-            tooltipConfig={tooltipConfig}
-            xAxisConfig={xAxisConfig}
-            yAxisConfig={yAxisConfig}
-          />
-        ) : (
-          <p>No data</p>
-        )}
-      </div>
+    <div>
+      {sparkline.length ? (
+        <LineChart
+          labelName={id}
+          sparkline={sparkline}
+          labels={labels}
+          tooltipConfig={tooltipConfig}
+          xAxisConfig={xAxisConfig}
+          yAxisConfig={yAxisConfig}
+        />
+      ) : (
+        <p>No data</p>
+      )}
+    </div>
   );
 }

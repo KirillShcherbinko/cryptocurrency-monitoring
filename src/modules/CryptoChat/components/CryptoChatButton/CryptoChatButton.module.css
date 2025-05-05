@@ -1,19 +1,25 @@
 .CryptoChatButton {
-  position: fixed;
+  --button-size: 80px;
+
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   bottom: 20px;
   right: 20px;
   pointer-events: auto;
   border-radius: 50%;
-  background-color: #2a2a2d;
+  background-color: #3A3A3D;
   border: none;
-  width: 80px;
-  aspect-ratio: 1/1;
+  width: var(--button-size);
+  height: var(--button-size);
   padding: 10px;
   z-index: 5;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
 }
 
 .CryptoChatButton:hover {
-  background-color: #645f5f;
+  background-color: #5A5A5F;
 }
 
 .CryptoChatButton:active {
@@ -22,4 +28,39 @@
 
 .CryptoChatButton:focus {
   outline: none;
+}
+
+.CryptoChatIcon {
+  --icon-size: 35px;
+
+  max-width: var(--icon-size);
+  max-height: var(--icon-size);
+}
+
+@media screen and (min-width: 1500px) {
+  .CryptoChatButton {
+    right: calc((100vw - 1500px) / 2 + 20px);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .CryptoChatButton {
+    --button-size: calc(80px - (768px - 100vw) * 20 / 343);
+    right: calc(20px - (768px - 100vw) * 12 / 343);
+  }
+
+  .CryptoChatIcon {
+    --icon-size: calc(35px - (768px - 100vw) * 11 / 343);
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .CryptoChatButton {
+    --button-size: 60px;
+    right: 5px;
+  }
+
+  .CryptoChatIcon {
+    --icon-size: 24px;
+  }
 }

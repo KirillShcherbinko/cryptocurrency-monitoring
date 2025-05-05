@@ -10,7 +10,6 @@ export default function FilterInput<T>({ onFilter }: FilterInputProps<T>) {
   const [input, setInput] = useState<string>("");
   const { items, filterKey } = useFilter<T>();
 
-  // Используем useMemo для фильтрации данных
   const filteredItems = useMemo(() => {
     return items.filter((item) =>
       String(item[filterKey]).toLowerCase().startsWith(input.toLowerCase())

@@ -1,7 +1,7 @@
 import Style from "./CryptoMarket.module.css";
 import Filter from "../../../../components/Filter/Filter";
 import { useCryptoCards } from "../../hooks/useCryptoCards";
-import { ICryptoData, ICryptoParams } from "../../types";
+import { CryptoData, CryptoParams } from "../../types";
 import { useState } from "react";
 import CryptoCardList from "../CryptoCardList/CryptoCardList";
 import FilterProvider from "../../../../contexts/filter/FilterProvider";
@@ -11,19 +11,26 @@ import Pagination from "../../../../components/Pagination/Pagination";
 import ErrorScreen from "../../../../components/ErrorScreen/ErrorScreen";
 import NotFoundScreen from "../../../../assets/not-found-screen.png";
 import NetworkErrorScreen from "../../../../assets/network-error-screen.png";
+import Spinner from "../../../../UI/Spinner/Spinner";
+import { getCurrencySymbol } from "../../../../utils";
+import { CurrencySymbolType } from "../../../../types";
 
 export default function CryptoMarket() {
-  const [cryptoParams, setCryptoParams] = useState<ICryptoParams>(initialState);
+  const [cryptoParams, setCryptoParams] = useState<CryptoParams>(initialState);
+  const [currensySymbol, setCurrencySymbol] = useState<CurrencySymbolType>(
+    getCurrencySymbol(cryptoParams.currency)
+  );
 
-  const { data, isError, isLoading, refetch } = useCryptoCards(
+  const { data, isError, isLoading, isFetching, refetch } = useCryptoCards(
     cryptoParams.currency,
     cryptoParams.perPage,
     cryptoParams.pageNumber,
     cryptoParams.order
   );
 
-  const handleSubmit = (params: ICryptoParams) => {
+  const handleSubmit = (params: CryptoParams) => {
     setCryptoParams(params);
+    setCurrencySymbol(getCurrencySymbol(params.currency));
   };
 
   const handlePagination = (pageNumber: number) => {
@@ -46,27 +53,34 @@ export default function CryptoMarket() {
         }
       >
         <Filter
-          render={function (filteredItems: ICryptoData[]) {
-            if (isError) return (
-              <ErrorScreen 
-                title="Network Error"
-                description="Whoops... network error. Try again later"
-                image={NetworkErrorScreen}
-                buttonText="Retry"
-                onClick={refetch}
+          render={(filteredItems: CryptoData[]) => {
+            if (isError)
+              return (
+                <ErrorScreen
+                  title="Network Error"
+                  description="Whoops... network error. Try again later"
+                  image={NetworkErrorScreen}
+                  buttonText="Retry"
+                  onClick={refetch}
+                />
+              );
+            if (isLoading || isFetching) return <Spinner />;
+            if (!data || data.length === 0)
+              return (
+                <ErrorScreen
+                  title="Result Not Found"
+                  description="Whoops ... this information is not available for a moment"
+                  image={NotFoundScreen}
+                  buttonText="Go back"
+                  onClick={() => handleSubmit(initialState)}
+                />
+              );
+            return (
+              <CryptoCardList
+                currensySymbol={currensySymbol}
+                cards={filteredItems}
               />
             );
-            if (isLoading) return <div>Loading...</div>;
-            if (!data || data.length === 0) return (
-              <ErrorScreen 
-                title="Result Not Found"
-                description="Whoops ... this information is not available for a moment"
-                image={NotFoundScreen}
-                buttonText="Go back"
-                onClick={() => handleSubmit(initialState)}
-              />
-            );
-            return <CryptoCardList cards={filteredItems} />;
           }}
         />
       </FilterProvider>

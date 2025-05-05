@@ -6,9 +6,10 @@
 }
 
 .ListElement {
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   padding: 0;
   margin: 0;
   unicode-bidi: normal;
+  box-sizing: border-box;
 }

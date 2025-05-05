@@ -18,7 +18,7 @@ body.no-scroll {
 }
 
 body::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
   background: #1E1E1E;
 }
 
@@ -38,8 +38,11 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 #root {
+  position: relative;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-  scrollbar-width: thin;
+  width: 100%;
+  max-width: 1080px;
+  box-sizing: border-box;
 }

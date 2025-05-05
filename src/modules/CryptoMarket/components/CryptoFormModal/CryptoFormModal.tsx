@@ -1,10 +1,5 @@
 import Style from "./CryptoFormModal.module.css";
-import {
-  ChangeType,
-  CurrencyType,
-  ICryptoParams,
-  OrderType,
-} from "../../types";
+import { ChangeType, CurrencyType, CryptoParams, OrderType } from "../../types";
 import Counter from "../../../../components/Counter/Counter";
 import { useState } from "react";
 import {
@@ -26,8 +21,8 @@ import { initialState } from "../../constants/apiConstants";
 import { useModal } from "../../../../hooks/useModal";
 
 interface ICryptoMarketModalProps {
-  initialParams: ICryptoParams;
-  onSubmit: (params: ICryptoParams) => void;
+  initialParams: CryptoParams;
+  onSubmit: (params: CryptoParams) => void;
 }
 
 export default function CryptoMarketModal({
@@ -47,7 +42,9 @@ export default function CryptoMarketModal({
 
   const [change, setChange] = useState<ChangeType>(initialChange);
   const [order, setOrder] = useState<OrderType>(initialOrder);
-  const [currency, setCurrency] = useState<CurrencyType>(initialParams.currency);
+  const [currency, setCurrency] = useState<CurrencyType>(
+    initialParams.currency
+  );
   const [perPage, setPerPage] = useState<number>(initialParams.perPage);
   const [pageNumber, setPageNumber] = useState<number | "">(
     initialParams.pageNumber
