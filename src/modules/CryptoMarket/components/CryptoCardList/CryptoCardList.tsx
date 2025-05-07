@@ -1,31 +1,26 @@
 import Style from "./CryptoCardList.module.css";
-import DataProvider from "../../../../contexts/data/DataProvider";
 import ModalProvider from "../../../../contexts/modal/ModalProvider";
 import CryptoCard from "../CryptoCard/CryptoCard";
-import CryptoCardModal from "../CryptoCardModal/CryptoCardModal";
-import { CryptoData } from "../../types";
 import List from "../../../../components/List/List";
-import { CurrencySymbolType } from "../../../../types";
+import CryptoCardProvider from "../../contexts/CryptoCardContext/CryptoCardProvider";
+import { useCryptoMarket } from "../../hooks/useCryptoMarket";
 
-interface CryptoCardListProps {
-  currensySymbol: CurrencySymbolType;
-  cards: CryptoData[];
-}
+export default function CryptoCardList() {
+  const { cryptoMarketState } = useCryptoMarket();
+  const { cryptoFilteredData } = cryptoMarketState;
 
-export default function CryptoCardList({
-  cards,
-  currensySymbol,
-}: CryptoCardListProps) {
+  console.log(cryptoFilteredData);
+
   return (
     <List
-      items={cards}
+      items={cryptoFilteredData}
       className={Style.CryptoCardList}
-      render={(card) => (
-        <DataProvider data={{ card, currensySymbol }}>
-          <ModalProvider content={<CryptoCardModal />}>
+      render={(cryptoCard) => (
+        <CryptoCardProvider cryptoData={cryptoCard}>
+          <ModalProvider>
             <CryptoCard />
           </ModalProvider>
-        </DataProvider>
+        </CryptoCardProvider>
       )}
     />
   );

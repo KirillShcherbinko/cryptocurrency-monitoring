@@ -49,3 +49,9 @@
   white-space: nowrap;
   align-self: end;
 }
+
+@media screen and (max-width: 650px) {
+  .CryptoUserMessage {
+    max-width: 100%;
+  }
+}

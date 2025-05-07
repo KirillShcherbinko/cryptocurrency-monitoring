@@ -1,16 +1,13 @@
 import { CHART_DECIMALS } from "../../../../constants";
-import { useData } from "../../../../hooks/useData";
 import LineChart, { TooltipConfig } from "../../../../UI/LineChart/LineChart";
 import { rounded } from "../../../../utils";
-import { CryptoCardData, XAxisConfig, YAxisConfig } from "../../types";
+import { useCryptoData } from "../../hooks/useCryptoData";
+import { XAxisConfig, YAxisConfig } from "../../types";
 
 export default function CryptoLineChart() {
-  const data = useData<CryptoCardData>();
+  const {cryptoData} = useCryptoData();
 
-  if (!data) return null;
-
-  const { card } = data;
-  const { id, sparkline_in_7d } = card;
+  const { id, sparkline_in_7d } = cryptoData;
   const sparkline = sparkline_in_7d.price || [];
 
   const labels = Array.from(

@@ -1,7 +1,24 @@
 .CryptoChatBody {
+  --padding-size: 60px;
+
   background-color: transparent;
-  width: calc(100% - 2*60px);
+  width: calc(100% - 2*var(--padding-size));
   flex-direction: column;
   gap: 20px;
-  padding: 10px 60px;
+  padding: 10px var(--padding-size);
+}
+
+@media screen and (max-width: 768px) {
+  .CryptoChatBody {
+    --padding-size: calc(60px - (768px - 100vw) * 35 / 343);
+    padding: 8px var(--padding-size);
+    gap: calc(20px - (768px - 100vw) * 10 / 343);
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .CryptoChatBody {
+    --padding-size: 25px;
+    gap: 10px;
+  }
 }

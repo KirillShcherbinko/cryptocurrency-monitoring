@@ -1,24 +1,14 @@
-import { ChangeEvent, useEffect, useMemo, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { useFilter } from "../../../hooks/useFilter";
 import Input from "../../../UI/Input/Input";
 
-interface FilterInputProps<T> {
-  onFilter: (filteredItems: T[]) => void;
-}
-
-export default function FilterInput<T>({ onFilter }: FilterInputProps<T>) {
+export default function FilterInput<T>() {
   const [input, setInput] = useState<string>("");
-  const { items, filterKey } = useFilter<T>();
-
-  const filteredItems = useMemo(() => {
-    return items.filter((item) =>
-      String(item[filterKey]).toLowerCase().startsWith(input.toLowerCase())
-    );
-  }, [input, items, filterKey]);
+  const { items, filterKey, onFilter } = useFilter<T>();
 
   useEffect(() => {
-    onFilter(filteredItems);
-  }, [filteredItems, onFilter]);
+    onFilter(input);
+  }, [input, items, filterKey]);
 
   return (
     <Input

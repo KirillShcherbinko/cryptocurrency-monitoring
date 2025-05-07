@@ -2,7 +2,6 @@
   display: flex;
   list-style-type: none;
   margin: 0;
-  unicode-bidi: normal;
 }
 
 .ListElement {
@@ -10,6 +9,5 @@
   flex-direction: column;
   padding: 0;
   margin: 0;
-  unicode-bidi: normal;
   box-sizing: border-box;
 }

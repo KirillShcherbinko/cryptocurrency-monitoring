@@ -26,3 +26,8 @@ export type ChatDataType = {
   userId: string,
   messages: MessageType[];
 }
+
+export type FooterDataType = {
+  messageData: UserMessage | JoinMessage,
+  isEmpty: boolean,
+}

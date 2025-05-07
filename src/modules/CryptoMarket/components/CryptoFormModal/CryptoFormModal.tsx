@@ -1,5 +1,5 @@
 import Style from "./CryptoFormModal.module.css";
-import { ChangeType, CurrencyType, CryptoParams, OrderType } from "../../types";
+import { ChangeType, CurrencyType, OrderType } from "../../types";
 import Counter from "../../../../components/Counter/Counter";
 import { useState } from "react";
 import {
@@ -19,36 +19,25 @@ import Title from "../../../../UI/Title/Title";
 import Button from "../../../../UI/Button/Button";
 import { initialState } from "../../constants/apiConstants";
 import { useModal } from "../../../../hooks/useModal";
+import { useCryptoMarket } from "../../hooks/useCryptoMarket";
 
-interface ICryptoMarketModalProps {
-  initialParams: CryptoParams;
-  onSubmit: (params: CryptoParams) => void;
-}
-
-export default function CryptoMarketModal({
-  initialParams,
-  onSubmit,
-}: ICryptoMarketModalProps) {
+export default function CryptoMarketModal() {
   const { closeModal } = useModal();
+  const {cryptoMarketState, dispatchCryptoMarket} = useCryptoMarket();
+  const {cryptoParams} = cryptoMarketState;
 
-  const splitedOrder = initialParams.order.split("_");
+  const splitedOrder = cryptoParams.order.split("_");
 
-  const initialChange: ChangeType = splitedOrder[
-    splitedOrder.length - 1
-  ] as ChangeType;
-  const initialOrder: OrderType = splitedOrder
+  const initialChange = splitedOrder[splitedOrder.length - 1] as ChangeType;
+  const initialOrder = splitedOrder
     .slice(0, splitedOrder.length - 1)
     .join("_") as OrderType;
 
   const [change, setChange] = useState<ChangeType>(initialChange);
   const [order, setOrder] = useState<OrderType>(initialOrder);
-  const [currency, setCurrency] = useState<CurrencyType>(
-    initialParams.currency
-  );
-  const [perPage, setPerPage] = useState<number>(initialParams.perPage);
-  const [pageNumber, setPageNumber] = useState<number | "">(
-    initialParams.pageNumber
-  );
+  const [currency, setCurrency] = useState<CurrencyType>(cryptoParams.currency);
+  const [perPage, setPerPage] = useState<number>(cryptoParams.perPage);
+  const [pageNumber, setPageNumber] = useState<number | "">(cryptoParams.pageNumber);
 
   const isSubmitDisabled = pageNumber === "";
 
@@ -102,7 +91,7 @@ export default function CryptoMarketModal({
         <Button
           className={Style.CryptoModalButton}
           onClick={() => {
-            onSubmit(initialState);
+            dispatchCryptoMarket({type: "set_crypto_params", payload: initialState});
             closeModal();
           }}
         >
@@ -112,11 +101,14 @@ export default function CryptoMarketModal({
           className={Style.CryptoModalButton}
           disabled={isSubmitDisabled}
           onClick={() => {
-            onSubmit({
-              currency: currency,
-              perPage: perPage,
-              pageNumber: pageNumber || 1,
-              order: `${order}_${change}`,
+            dispatchCryptoMarket({
+              type: "set_crypto_params",
+              payload:{
+                currency: currency,
+                perPage: perPage,
+                pageNumber: pageNumber || 1,
+                order: `${order}_${change}`,
+              }
             });
             closeModal();
           }}

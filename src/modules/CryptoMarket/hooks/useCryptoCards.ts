@@ -8,12 +8,9 @@ export const useCryptoCards = (
   pageNumber: number,
   order: string
 ): UseQueryResult<CryptoData[]> => {
-  // Кэшируем данные списка карточек
-  const cards = useQuery<CryptoData[]>({
+  return useQuery<CryptoData[], Error>({
     queryKey: ["cards", currency, perPage, pageNumber, order],
     queryFn: () => fetchCryptoMarketData(currency, perPage, pageNumber, order),
-    staleTime: 30000,
+    staleTime: 60000,
   });
-
-  return cards;
 };

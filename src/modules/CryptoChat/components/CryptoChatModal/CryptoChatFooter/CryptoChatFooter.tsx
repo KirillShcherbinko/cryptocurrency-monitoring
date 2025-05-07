@@ -1,5 +1,5 @@
 import Style from "./CryptoChatFooter.module.css";
-import { KeyboardEvent, useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 import Button from "../../../../../UI/Button/Button";
 import Icon from "../../../../../UI/Icon/Icon";
 import SendIcon from "../../../../../assets/icon-send.png";
@@ -28,20 +28,20 @@ export default function CryptoChatFooter({ socket }: CryptoChatFooterProps) {
   const sendMessage = useCallback(async () => {
     if (!socket) return;
 
-    const type = messageData.type;
-    const { text } = messageData.data;
+    const {type, data} = messageData;
+    const { text } = data;
 
     if (
       type === "join" &&
       text.length >= MIN_USERNAME_LENGTH &&
       text.length <= MAX_USERNAME_LENGTH
     ) {
-      socket.emit("join chat", messageData.data);
+      socket.emit("join chat", data);
 
       setMessageData({
         type: "user",
         data: {
-          ...messageData.data,
+          ...data,
           username: text,
         },
       });
@@ -50,7 +50,7 @@ export default function CryptoChatFooter({ socket }: CryptoChatFooterProps) {
       text.length >= MIN_MESSAGE_LENGTH &&
       text.length <= MAX_MESSAGE_LENGTH
     ) {
-      socket.emit("send message", messageData.data);
+      socket.emit("send message", data);
     }
 
     setMessageData((prev) => ({
@@ -64,13 +64,6 @@ export default function CryptoChatFooter({ socket }: CryptoChatFooterProps) {
     setIsEmpty(true);
   }, [socket, messageData]);
 
-  const handleKeyDown = (evt: KeyboardEvent<HTMLTextAreaElement>) => {
-    if (evt.key === "Enter" && !evt.shiftKey) {
-      evt.preventDefault();
-      sendMessage();
-    }
-  };
-
   return (
     <div className={Style.CryptoChatFooter}>
       <DataProvider data={messageData}>
@@ -78,11 +71,11 @@ export default function CryptoChatFooter({ socket }: CryptoChatFooterProps) {
           isEmpty={isEmpty}
           onEmpty={setIsEmpty}
           onChat={setMessageData}
-          onKeyDown={handleKeyDown}
+          onMessage={sendMessage}
         />
         <Button
           className={Style.CryptoChatButton}
-          onClick={() => sendMessage()}
+          onClick={sendMessage}
         >
           <Icon iconSrc={SendIcon} iconAlt="Send icon" />
         </Button>

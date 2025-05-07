@@ -3,6 +3,7 @@ import nextIcon from "../../assets/icon-next.png";
 import prevIcon from "../../assets/icon-prev.png";
 import Button from "../../UI/Button/Button";
 import classNames from "classnames";
+import { useWindowWidth } from "../../hooks/useWindowWidth";
 
 interface PaginationProps {
   pageNumber: number;
@@ -10,28 +11,41 @@ interface PaginationProps {
   onSubmit: (value: number) => void;
 }
 
+const CRITICAL_WIDTH = 425;
+const SMALL_SCREEN_PAGE_NUMBER = 3;
+const SCREEN_PAGE_NUMBER = 5; 
+
+const getPageNumbers = (current: number, hasNext: boolean, width: number): number[] => {
+  const maxVisible = width < CRITICAL_WIDTH ? SMALL_SCREEN_PAGE_NUMBER : SCREEN_PAGE_NUMBER;
+  const middle = Math.ceil(maxVisible / 2);
+  const pages: number[] = [];
+
+  if (current <= middle) {
+    for (let i = 1; i <= maxVisible; i++) {
+      pages.push(i);
+    }
+  } else if (!hasNext) {
+    const start = current - maxVisible + 1 > 0 ? current - maxVisible + 1 : 1;
+    for (let i = start; i < start + maxVisible; i++) {
+      pages.push(i);
+    }
+  } else {
+    const start = current - middle + 1;
+    for (let i = start; i < start + maxVisible; i++) {
+      pages.push(i);
+    }
+  }
+
+  return pages;
+}
+
 export default function Pagination({
   pageNumber,
   isData,
   onSubmit,
 }: PaginationProps) {
-  const pageNumbers: number[] = [];
-
-  if (pageNumber <= 2) {
-    for (let i = 1; i <= 5; i++) {
-      pageNumbers.push(i);
-    }
-  } else if (!isData) {
-    const firstPageNumber = pageNumber >= 5 ? pageNumber - 4 : 1;
-    for (let i = firstPageNumber; i <= firstPageNumber + 4; i++) {
-      pageNumbers.push(i);
-    }
-  } else {
-    console.log(pageNumber, isData);
-    for (let i = pageNumber - 2; i <= pageNumber + 2; i++) {
-      pageNumbers.push(i);
-    }
-  }
+  const width = useWindowWidth();
+  const pages = getPageNumbers(pageNumber, isData, width);
 
   return (
     <div className={Style.Pagination}>
@@ -43,24 +57,26 @@ export default function Pagination({
           <img
             className={Style.PaginationButtonIcon}
             src={prevIcon}
-            alt="Prev"
+            alt="Previous"
           />
         </Button>
       )}
+
       <div className={Style.GroupButton}>
-        {pageNumbers.map((item, index) => (
+        {pages.map((item) => (
           <Button
-            key={index}
+            key={item}
             className={classNames(
               Style.PaginationButton,
-              pageNumber === item ? Style.Selected : null
+              pageNumber === item && Style.Selected
             )}
-            onClick={() => onSubmit(pageNumbers[index])}
+            onClick={() => onSubmit(item)}
           >
             {item}
           </Button>
         ))}
       </div>
+
       {isData && (
         <Button
           className={Style.PaginationButton}

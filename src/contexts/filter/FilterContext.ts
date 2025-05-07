@@ -2,6 +2,7 @@ import { createContext, ReactNode } from "react";
 
 export interface FilterContextType<T> {
   items: T[];
+  onFilter: (value: string) => void;
   filterKey: keyof T;
   filterContent: ReactNode;
 }

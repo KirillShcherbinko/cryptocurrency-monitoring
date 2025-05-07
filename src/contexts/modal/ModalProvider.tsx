@@ -3,26 +3,28 @@ import ModalContext from "./ModalContext";
 import Modal from "../../UI/Modal/Modal";
 
 interface ModalProviderProps {
-  content: ReactNode;
   children: ReactNode;
 }
 
-export default function ModalProvider( { content, children }: ModalProviderProps) {
+export default function ModalProvider( { children }: ModalProviderProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [content, setContent] = useState<ReactNode>(null);
 
-  const openModal = () => {
+  const openModal = (content: ReactNode) => {
+    setContent(content);
     setIsOpen(true);
     document.documentElement.classList.add('no-scroll');
-    document.body.classList.add('.no-scroll');
+    document.body.classList.add('no-scroll');
   }
   const closeModal = () => {
+    setContent(null);
     setIsOpen(false);
     document.documentElement.classList.remove('no-scroll');
-    document.body.classList.remove('.no-scroll');
+    document.body.classList.remove('no-scroll');
   }
 
   return (
-    <ModalContext.Provider value={{ isOpen, openModal, closeModal, content }}>
+    <ModalContext.Provider value={{ isOpen, openModal, closeModal }}>
       { children }
       <Modal>{content}</Modal>
     </ModalContext.Provider>

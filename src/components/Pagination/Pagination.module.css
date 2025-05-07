@@ -15,11 +15,13 @@
 }
 
 .PaginationButton {
+  --button-size: 50px;
+
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 50px;
-  height: 50px;
+  width: var(--button-size);
+  height: var(--button-size);
   background-color: transparent;
   border-radius: 50%;
   font-size: 18px;
@@ -41,29 +43,46 @@
 
 .PaginationButtonIcon {
   width: 12px;
-  height: 20px;
+  height: 18px;
 }
 
 @media screen and (max-width: 768px) {
   .Pagination {
-    gap: 10px;
+    gap: calc(15px - (768px - 100vw) * 5 / 343);
   }
 
   .GroupButton {
-    gap: 10px;
+    gap: calc(15px - (768px - 100vw) * 5 / 343);
   }
 
   .PaginationButton {
-    width: calc(50px - (768px - 100vw) * 25 / 343);
-    height: calc(50px - (768px - 100vw) * 25 / 343);
-    font-size: 10px;
+    --button-size: calc(50px - (768px - 100vw) * 20 / 343);
+    font-size: calc(18px - (768px - 100vw) * 6 / 343);
+  }
+
+  .PaginationButtonIcon {
+    width: calc(12px - (768px - 100vw) * 4 / 343);
+    height: calc(18px - (768px - 100vw) * 6 / 343);
   }
 }
 
 @media screen and (max-width: 425px) {
   .Pagination {
-    align-self: start;
-    padding-left: 10px;
+    gap: calc(10px - (425px - 100vw) * 5 / 105);
+  }
+
+  .GroupButton {
+    gap: calc(10px - (425px - 100vw) * 5 / 105);
+  }
+
+  .PaginationButton {
+    --button-size: 30px;
+    font-size: 12px;
+  }
+
+  .PaginationButtonIcon {
+    width: 8px;
+    height: 12px;
   }
 }
 
