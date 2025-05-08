@@ -1,82 +1,67 @@
 import Style from "./CryptoChatFooter.module.css";
-import { useCallback, useState } from "react";
+import { ChangeEvent, KeyboardEvent, useState } from "react";
 import Button from "../../../../../UI/Button/Button";
 import Icon from "../../../../../UI/Icon/Icon";
 import SendIcon from "../../../../../assets/icon-send.png";
-import DataProvider from "../../../../../contexts/data/DataProvider";
-import { UserMessageType } from "../../../types";
-import {
-  initialCurrentMessage,
-  MAX_MESSAGE_LENGTH,
-  MAX_USERNAME_LENGTH,
-  MIN_MESSAGE_LENGTH,
-  MIN_USERNAME_LENGTH,
-} from "../../../constants";
-import CryptoChatInput from "./CryptoChatInput/CryptoChatInput";
-import Socket = SocketIOClient.Socket;
+import { MAX_MESSAGE_LENGTH, MIN_MESSAGE_LENGTH } from "../../../constants";
+import { useCryptoChat } from "../../../hooks/useCryptoChat";
+import Textarea from "../../../../../UI/Textarea/Textarea";
 
-interface CryptoChatFooterProps {
-  socket: Socket | null;
-}
+export default function CryptoChatFooter() {
+  const [input, setInput] = useState<string>("");
 
-export default function CryptoChatFooter({ socket }: CryptoChatFooterProps) {
-  const [isEmpty, setIsEmpty] = useState<boolean>(false);
-  const [messageData, setMessageData] = useState<UserMessageType>(
-    initialCurrentMessage
-  );
+  const { cryptoChatState, dispatchCryptoChat } = useCryptoChat();
+  const { socket, currentMessage } = cryptoChatState;
 
-  const sendMessage = useCallback(async () => {
+  const placeholder = currentMessage.type === "join" ? "Your name" : "Message";
+
+  const handleChange = (evt: ChangeEvent<HTMLTextAreaElement>) =>
+    setInput(evt.target.value);
+  const handleKeyDown = (evt: KeyboardEvent<HTMLTextAreaElement>) => {
+    if (evt.key === "Enter" && !evt.shiftKey) {
+      evt.preventDefault();
+      sendMessage();
+    }
+  };
+
+  const sendMessage = () => {
     if (!socket) return;
 
-    const { type, data } = messageData;
-    const { text } = data;
+    const newMessage = {
+      ...currentMessage,
+      data: {
+        ...currentMessage.data,
+        text: input.trim(),
+      },
+    };
 
-    if (
-      type === "join" &&
-      text.length >= MIN_USERNAME_LENGTH &&
-      text.length <= MAX_USERNAME_LENGTH
-    ) {
-      socket.emit("join chat", data);
+    dispatchCryptoChat({ type: "set_current_message", payload: newMessage });
 
-      setMessageData({
-        type: "user",
-        data: {
-          ...data,
-          username: text,
-        },
-      });
-    } else if (
-      type === "user" &&
-      text.length >= MIN_MESSAGE_LENGTH &&
-      text.length <= MAX_MESSAGE_LENGTH
-    ) {
-      socket.emit("send message", data);
+    if (newMessage.type === "join") {
+      socket.emit("join chat", newMessage.data);
+    } else {
+      socket.emit("send message", newMessage.data);
     }
 
-    setMessageData((prev) => ({
-      ...prev,
-      data: {
-        ...prev.data,
-        text: "",
-      },
-    }));
-
-    setIsEmpty(true);
-  }, [socket, messageData]);
+    setInput("");
+  };
 
   return (
     <div className={Style.CryptoChatFooter}>
-      <DataProvider data={messageData}>
-        <CryptoChatInput
-          isEmpty={isEmpty}
-          onEmpty={setIsEmpty}
-          onChat={setMessageData}
-          onMessage={sendMessage}
+      <div className={Style.CryptoChatInput}>
+        <Textarea
+          name="Chat"
+          placeholder={placeholder}
+          minLength={MIN_MESSAGE_LENGTH}
+          maxLength={MAX_MESSAGE_LENGTH}
+          value={input}
+          onChange={handleChange}
+          onKeyDown={handleKeyDown}
         />
-        <Button className={Style.CryptoChatButton} onClick={sendMessage}>
-          <Icon iconSrc={SendIcon} iconAlt="Send icon" />
-        </Button>
-      </DataProvider>
+      </div>
+      <Button className={Style.CryptoChatButton} onClick={sendMessage}>
+        <Icon iconSrc={SendIcon} iconAlt="Send icon" />
+      </Button>
     </div>
   );
 }

@@ -40,7 +40,6 @@ export type CryptoChatStateType = {
   currentMessage: UserMessageType,
   messages: MessageType[],
   errorMessages: ErrorMessageType[],
-  isEmpty: boolean,
 };
 
 type SocketStateType = {
@@ -48,15 +47,10 @@ type SocketStateType = {
   payload: Socket | null,
 };
 
-type IsEmptyStateType = {
-  type: "set_is_empty",
-  payload: boolean,
-}
-
 type CurrentMessageStateType = {
   type: "set_current_message",
   payload: UserMessageType,
-}
+};
 
 type MessageDataStateType = {
   type: "add_message",
@@ -70,7 +64,6 @@ type ErrorMessageDataStateType = {
 
 export type CryptoChatActionType =
   | SocketStateType
-  | IsEmptyStateType
   | CurrentMessageStateType
   | MessageDataStateType
   | ErrorMessageDataStateType;

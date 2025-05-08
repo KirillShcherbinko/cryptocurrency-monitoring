@@ -30,63 +30,34 @@ export const cryptoChatReducer = (
       };
     }
 
-    case "set_is_empty": {
-      return {
-        ...state,
-        isEmpty: action.payload,
-      };
-    }
-
     case "set_current_message": {
       const { type, data } = action.payload;
       const text = data.text.trim();
-      const socket = state.socket;
-      if (!socket) return state;
 
       if (type === "join") {
         if (text.length < MIN_USERNAME_LENGTH) {
-          return addErrorMessage(
-            state,
-            `${text} contains an insufficient number of characters`
-          );
+          return addErrorMessage(state, "Name is too short");
         }
         if (text.length > MAX_USERNAME_LENGTH) {
-          return addErrorMessage(state, `${text} contains too many characters`);
+          return addErrorMessage(state, "Name is too long");
         }
-
-        socket.emit("join chat", data);
-        return {
-          ...state,
-          currentMessage: {
-            type: "user" as "user",
-            data: {
-              ...data,
-              username: text,
-              text: "",
-            },
-          },
-        };
+      } else {
+        if (text.length < MIN_MESSAGE_LENGTH) {
+          return addErrorMessage(state, "Message is too short");
+        }
+        if (text.length > MAX_MESSAGE_LENGTH) {
+          return addErrorMessage(state, "Message is too long");
+        }
       }
 
-      if (text.length < MIN_MESSAGE_LENGTH) {
-        return addErrorMessage(
-          state,
-          "Message contains an insufficient number of characters"
-        );
-      }
-      if (text.length > MAX_MESSAGE_LENGTH) {
-        return addErrorMessage(state, "Message contains too many characters");
-      }
+      if (!data.id) data.id = state.userId;
+      if (type === "join") data.username = text;
 
-      socket.emit("send message", data);
       return {
         ...state,
         currentMessage: {
-          type: "user" as "user",
-          data: {
-            ...data,
-            text: "",
-          },
+          type: "user",
+          data: { ...data, text: "" },
         },
       };
     }

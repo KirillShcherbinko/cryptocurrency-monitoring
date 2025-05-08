@@ -1,19 +1,17 @@
 import Style from "./CryptoChatModal.module.css";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import io from "socket.io-client";
 import { MessageType } from "../../types";
 import CryptoChatBody from "./CryptoChatBody/CryptoChatBody";
 import CryptoChatFooter from "./CryptoChatFooter/CryptoChatFooter";
-import Socket = SocketIOClient.Socket;
 import ScrollWrapper from "../../../../components/ScrollWrapper/ScrollWrapper";
-import DataProvider from "../../../../contexts/data/DataProvider";
 import CryptoChatHeader from "./CryptoChatHeader/CryptoChatHeader";
+import CryptoChatProvider from "../../contexts/CryptoChatContext/CryptoChatProvider";
+import { useCryptoChat } from "../../hooks/useCryptoChat";
 
-export default function CryptoChatModal() {
-  const [socket, setSocket] = useState<Socket | null>(null);
-  const [userId, setUserId] = useState<string>("");
-  const [errorMessage, setErrorMessage] = useState<string>("");
-  const [messages, setMessages] = useState<MessageType[]>([]);
+function CryptoChatModalInner() {
+  const { cryptoChatState, dispatchCryptoChat } = useCryptoChat();
+  const { userId, messages } = cryptoChatState;
 
   const lastId = messages[messages.length - 1]?.data.id;
 
@@ -23,20 +21,20 @@ export default function CryptoChatModal() {
     });
 
     newSocket.on("connect", () => {
-      setSocket(newSocket);
-      setUserId(newSocket.id);
+      dispatchCryptoChat({ type: "set_socket", payload: newSocket });
     });
 
     newSocket.on("receive message", (message: MessageType) => {
-      setMessages((prev) => [...prev, message]);
+      dispatchCryptoChat({ type: "add_message", payload: message });
     });
 
     newSocket.on("error", (error: string) => {
-      setErrorMessage(error);
-      console.log(errorMessage);
+      console.log(error);
     });
 
-    newSocket.on("disconnect", () => setSocket(null));
+    newSocket.on("disconnect", () => {
+      dispatchCryptoChat({ type: "set_socket", payload: null });
+    });
 
     return () => {
       newSocket.disconnect();
@@ -47,11 +45,17 @@ export default function CryptoChatModal() {
     <div className={Style.CryptoChatModal}>
       <CryptoChatHeader />
       <ScrollWrapper data={messages} isScroll={lastId === userId}>
-        <DataProvider data={{ messages, userId }}>
-          <CryptoChatBody />
-        </DataProvider>
+        <CryptoChatBody />
       </ScrollWrapper>
-      <CryptoChatFooter socket={socket} />
+      <CryptoChatFooter />
     </div>
+  );
+}
+
+export default function CryptoChatModal() {
+  return (
+    <CryptoChatProvider>
+      <CryptoChatModalInner />
+    </CryptoChatProvider>
   );
 }

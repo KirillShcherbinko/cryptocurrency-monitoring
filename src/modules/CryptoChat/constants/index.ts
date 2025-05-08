@@ -16,7 +16,6 @@ export const initialState = {
   currentMessage: initialCurrentMessage,
   messages: [],
   errorMessages: [],
-  isEmpty: true,
 };
 
 export const MIN_USERNAME_LENGTH = 3;

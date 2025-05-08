@@ -9,6 +9,17 @@
   padding: 0;
 }
 
+.CryptoChatInput {
+  background-color: #645F5F;
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16.5px 12px;
+  width: 80%;
+  box-sizing: border-box;
+}
+
 .CryptoChatButton {
   display: flex;
   align-items: center;

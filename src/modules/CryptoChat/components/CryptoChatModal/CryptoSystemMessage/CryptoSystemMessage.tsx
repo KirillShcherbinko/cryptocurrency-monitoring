@@ -1,12 +1,9 @@
 import Style from "./CryptoSystemMessage.module.css";
 import { SystemMessageType } from "../../../types";
+import { useCryptoMessage } from "../../../hooks/useCryptoMessage";
 
-interface CryptoSystemMessageProps {
-  message: SystemMessageType;
-}
+export default function CryptoSystemMessage() {
+  const { message } = useCryptoMessage<SystemMessageType>();
 
-export default function CryptoSystemMessage({
-  message,
-}: CryptoSystemMessageProps) {
   return <div className={Style.CryptoSystemMessage}>{message.data.text}</div>;
 }

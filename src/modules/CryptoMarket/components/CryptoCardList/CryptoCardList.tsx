@@ -9,8 +9,6 @@ export default function CryptoCardList() {
   const { cryptoMarketState } = useCryptoMarket();
   const { cryptoFilteredData } = cryptoMarketState;
 
-  console.log(cryptoFilteredData);
-
   return (
     <List
       items={cryptoFilteredData}

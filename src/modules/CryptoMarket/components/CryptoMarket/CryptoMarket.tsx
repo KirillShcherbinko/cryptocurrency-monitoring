@@ -2,7 +2,7 @@ import Style from "./CryptoMarket.module.css";
 import { useCryptoCards } from "../../hooks/useCryptoCards";
 import { CryptoParamsType } from "../../types";
 import CryptoCardList from "../CryptoCardList/CryptoCardList";
-import { initialParams } from "../../constants/apiConstants";
+import { initialParams } from "../../constants";
 import Pagination from "../../../../components/Pagination/Pagination";
 import ErrorScreen from "../../../../components/ErrorScreen/ErrorScreen";
 import NotFoundScreen from "../../../../assets/not-found-screen.png";

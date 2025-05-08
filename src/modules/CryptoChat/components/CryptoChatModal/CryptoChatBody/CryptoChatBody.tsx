@@ -1,26 +1,28 @@
 import Style from "./CryptoChatBody.module.css";
-import { CryptoChatDataType } from "../../../types";
 import List from "../../../../../components/List/List";
-import { useData } from "../../../../../hooks/useData";
 import CryptoUserMessage from "../CryptoUserMessage/CryptoUserMessage";
 import CryptoSystemMessage from "../CryptoSystemMessage/CryptoSystemMessage";
+import { useCryptoChat } from "../../../hooks/useCryptoChat";
+import CryptoMessageProvider from "../../../contexts/CryptoMessageContext/CryptoMessageProvider";
 
 export default function CryptoChatBody() {
-  const data = useData<CryptoChatDataType>();
-  if (!data) return null;
-
-  const { messages } = data;
+  const { cryptoChatState } = useCryptoChat();
+  const {messages} = cryptoChatState;
 
   return (
     <List
       items={messages}
       className={Style.CryptoChatBody}
       render={(message) =>
-        message.type === "user" ? (
-          <CryptoUserMessage message={message} />
-        ) : message.type === "system" ? (
-          <CryptoSystemMessage message={message} />
-        ) : null
+          message.type === "user" ? (
+            <CryptoMessageProvider message={message}>
+              <CryptoUserMessage />
+            </CryptoMessageProvider>
+          ) : message.type === "system" ? (
+            <CryptoMessageProvider message={message}>
+              <CryptoSystemMessage />
+            </CryptoMessageProvider>
+          ) : null
       }
     />
   );
