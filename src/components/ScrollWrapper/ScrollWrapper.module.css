@@ -15,12 +15,12 @@
 
 .ScrollContent::-webkit-scrollbar {
   background-color: #2A2A2D;
-  width: 8px;
+  width: 6px;
 }
 
 .ScrollContent::-webkit-scrollbar-thumb {
   background-color: #5A5A5E;
-  border-radius: 12px;
+  border-radius: 20px;
 }
 
 .ScrollContent::-webkit-scrollbar-thumb:hover {

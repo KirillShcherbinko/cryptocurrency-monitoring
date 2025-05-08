@@ -1,8 +1,8 @@
 import Style from "./CryptoMarket.module.css";
 import { useCryptoCards } from "../../hooks/useCryptoCards";
-import { CryptoParams } from "../../types";
+import { CryptoParamsType } from "../../types";
 import CryptoCardList from "../CryptoCardList/CryptoCardList";
-import { initialState } from "../../constants/apiConstants";
+import { initialParams } from "../../constants/apiConstants";
 import Pagination from "../../../../components/Pagination/Pagination";
 import ErrorScreen from "../../../../components/ErrorScreen/ErrorScreen";
 import NotFoundScreen from "../../../../assets/not-found-screen.png";
@@ -15,7 +15,7 @@ import { useLayoutEffect } from "react";
 
 function CryptoMarketInner() {
   const { cryptoMarketState, dispatchCryptoMarket } = useCryptoMarket();
-  const { cryptoParams, cryptoData } = cryptoMarketState;
+  const { cryptoParams } = cryptoMarketState;
 
   const { data, isError, isLoading, isFetching, refetch } = useCryptoCards(
     cryptoParams.currency,
@@ -25,12 +25,10 @@ function CryptoMarketInner() {
   );
 
   useLayoutEffect(() => {
-    if (data) {
-      dispatchCryptoMarket({ type: "set_crypto_data", payload: data });
-    }
-  }, [data, cryptoData, dispatchCryptoMarket]);
+    if (data) dispatchCryptoMarket({ type: "set_crypto_data", payload: data });
+  }, [data, dispatchCryptoMarket]);
 
-  const handleSubmit = (params: CryptoParams) => {
+  const handleSubmit = (params: CryptoParamsType) => {
     dispatchCryptoMarket({ type: "set_crypto_params", payload: params });
   };
 
@@ -54,13 +52,13 @@ function CryptoMarketInner() {
           />
         ) : isLoading || isFetching ? (
           <Spinner />
-        ) : !data || !data.length? (
+        ) : !data || !data.length ? (
           <ErrorScreen
             title="Result Not Found"
             description="Whoops ... this information is not available for a moment"
             image={NotFoundScreen}
             buttonText="Go back"
-            onClick={() => handleSubmit(initialState)}
+            onClick={() => handleSubmit(initialParams)}
           />
         ) : (
           <CryptoCardList />

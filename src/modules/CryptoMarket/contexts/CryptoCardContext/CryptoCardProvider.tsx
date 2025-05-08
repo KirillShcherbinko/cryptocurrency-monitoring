@@ -1,10 +1,10 @@
 import { ReactNode, useState, useEffect } from "react";
-import { CryptoData, CurrencySymbol } from "../../types";
+import { CryptoDataType, CurrencySymbol } from "../../types";
 import CryptoCardContext from "./CryptoCardContext";
 import { useCryptoMarket } from "../../hooks/useCryptoMarket";
 
 interface CryptoCardProviderProps {
-  cryptoData: CryptoData;
+  cryptoData: CryptoDataType;
   children: ReactNode;
 }
 

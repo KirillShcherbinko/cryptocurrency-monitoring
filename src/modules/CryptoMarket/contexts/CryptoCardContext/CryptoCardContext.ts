@@ -1,10 +1,10 @@
-import { createContext } from "react"
-import { CryptoData, CurrencySymbol } from "../../types"
+import { createContext } from "react";
+import { CryptoDataType, CurrencySymbol } from "../../types";
 
 export type CryptoCardContextType = {
-  cryptoData: CryptoData,
-  currencySymbol: CurrencySymbol,
-}
+  cryptoData: CryptoDataType;
+  currencySymbol: CurrencySymbol;
+};
 
 const CryptoCardContext = createContext<CryptoCardContextType | null>(null);
 

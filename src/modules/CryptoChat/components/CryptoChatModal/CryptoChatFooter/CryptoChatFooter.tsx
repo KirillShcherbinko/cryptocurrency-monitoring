@@ -4,14 +4,14 @@ import Button from "../../../../../UI/Button/Button";
 import Icon from "../../../../../UI/Icon/Icon";
 import SendIcon from "../../../../../assets/icon-send.png";
 import DataProvider from "../../../../../contexts/data/DataProvider";
-import { JoinMessage, UserMessage } from "../../../types";
+import { UserMessageType } from "../../../types";
 import {
-  initialChatState,
+  initialCurrentMessage,
   MAX_MESSAGE_LENGTH,
   MAX_USERNAME_LENGTH,
   MIN_MESSAGE_LENGTH,
   MIN_USERNAME_LENGTH,
-} from "../../../constants/paramsConstants";
+} from "../../../constants";
 import CryptoChatInput from "./CryptoChatInput/CryptoChatInput";
 import Socket = SocketIOClient.Socket;
 
@@ -21,14 +21,14 @@ interface CryptoChatFooterProps {
 
 export default function CryptoChatFooter({ socket }: CryptoChatFooterProps) {
   const [isEmpty, setIsEmpty] = useState<boolean>(false);
-  const [messageData, setMessageData] = useState<UserMessage | JoinMessage>(
-    initialChatState
+  const [messageData, setMessageData] = useState<UserMessageType>(
+    initialCurrentMessage
   );
 
   const sendMessage = useCallback(async () => {
     if (!socket) return;
 
-    const {type, data} = messageData;
+    const { type, data } = messageData;
     const { text } = data;
 
     if (
@@ -73,10 +73,7 @@ export default function CryptoChatFooter({ socket }: CryptoChatFooterProps) {
           onChat={setMessageData}
           onMessage={sendMessage}
         />
-        <Button
-          className={Style.CryptoChatButton}
-          onClick={sendMessage}
-        >
+        <Button className={Style.CryptoChatButton} onClick={sendMessage}>
           <Icon iconSrc={SendIcon} iconAlt="Send icon" />
         </Button>
       </DataProvider>

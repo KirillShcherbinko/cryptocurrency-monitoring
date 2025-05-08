@@ -1,5 +1,6 @@
+import Style from "./CryptoFilter.module.css";
 import { ReactNode, useCallback, useMemo } from "react";
-import FilterProvider from "../../../../contexts/filter/FilterProvider";
+import FilterProvider from "../../../../components/Filter/FilterContext/FilterProvider";
 import CryptoMarketModal from "../CryptoFormModal/CryptoFormModal";
 import Filter from "../../../../components/Filter/Filter";
 import { useCryptoMarket } from "../../hooks/useCryptoMarket";
@@ -15,15 +16,18 @@ export default function CryptoFilter({ children }: CryptoFilerProps) {
   const filterKey = "name";
   const modal = useMemo(() => <CryptoMarketModal />, []);
 
-  const handleFilter = useCallback((value: string) => {
-    dispatchCryptoMarket({
-      type: "set_filtered_crypto_data",
-      payload: { key: filterKey, value: value },
-    });
-  }, [dispatchCryptoMarket]);
+  const handleFilter = useCallback(
+    (value: string) => {
+      dispatchCryptoMarket({
+        type: "set_filtered_crypto_data",
+        payload: { key: filterKey, value: value },
+      });
+    },
+    [dispatchCryptoMarket]
+  );
 
   return (
-    <div>
+    <div className={Style.CryptoFilter}>
       <FilterProvider
         items={cryptoData}
         onFilter={handleFilter}

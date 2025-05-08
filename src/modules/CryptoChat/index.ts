@@ -1,0 +1,1 @@
+export { default as CryptoChat } from './components/CryptoChat/CryptoChat'

@@ -1,17 +1,14 @@
 import Style from "./CryptoChatInput.module.css";
 import { ChangeEvent, KeyboardEvent, useEffect, useState } from "react";
-import { JoinMessage, UserMessage } from "../../../../types";
+import { UserMessageType } from "../../../../types";
 import { useData } from "../../../../../../hooks/useData";
-import {
-  MAX_MESSAGE_LENGTH,
-  MIN_MESSAGE_LENGTH,
-} from "../../../../constants/paramsConstants";
+import { MAX_MESSAGE_LENGTH, MIN_MESSAGE_LENGTH } from "../../../../constants";
 import Textarea from "../../../../../../UI/Textarea/Textarea";
 
 interface CryptoChatInputProps {
   isEmpty: boolean;
   onEmpty: (value: boolean) => void;
-  onChat: (message: UserMessage | JoinMessage) => void;
+  onChat: (message: UserMessageType) => void;
   onMessage: () => void;
 }
 
@@ -21,7 +18,7 @@ export default function CryptoChatInput({
   onChat,
   onMessage,
 }: CryptoChatInputProps) {
-  const data = useData<UserMessage | JoinMessage>();
+  const data = useData<UserMessageType>();
   if (!data) return null;
 
   const [input, setInput] = useState<string>("");

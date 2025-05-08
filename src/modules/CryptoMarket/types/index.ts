@@ -17,7 +17,7 @@ export type SortType =
   | "id_asc"
   | "id_desc";
 
-export interface CryptoParams {
+export interface CryptoParamsType {
   currency: CurrencyType;
   perPage: number;
   pageNumber: number;
@@ -29,7 +29,7 @@ export type XAxisConfig = TypedScale<"time", TimeScaleOptions>;
 export type YAxisConfig = TypedScale<"linear", CartesianScaleOptions>;
 
 ////////// Типы для данных //////////
-export interface CryptoData {
+export interface CryptoDataType {
   id: string;
   symbol: string;
   name: string;
@@ -46,32 +46,32 @@ export interface CryptoData {
 }
 
 ////////// Типы для состояний //////////
-export type CryptoMarketState = {
-  cryptoData: CryptoData[];
-  filterKey: keyof CryptoData | null;
-  cryptoFilteredData: CryptoData[];
-  cryptoParams: CryptoParams;
+export type CryptoMarketStateType = {
+  cryptoData: CryptoDataType[];
+  filterKey: keyof CryptoDataType | null;
+  cryptoFilteredData: CryptoDataType[];
+  cryptoParams: CryptoParamsType;
 };
 
-type CryptoDataState = {
+type CryptoDataStateType = {
   type: "set_crypto_data";
-  payload: CryptoData[];
+  payload: CryptoDataType[];
 };
 
-type CryptoFilterDataState = {
+type CryptoFilterDataStateType = {
   type: "set_filtered_crypto_data";
   payload: {
-    key: keyof CryptoData;
+    key: keyof CryptoDataType;
     value: string;
   };
 };
 
-type CryptoParamsState = {
+type CryptoParamsStateType = {
   type: "set_crypto_params";
-  payload: CryptoParams;
+  payload: CryptoParamsType;
 };
 
-export type CryptoMarketAction =
-  | CryptoDataState
-  | CryptoFilterDataState
-  | CryptoParamsState;
+export type CryptoMarketActionType =
+  | CryptoDataStateType
+  | CryptoFilterDataStateType
+  | CryptoParamsStateType;

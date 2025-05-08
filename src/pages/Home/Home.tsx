@@ -1,11 +1,11 @@
-import CryptoChat from "../../modules/CryptoChat/components/CryptoChat/CryptoChat";
+import { CryptoChat } from "../../modules/CryptoChat";
 import { CryptoMarket } from "../../modules/CryptoMarket";
 
 export default function Home() {
   return (
     <>
-      <CryptoMarket/>
+      <CryptoMarket />
       <CryptoChat />
     </>
-  )
+  );
 }

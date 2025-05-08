@@ -1,5 +1,5 @@
 import Style from "./Filter.module.css";
-import ModalProvider from "../../contexts/modal/ModalProvider";
+import ModalProvider from "../../UI/Modal/ModalContext/ModalProvider";
 import FilterButton from "./FilterButton/FilterButton";
 import FilterInput from "./FilterInput/FilterInput";
 import { ReactNode } from "react";

@@ -1,5 +1,5 @@
 import Style from "./CryptoCardList.module.css";
-import ModalProvider from "../../../../contexts/modal/ModalProvider";
+import ModalProvider from "../../../../UI/Modal/ModalContext/ModalProvider";
 import CryptoCard from "../CryptoCard/CryptoCard";
 import List from "../../../../components/List/List";
 import CryptoCardProvider from "../../contexts/CryptoCardContext/CryptoCardProvider";

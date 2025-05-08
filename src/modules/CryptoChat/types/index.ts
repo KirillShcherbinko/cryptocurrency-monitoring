@@ -1,33 +1,86 @@
-export type UserMessageType = {
-  id: string;
-  username: string,
-  text: string,
-  timestamp: string,
-}
+import Socket = SocketIOClient.Socket;
 
-export type SystemMessageType = {
+////////// Типы для сообщений //////////
+type UserMessageDataType = {
   id: string;
-  text: string,
-  timestamp: string,
-}
+  username: string;
+  text: string;
+  timestamp: string;
+};
 
-export type BaseMessageType<T> = {
-  type: 'join' | 'user' | 'system';
+type SystemMessageDataType = {
+  id: string;
+  text: string;
+  timestamp: string;
+};
+
+type BaseMessageType<T> = {
+  type: "join" | "user" | "system";
   data: T;
-}
+};
 
-export type JoinMessage = BaseMessageType<UserMessageType> & { type: 'join' };
-export type UserMessage = BaseMessageType<UserMessageType> & { type: 'user' };
-export type SystemMessage = BaseMessageType<SystemMessageType> & { type: 'system' };
+export type UserMessageType = BaseMessageType<UserMessageDataType> & {
+  type: "user" | "join";
+};
+export type SystemMessageType = BaseMessageType<SystemMessageDataType> & {
+  type: "system";
+};
 
-export type MessageType = JoinMessage | UserMessage | SystemMessage;
+export type MessageType = UserMessageType | SystemMessageType;
 
-export type ChatDataType = {
+export type ErrorMessageType = {
+  id: string,
+  text: string,
+};
+
+////////// Типы для чата //////////
+export type CryptoChatStateType = {
+  socket: Socket | null,
   userId: string,
-  messages: MessageType[];
+  currentMessage: UserMessageType,
+  messages: MessageType[],
+  errorMessages: ErrorMessageType[],
+  isEmpty: boolean,
+};
+
+type SocketStateType = {
+  type: "set_socket",
+  payload: Socket | null,
+};
+
+type IsEmptyStateType = {
+  type: "set_is_empty",
+  payload: boolean,
 }
+
+type CurrentMessageStateType = {
+  type: "set_current_message",
+  payload: UserMessageType,
+}
+
+type MessageDataStateType = {
+  type: "add_message",
+  payload: MessageType,
+};
+
+type ErrorMessageDataStateType = {
+  type: "remove_error_message",
+  payload: string,
+};
+
+export type CryptoChatActionType =
+  | SocketStateType
+  | IsEmptyStateType
+  | CurrentMessageStateType
+  | MessageDataStateType
+  | ErrorMessageDataStateType;
+
+export type CryptoChatDataType = {
+  userId: string;
+  messages: MessageType[];
+};
 
 export type FooterDataType = {
-  messageData: UserMessage | JoinMessage,
-  isEmpty: boolean,
-}
+  messageData: UserMessageType;
+  isEmpty: boolean;
+};

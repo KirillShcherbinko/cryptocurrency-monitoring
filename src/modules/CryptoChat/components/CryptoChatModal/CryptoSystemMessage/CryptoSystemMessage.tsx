@@ -8,5 +8,5 @@ interface CryptoSystemMessageProps {
 export default function CryptoSystemMessage({
   message,
 }: CryptoSystemMessageProps) {
-  return <div className={Style.CryptoSystemMessage}>{message.text}</div>;
+  return <div className={Style.CryptoSystemMessage}>{message.data.text}</div>;
 }

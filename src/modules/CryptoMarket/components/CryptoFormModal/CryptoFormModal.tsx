@@ -11,20 +11,20 @@ import {
   MIN_PER_PAGE_VALUE,
   PER_PAGE_STEP,
   changeItems,
-} from "../../constants/paramsConstants";
+} from "../../constants";
 import Select from "../../../../UI/Select/Select";
 import Slider from "../../../../UI/Slider/Slider";
 import RadioForm from "../../../../UI/RadioForm/RadioForm";
 import Title from "../../../../UI/Title/Title";
 import Button from "../../../../UI/Button/Button";
-import { initialState } from "../../constants/apiConstants";
+import { initialParams } from "../../constants";
 import { useModal } from "../../../../hooks/useModal";
 import { useCryptoMarket } from "../../hooks/useCryptoMarket";
 
 export default function CryptoMarketModal() {
   const { closeModal } = useModal();
-  const {cryptoMarketState, dispatchCryptoMarket} = useCryptoMarket();
-  const {cryptoParams} = cryptoMarketState;
+  const { cryptoMarketState, dispatchCryptoMarket } = useCryptoMarket();
+  const { cryptoParams } = cryptoMarketState;
 
   const splitedOrder = cryptoParams.order.split("_");
 
@@ -37,7 +37,9 @@ export default function CryptoMarketModal() {
   const [order, setOrder] = useState<OrderType>(initialOrder);
   const [currency, setCurrency] = useState<CurrencyType>(cryptoParams.currency);
   const [perPage, setPerPage] = useState<number>(cryptoParams.perPage);
-  const [pageNumber, setPageNumber] = useState<number | "">(cryptoParams.pageNumber);
+  const [pageNumber, setPageNumber] = useState<number | "">(
+    cryptoParams.pageNumber
+  );
 
   const isSubmitDisabled = pageNumber === "";
 
@@ -91,7 +93,10 @@ export default function CryptoMarketModal() {
         <Button
           className={Style.CryptoModalButton}
           onClick={() => {
-            dispatchCryptoMarket({type: "set_crypto_params", payload: initialState});
+            dispatchCryptoMarket({
+              type: "set_crypto_params",
+              payload: initialParams,
+            });
             closeModal();
           }}
         >
@@ -103,12 +108,12 @@ export default function CryptoMarketModal() {
           onClick={() => {
             dispatchCryptoMarket({
               type: "set_crypto_params",
-              payload:{
+              payload: {
                 currency: currency,
                 perPage: perPage,
                 pageNumber: pageNumber || 1,
                 order: `${order}_${change}`,
-              }
+              },
             });
             closeModal();
           }}

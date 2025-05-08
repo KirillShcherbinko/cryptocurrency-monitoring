@@ -3,6 +3,8 @@ html, body {
   padding: 0;
   background-color: #1E1E1E;
   overscroll-behavior: none;
+  overflow-x: auto;
+  overflow-y: auto;
 }
 
 @supports (-moz-appearance: none) {

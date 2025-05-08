@@ -1,11 +1,11 @@
-import { CryptoMarketAction } from './../../types/index';
+import { CryptoMarketActionType } from "./../../types/index";
 import { createContext, Dispatch } from "react";
-import { CryptoMarketState } from "../../types";
+import { CryptoMarketStateType } from "../../types";
 
 type CryptoMarketContextType = {
-  cryptoMarketState: CryptoMarketState,
-  dispatchCryptoMarket: Dispatch<CryptoMarketAction>
-}
+  cryptoMarketState: CryptoMarketStateType;
+  dispatchCryptoMarket: Dispatch<CryptoMarketActionType>;
+};
 
 const CryptoMarketContext = createContext<CryptoMarketContextType | null>(null);
 

@@ -1,7 +1,7 @@
 import Style from "./CryptoUserMessage.module.css";
 import Card from "../../../../../components/Card/Card";
 import { useData } from "../../../../../hooks/useData";
-import { ChatDataType, UserMessageType } from "../../../types";
+import { CryptoChatDataType, UserMessageType } from "../../../types";
 import classNames from "classnames";
 import Paragraph from "../../../../../UI/Paragraph/Paragraph";
 import Title from "../../../../../UI/Title/Title";
@@ -11,11 +11,11 @@ interface CryptoUserMessageProps {
 }
 
 export default function CryptoUserMessage({ message }: CryptoUserMessageProps) {
-  const userData = useData<ChatDataType>();
+  const userData = useData<CryptoChatDataType>();
 
   if (!userData) return null;
 
-  const { id, username, text, timestamp } = message;
+  const { id, username, text, timestamp } = message.data;
   const { userId } = userData;
 
   return (
