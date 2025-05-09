@@ -1,0 +1,36 @@
+.ErrorMessage {
+  position: relative;
+  background-color: #F64B3C;
+  padding: 20px 40px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  border-radius: 4px;
+  color: white;
+  max-width: 320px;
+  border-radius: 12px;
+}
+
+.CloseButton {
+  position: absolute;
+  top: 5px;
+  right: 15px;
+  padding: 0;
+  background: none;
+  border: none;
+  font-size: 14px;
+  color: #FFFFFF;
+  cursor: pointer;
+}
+
+.CloseButton:hover {
+  color: #DDDDDD;
+}
+
+.CloseButton:focus {
+  outline: none;
+}
+
+.Paragraph {
+  font-size: 14px;
+}

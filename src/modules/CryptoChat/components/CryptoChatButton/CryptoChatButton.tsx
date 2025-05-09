@@ -6,7 +6,7 @@ import CryptoChatModal from "../CryptoChatModal/CryptoChatModal";
 
 export default function CryptoChatButton() {
   const { openModal } = useModal();
-  const modal = useMemo(() => <CryptoChatModal />, [])
+  const modal = useMemo(() => <CryptoChatModal />, []);
 
   return (
     <button className={Style.CryptoChatButton} onClick={() => openModal(modal)}>

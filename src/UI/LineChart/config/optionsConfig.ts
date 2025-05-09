@@ -9,6 +9,7 @@ export const createOptions = (
   return {
     responsive: true,
     maintainAspectRatio: false,
+    aspectRatio: 4/3,
     plugins: {
       tooltip: {
         ...(tooltipConfig || {}),
@@ -41,10 +42,10 @@ export const createOptions = (
           ...(xAxisConfig?.ticks || {}),
           padding: 10,
           align: "start",
-          color: "#645F5F",
+          color: "#CCCCCC",
           font: {
             family: "Poppins-Regular, Arial, sans-serif",
-            size: 12,
+            size: window.innerWidth > 650 ? 12 : 8,
           },
         },
       },
@@ -58,10 +59,10 @@ export const createOptions = (
           ...(yAxisConfig?.ticks || {}),
           padding: 10,
           align: "end",
-          color: "#645F5F",
+          color: "#CCCCCC",
           font: {
             family: "Poppins-Regular, Arial, sans-serif",
-            size: 12,
+            size: window.innerWidth > 650 ? 12 : 8,
           },
         },
         border: {

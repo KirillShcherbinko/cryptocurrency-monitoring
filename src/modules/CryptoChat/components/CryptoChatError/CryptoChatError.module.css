@@ -1,0 +1,9 @@
+.CryptoChatError {
+  align-self: center;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 20;
+  padding-top: 20px;
+}

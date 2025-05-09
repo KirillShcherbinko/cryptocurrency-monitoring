@@ -2,12 +2,13 @@ import Style from "./CryptoChatModal.module.css";
 import { useEffect } from "react";
 import io from "socket.io-client";
 import { MessageType } from "../../types";
-import CryptoChatBody from "./CryptoChatBody/CryptoChatBody";
-import CryptoChatFooter from "./CryptoChatFooter/CryptoChatFooter";
+import CryptoChatBody from "../CryptoChatBody/CryptoChatBody";
+import CryptoChatFooter from "../CryptoChatFooter/CryptoChatFooter";
 import ScrollWrapper from "../../../../components/ScrollWrapper/ScrollWrapper";
-import CryptoChatHeader from "./CryptoChatHeader/CryptoChatHeader";
+import CryptoChatHeader from "../CryptoChatHeader/CryptoChatHeader";
 import CryptoChatProvider from "../../contexts/CryptoChatContext/CryptoChatProvider";
 import { useCryptoChat } from "../../hooks/useCryptoChat";
+import CryptoChatError from "../CryptoChatError/CryptoChatError";
 
 function CryptoChatModalInner() {
   const { cryptoChatState, dispatchCryptoChat } = useCryptoChat();
@@ -43,6 +44,7 @@ function CryptoChatModalInner() {
 
   return (
     <div className={Style.CryptoChatModal}>
+      <CryptoChatError />
       <CryptoChatHeader />
       <ScrollWrapper data={messages} isScroll={lastId === userId}>
         <CryptoChatBody />

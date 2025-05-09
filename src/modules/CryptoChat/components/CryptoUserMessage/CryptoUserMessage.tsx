@@ -1,11 +1,11 @@
 import Style from "./CryptoUserMessage.module.css";
-import Card from "../../../../../components/Card/Card";
+import Card from "../../../../components/Card/Card";
 import classNames from "classnames";
-import Paragraph from "../../../../../UI/Paragraph/Paragraph";
-import Title from "../../../../../UI/Title/Title";
-import { useCryptoChat } from "../../../hooks/useCryptoChat";
-import { useCryptoMessage } from "../../../hooks/useCryptoMessage";
-import { UserMessageType } from "../../../types";
+import Paragraph from "../../../../UI/Paragraph/Paragraph";
+import Title from "../../../../UI/Title/Title";
+import { useCryptoChat } from "../../hooks/useCryptoChat";
+import { useCryptoMessage } from "../../hooks/useCryptoMessage";
+import { UserMessageType } from "../../types";
 
 export default function CryptoUserMessage() {
   const {cryptoChatState} = useCryptoChat();

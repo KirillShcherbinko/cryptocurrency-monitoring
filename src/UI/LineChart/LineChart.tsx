@@ -1,3 +1,4 @@
+import Style from "./LineChart.module.css";
 import { Line } from "react-chartjs-2";
 import "chartjs-adapter-date-fns";
 import { DeepPartial } from "utility-types";
@@ -79,13 +80,11 @@ export default function LineChart<T>({
   const options: ChartOptions<"line"> = createOptions(tooltipConfig, xAxisConfig, yAxisConfig);
 
   return (
-    <div>
+    <div className={Style.LineChart}>
       <Line
         datasetIdKey={labelName}
         data={data}
         options={options}
-        width={800}
-        height={600}
       />
     </div>
   );

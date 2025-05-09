@@ -3,16 +3,15 @@ import {
   MAX_USERNAME_LENGTH,
   MIN_MESSAGE_LENGTH,
   MAX_MESSAGE_LENGTH,
-  MAX_ERROR_MESSAGES_LENGTH,
 } from "../constants";
 import { CryptoChatActionType, CryptoChatStateType } from "../types";
 
 const addErrorMessage = (state: CryptoChatStateType, text: string) => ({
   ...state,
   errorMessages: [
-    ...state.errorMessages,
     { id: crypto.randomUUID(), text },
-  ].slice(-MAX_ERROR_MESSAGES_LENGTH),
+    ...state.errorMessages,
+  ],
 });
 
 export const cryptoChatReducer = (

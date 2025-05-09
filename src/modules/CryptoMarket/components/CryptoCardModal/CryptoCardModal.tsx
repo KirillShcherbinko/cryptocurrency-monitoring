@@ -3,7 +3,7 @@ import CryptoLineChart from "../CryptoLineChart/CryptoLineChart";
 import { useCryptoData } from "../../hooks/useCryptoData";
 
 export default function CryptoCardModal() {
-  const {cryptoData} = useCryptoData();
+  const { cryptoData } = useCryptoData();
 
   return (
     <div>
