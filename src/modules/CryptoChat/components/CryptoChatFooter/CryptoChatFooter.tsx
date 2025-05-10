@@ -1,7 +1,6 @@
 import Style from "./CryptoChatFooter.module.css";
 import { ChangeEvent, KeyboardEvent, useEffect, useState } from "react";
 import Button from "../../../../UI/Button/Button";
-import Icon from "../../../../UI/Icon/Icon";
 import SendIcon from "../../../../assets/icon-send.png";
 import { useCryptoChat } from "../../hooks/useCryptoChat";
 import Textarea from "../../../../UI/Textarea/Textarea";
@@ -20,6 +19,7 @@ export default function CryptoChatFooter() {
   }, [currentMessage]);
 
   const handleChange = (evt: ChangeEvent<HTMLTextAreaElement>) => {
+    if (!socket) return;
     const currentInput = evt.target.value;
     setInput(currentInput);
     setDisabled(!currentInput.trim());
@@ -49,7 +49,7 @@ export default function CryptoChatFooter() {
 
   return (
     <div className={Style.CryptoChatFooter}>
-      <div className={Style.CryptoChatInput}>
+      <div className={Style.Input}>
         <Textarea
           name="Chat"
           placeholder={placeholder}
@@ -59,11 +59,11 @@ export default function CryptoChatFooter() {
         />
       </div>
       <Button
-        className={Style.CryptoChatButton}
+        className={Style.Button}
         onClick={sendMessage}
-        disabled={disabled}
+        disabled={disabled || !socket?.connected}
       >
-        <Icon iconSrc={SendIcon} iconAlt="Send icon" />
+        <img className={Style.Icon} src={SendIcon} alt="Send icon" />
       </Button>
     </div>
   );

@@ -8,6 +8,6 @@
   border-bottom: 2px solid #666666;
 }
 
-.CryptoChatHeaderTitle {
-  font-size: 40px;
+.Title {
+  font-size: clamp(28px, 6.4vw, 40px);
 }

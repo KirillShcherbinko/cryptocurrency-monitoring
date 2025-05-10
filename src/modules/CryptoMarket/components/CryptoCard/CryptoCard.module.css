@@ -12,33 +12,33 @@
   margin: 0;
 }
 
-.CryptoCardInfo {
+.Info {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: start;
   gap: 25px;
-  width: 80%;
+  width: 50%;
 }
 
-.CryptoCardBadge {
+.Badge {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  width: 80%;
+  width: 100%;
 }
 
-.CryptoCardSymbol {
+.Symbol {
   align-self: end;
 }
 
-.CryptoCardImage {
+.Image {
   display: block;
   object-fit: cover;
-  width: 40%;
+  max-width: 120px;
+  width: 50%;
 }
 
-
-@media screen and (max-width: 1280px) {
-
+.Paragraph {
+  font-size: 1.2em;
 }

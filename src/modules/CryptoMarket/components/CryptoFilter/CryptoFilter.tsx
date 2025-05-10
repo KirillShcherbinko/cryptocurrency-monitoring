@@ -30,6 +30,7 @@ export default function CryptoFilter({ children }: CryptoFilerProps) {
     <div className={Style.CryptoFilter}>
       <FilterProvider
         items={cryptoData}
+        title="Crypto Market"
         onFilter={handleFilter}
         filterKey={filterKey}
         filterContent={modal}

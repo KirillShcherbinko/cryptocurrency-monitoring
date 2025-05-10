@@ -10,7 +10,7 @@ export default function CryptoChatButton() {
 
   return (
     <button className={Style.CryptoChatButton} onClick={() => openModal(modal)}>
-      <img className={Style.CryptoChatIcon} src={ChatIcon} alt="Chat icon" />
+      <img className={Style.Icon} src={ChatIcon} alt="Chat icon" />
     </button>
   );
 }

@@ -1,22 +1,25 @@
 .ErrorScreen {
   align-items: center;
   gap: 12px;
-  padding: 20px;
-  width: 50vw;
+  padding: 20px 0 ;
+  max-width: 1080px;
+  width: 100%;
 }
 
-.ErrorImage {
+.Image {
+  min-width: 150px;
   width: 40%;
 }
 
-.ErrorTitle {
-  font-size: 40px;
+.Title {
+  font-size: clamp(32px, 5vw, 40px);
 }
 
-.ErrorParagraph {
-  font-size: 14px;
+.Paragraph {
+  font-size: clamp(16px, 2.5vw, 20px);
 }
 
-.ErrorButton {
+.Button {
+  min-width: 90px;
   width: 15%;
 }

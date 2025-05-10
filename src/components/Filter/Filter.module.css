@@ -3,14 +3,53 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 80%;
   padding: 20px;
 }
 
-.FilterHeader {
+.Header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   width: 100%;
+}
+
+.Title {
+  text-align: start;
+  font-size: 36px;
+  width: 100%;
+}
+
+.Section {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  gap: 10px;
+}
+
+
+@media screen and (max-width: 650px) {
+  .Header {
+    flex-direction: column;
+    justify-content: center;
+    align-items: cener;
+    gap: 10px;
+  }
+
+  .Title {
+    text-align: center;
+  }
+
+  .Section {
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .Title {
+    font-size: 28px;
+  }
 }

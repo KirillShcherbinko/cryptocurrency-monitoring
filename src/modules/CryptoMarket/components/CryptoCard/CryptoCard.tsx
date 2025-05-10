@@ -25,11 +25,11 @@ export default function CryptoCard() {
       onClick={() => openModal(modal)}
       hoverEffect={{ scale: 1.05, transition: { duration: 0.2 } }}
     >
-      <img className={Style.CryptoCardImage} src={image} alt={name} />
-      <div className={Style.CryptoCardInfo}>
+      <img className={Style.Image} src={image} alt={name} />
+      <div className={Style.Info}>
         <Symbol>{symbol}</Symbol>
-        <div className={Style.CryptoCardBadge}>
-          <Paragraph>{name}</Paragraph>
+        <div className={Style.Badge}>
+          <Paragraph className={Style.Paragraph}>{name}</Paragraph>
           <Paragraph>{`${currensySymbol} ${rounded(
             current_price,
             PRICE_DECIMALS

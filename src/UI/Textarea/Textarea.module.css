@@ -22,3 +22,10 @@
 .Textarea:focus {
   outline: none;
 }
+
+.Textarea::placeholder {
+  font-family: "Poppins-Regular", "Arial", sans-serif;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.5); ;
+  font-size: clamp(14px, 2.4vw, 16px);
+}

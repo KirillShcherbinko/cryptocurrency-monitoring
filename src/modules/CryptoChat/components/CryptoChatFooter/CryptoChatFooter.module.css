@@ -9,9 +9,9 @@
   padding: 0;
 }
 
-.CryptoChatInput {
+.Input {
   background-color: #645F5F;
-  border-radius: 24px;
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -20,10 +20,30 @@
   box-sizing: border-box;
 }
 
-.CryptoChatButton {
+.Button {
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   aspect-ratio: 1/1;
+}
+
+.Icon {
+  width: 35px;
+  height: 35px;
+}
+
+@media screen and (max-width: 650px) {
+  .Button {
+    padding: 10px;
+  }
+
+  .Icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .Input {
+    padding: 13.75px 10px;
+  }
 }

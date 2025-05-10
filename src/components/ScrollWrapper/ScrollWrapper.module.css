@@ -38,7 +38,7 @@
   opacity: 0;
 }
 
-.ScrollButton {
+.Button {
   position: absolute;
   right: 15px;
   bottom: 5px;
@@ -49,7 +49,7 @@
   z-index: 13;
 }
 
-.ScrollButtonImage {
+.Icon {
   width: 25px;
   height: 25px;
 }

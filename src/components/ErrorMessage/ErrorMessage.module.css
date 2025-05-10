@@ -7,7 +7,8 @@
   flex-direction: column;
   border-radius: 4px;
   color: white;
-  max-width: 320px;
+  max-width: 400px;
+  width: 100%;
   border-radius: 12px;
 }
 
@@ -33,4 +34,11 @@
 
 .Paragraph {
   font-size: 14px;
+}
+
+@media screen and (max-width: 425px) {
+  .CryptoChatModal {
+    width: 90vw;
+    padding: 10px 20px;
+  }
 }

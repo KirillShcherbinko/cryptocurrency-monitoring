@@ -8,3 +8,16 @@
   height: 80vh;
   padding: 10px 20px;
 }
+
+@media screen and (max-width: 650px) {
+  .CryptoChatModal {
+    width: 80vw;
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .CryptoChatModal {
+    width: 100%;
+  }
+}

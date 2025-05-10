@@ -31,11 +31,11 @@ export default function ScrollWrapper<T>({
       </div>
       {!isEndSticky && (
         <Button
-          className={Style.ScrollButton}
+          className={Style.Button}
           onClick={() => endRef.current.scrollIntoView({ behavior: "smooth" })}
         >
           <img
-            className={Style.ScrollButtonImage}
+            className={Style.Icon}
             src={FollowButtonIcon}
             alt="Bottom"
           />

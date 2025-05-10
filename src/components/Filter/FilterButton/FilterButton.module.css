@@ -9,3 +9,9 @@
   width: 20px;
   height: 20px;
 }
+
+@media screen and (max-width: 350px) {
+  .FilterButton {
+    border-radius: 50%;
+  }
+}

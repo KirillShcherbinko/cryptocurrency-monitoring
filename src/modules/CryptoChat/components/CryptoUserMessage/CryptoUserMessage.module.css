@@ -10,37 +10,37 @@
   overflow-wrap: break-word;
 }
 
-.MyCryptoUserMessage {
+.MyMessage {
   align-self: end;
   background-color: #2FCC59;
   border-radius: 14px 14px 0px 14px;
 }
 
-.CryptoMessageName {
+.Name {
   color: #FFFFFF;
-  font-size: 18px;
+  font-size: clamp(15.75px, 2.7vw, 18px);
   font-weight: 750;
   font-family: "Poppins-Medium", "Arial", sans-serif;
   line-height: 1.1;
 }
 
-.CryptoMessageBody {
+.Body {
   display: flex;
   flex-direction: row;
   justify-content: end;
   flex-wrap: wrap;
 }
 
-.CryptoMessageParagraph {
+.Paragraph {
   flex-shrink: 1;
   flex-grow: 1;
   text-align: left;
   overflow-wrap: break-word;
   word-break: break-word;
-  font-size: 16px;
+  font-size: clamp(14px, 2.4vw, 16px);
 }
 
-.CryptoMessageTimestamp {
+.Timestamp {
   font-size: 9px;
   color: #DDDDDD;
   font-family: "Poppins-Regular", "Arial", sans-serif;

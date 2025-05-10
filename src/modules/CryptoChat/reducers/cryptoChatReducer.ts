@@ -3,6 +3,7 @@ import {
   MAX_USERNAME_LENGTH,
   MIN_MESSAGE_LENGTH,
   MAX_MESSAGE_LENGTH,
+  initialState,
 } from "../constants";
 import { CryptoChatActionType, CryptoChatStateType } from "../types";
 
@@ -23,7 +24,7 @@ export const cryptoChatReducer = (
       const socket = action.payload;
       const userId = socket ? socket.id : "";
       return {
-        ...state,
+        ...initialState,
         socket,
         userId,
       };
@@ -35,17 +36,17 @@ export const cryptoChatReducer = (
 
       if (type === "join") {
         if (text.length < MIN_USERNAME_LENGTH) {
-          return addErrorMessage(state, "Name is too short");
+          return addErrorMessage(state, "The minimum name size is 3 characters");
         }
         if (text.length > MAX_USERNAME_LENGTH) {
-          return addErrorMessage(state, "Name is too long");
+          return addErrorMessage(state, "The maximum name size is 15 characters");
         }
       } else {
         if (text.length < MIN_MESSAGE_LENGTH) {
-          return addErrorMessage(state, "Message is too short");
+          return addErrorMessage(state, "The message should not be empty");
         }
         if (text.length > MAX_MESSAGE_LENGTH) {
-          return addErrorMessage(state, "Message is too long");
+          return addErrorMessage(state, "The maximum message size is 10000 characters");
         }
       }
 

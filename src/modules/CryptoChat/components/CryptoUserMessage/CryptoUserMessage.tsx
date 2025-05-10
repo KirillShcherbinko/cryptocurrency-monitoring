@@ -18,13 +18,13 @@ export default function CryptoUserMessage() {
     <Card
       className={classNames(
         Style.CryptoUserMessage,
-        userId === id ? Style.MyCryptoUserMessage : null
+        userId === id ? Style.MyMessage : null
       )}
     >
-      <Title className={Style.CryptoMessageName}>{username}</Title>
-      <div className={Style.CryptoMessageBody}>
-        <Paragraph className={Style.CryptoMessageParagraph}>{text}</Paragraph>
-        <p className={Style.CryptoMessageTimestamp}>{timestamp}</p>
+      <Title className={Style.Name}>{username}</Title>
+      <div className={Style.Body}>
+        <Paragraph className={Style.Paragraph}>{text}</Paragraph>
+        <p className={Style.Timestamp}>{timestamp}</p>
       </div>
     </Card>
   );
