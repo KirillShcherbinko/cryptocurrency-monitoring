@@ -9,6 +9,7 @@ interface CardProps {
   children: ReactNode;
   onClick?: () => void;
   hoverEffect?: VariantLabels | TargetAndTransition | undefined;
+  tapEffect?: VariantLabels | TargetAndTransition | undefined
 }
 
 export default function Card({
@@ -17,6 +18,7 @@ export default function Card({
   children,
   onClick,
   hoverEffect,
+  tapEffect
 }: CardProps) {
   return (
     <motion.div
@@ -24,6 +26,7 @@ export default function Card({
       className={classNames(Style.Card, className ? className : null)}
       onClick={onClick}
       whileHover={hoverEffect}
+      whileTap={tapEffect}
     >
       {children}
     </motion.div>

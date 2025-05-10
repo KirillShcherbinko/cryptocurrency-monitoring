@@ -19,11 +19,14 @@ export default function CryptoCard() {
   const currensySymbol = data.currencySymbol;
   const modal = useMemo(() => <CryptoCardModal />, []);
 
+  const effect = { scale: 1.05, transition: { duration: 0.2 } }
+
   return (
     <Card
       className={Style.CryptoCard}
       onClick={() => openModal(modal)}
-      hoverEffect={{ scale: 1.05, transition: { duration: 0.2 } }}
+      hoverEffect={effect}
+      tapEffect={effect}
     >
       <img className={Style.Image} src={image} alt={name} />
       <div className={Style.Info}>

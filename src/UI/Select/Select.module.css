@@ -4,9 +4,6 @@
   align-items: center;
   max-width: 300px;
   width: 100%;
-  font-family: "Poppins-Regular", "Arial", sans-serif;
-  font-size: clamp(14px, 2.4vw, 16px);
-  color: #FFFFFF;
   position: relative;
 }
 
@@ -15,6 +12,9 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  font-family: "Poppins-Regular", "Arial", sans-serif;
+  font-size: clamp(14px, 2.4vw, 16px);
+  color: #FFFFFF;
   padding: 8px 12px;
   text-align: start;
   border-radius: 30px;
@@ -36,7 +36,7 @@
 }
 
 .Icon {
-  width: 16px;
+  width: clamp(14px, 2.4vw, 16px);;
 }
 
 .OptionGroup {
@@ -71,8 +71,7 @@
   background-color: #504B4B;
 }
 
-@media screen and (max-width: 650px) {
-  .Icon {
-    width: 14px;
-  }
+.Option:active {
+  cursor: pointer;
+  background-color: #504B4B;
 }
