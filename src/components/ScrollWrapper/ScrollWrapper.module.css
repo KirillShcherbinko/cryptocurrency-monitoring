@@ -6,7 +6,7 @@
 }
 
 .ScrollContent {
-  height: 100%;
+  height: 60vh;
   overflow: auto;
   position: relative;
   display: flex;

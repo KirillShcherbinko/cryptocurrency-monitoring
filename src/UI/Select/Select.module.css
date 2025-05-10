@@ -6,6 +6,7 @@
   width: 100%;
   font-family: "Poppins-Regular", "Arial", sans-serif;
   font-size: clamp(14px, 2.4vw, 16px);
+  color: #FFFFFF;
   position: relative;
 }
 

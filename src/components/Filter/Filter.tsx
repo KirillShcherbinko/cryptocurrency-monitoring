@@ -16,7 +16,7 @@ export default function Filter({ children }: FilterProps) {
   return (
     <div className={Style.Filter}>
       <div className={Style.Header}>
-        <Title type="big" className={Style.Title}>{title}</Title>
+        <Title type="huge" className={Style.Title}>{title}</Title>
         <div className={Style.Section}>
           <ModalProvider>
             <FilterButton />

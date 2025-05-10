@@ -57,6 +57,8 @@ export default function Slider({
           onChange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e)}
           onMouseEnter={() => setIsTooltipOpen(true)}
           onMouseLeave={() => setIsTooltipOpen(false)}
+          onTouchStart={() => setIsTooltipOpen(true)}
+          onTouchEnd={() => setIsTooltipOpen(false)}
           style={{'--progress': `${progress}%`} as CSSProperties}
         />
       </div>

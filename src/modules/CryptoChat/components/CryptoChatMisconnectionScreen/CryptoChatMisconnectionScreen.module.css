@@ -1,9 +1,9 @@
 .CryptoChatMisconnectionScreen {
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   padding: 10px 0;
   overflow: hidden;
-  box-sizing: border-box;
 }

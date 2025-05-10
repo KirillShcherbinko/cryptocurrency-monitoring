@@ -64,7 +64,19 @@
   cursor: pointer;
 }
 
+.SliderThumb::-webkit-slider-thumb:active {
+  border: 2px solid #4CAF50;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.6);
+  cursor: pointer;
+}
+
 .SliderThumb::-moz-range-thumb:hover {
+  border: 2px solid #4CAF50;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.6);
+  cursor: pointer;
+}
+
+.SliderThumb::-moz-range-thumb:active {
   border: 2px solid #4CAF50;
   box-shadow: 0 0 5px rgba(76, 175, 80, 0.6);
   cursor: pointer;

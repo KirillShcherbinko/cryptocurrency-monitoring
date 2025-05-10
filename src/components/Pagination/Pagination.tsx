@@ -11,7 +11,7 @@ interface PaginationProps {
   onSubmit: (value: number) => void;
 }
 
-const CRITICAL_WIDTH = 425;
+const CRITICAL_WIDTH = 500;
 const SMALL_SCREEN_PAGE_NUMBER = 3;
 const SCREEN_PAGE_NUMBER = 5; 
 

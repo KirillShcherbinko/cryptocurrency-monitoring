@@ -15,9 +15,9 @@
 }
 
 .Big {
-  --font-size: clamp(28px, 5.5vw, 36px);
+  --font-size: clamp(32px, 5vw, 40px);
 }
 
 .Huge {
-  --font-size: clamp(32px, 5vw, 40px);
+  --font-size: clamp(28px, 8vw, 40px);
 }

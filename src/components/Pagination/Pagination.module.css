@@ -24,11 +24,16 @@
   height: var(--button-size);
   background-color: transparent;
   border-radius: 50%;
-  font-size: 18px;
+  font-size: clamp(15.75px, 2.7vw, 18px);
+  box-sizing: border-box;
 }
 
 .Button:hover {
   cursor: pointer;
+  background-color: #2A2A2D;
+}
+
+.Button:active {
   background-color: #2A2A2D;
 }
 
@@ -42,59 +47,30 @@
 }
 
 .Icon {
-  width: 12px;
-  height: 18px;
+  width: clamp(10.5px, 2.34375vw, 12px);
+  height: clamp(15.75px, 2.34375vw, 18px);
 }
 
 @media screen and (max-width: 768px) {
   .Pagination {
-    gap: calc(15px - (768px - 100vw) * 5 / 343);
+    gap: clamp(10px, 1.953125vw, 15px);
   }
 
   .GroupButton {
-    gap: calc(15px - (768px - 100vw) * 5 / 343);
+    gap: clamp(10px, 1.953125vw, 15px);
   }
 
   .Button {
-    --button-size: calc(50px - (768px - 100vw) * 20 / 343);
-    font-size: calc(18px - (768px - 100vw) * 6 / 343);
-  }
-
-  .Icon {
-    width: calc(12px - (768px - 100vw) * 4 / 343);
-    height: calc(18px - (768px - 100vw) * 6 / 343);
+    --button-size: clamp(40px, 6.51041667vw, 50px);
   }
 }
 
 @media screen and (max-width: 425px) {
   .Pagination {
-    gap: calc(10px - (425px - 100vw) * 5 / 105);
+    gap: clamp(5px, 2.352941vw, 10px);
   }
 
   .GroupButton {
-    gap: calc(10px - (425px - 100vw) * 5 / 105);
-  }
-
-  .Button {
-    --button-size: 30px;
-    font-size: 12px;
-  }
-
-  .Icon {
-    width: 8px;
-    height: 12px;
+    gap: clamp(5px, 2.352941vw, 10px);
   }
 }
-
-@media screen and (max-width: 320px) {
-  .Pagination {
-    gap: 5px;
-  }
-
-  .GroupButton {
-    gap: 5px;
-  }
-}
-
-
-

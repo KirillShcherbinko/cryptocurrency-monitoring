@@ -22,7 +22,7 @@ export default function ErrorScreen({
   return (
     <Card className={Style.ErrorScreen}>
       <img className={Style.Image} src={image} alt={title} />
-      <Title type="huge">{title}</Title>
+      <Title type="big">{title}</Title>
       <Paragraph type="big">{description}</Paragraph>
       {onClick && (
         <Button className={Style.Button} onClick={onClick}>

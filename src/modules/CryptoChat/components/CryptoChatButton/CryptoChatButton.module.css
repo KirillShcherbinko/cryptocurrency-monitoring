@@ -23,6 +23,7 @@
 }
 
 .CryptoChatButton:active {
+  background-color: #5A5A5F;
   border: none;
 }
 

@@ -1,9 +1,10 @@
 .CryptoChatEmptyScreen {
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 10px 0;
+  height: 60vh;
+  padding: 0;
   overflow: hidden;
-  box-sizing: border-box;
 }
