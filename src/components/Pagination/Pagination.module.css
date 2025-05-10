@@ -14,7 +14,7 @@
   gap: 15px;
 }
 
-.PaginationButton {
+.Button {
   --button-size: 50px;
 
   display: flex;
@@ -27,7 +27,7 @@
   font-size: 18px;
 }
 
-.PaginationButton:hover {
+.Button:hover {
   cursor: pointer;
   background-color: #2A2A2D;
 }
@@ -41,7 +41,7 @@
   cursor: default;
 }
 
-.PaginationButtonIcon {
+.Icon {
   width: 12px;
   height: 18px;
 }
@@ -55,12 +55,12 @@
     gap: calc(15px - (768px - 100vw) * 5 / 343);
   }
 
-  .PaginationButton {
+  .Button {
     --button-size: calc(50px - (768px - 100vw) * 20 / 343);
     font-size: calc(18px - (768px - 100vw) * 6 / 343);
   }
 
-  .PaginationButtonIcon {
+  .Icon {
     width: calc(12px - (768px - 100vw) * 4 / 343);
     height: calc(18px - (768px - 100vw) * 6 / 343);
   }
@@ -75,12 +75,12 @@
     gap: calc(10px - (425px - 100vw) * 5 / 105);
   }
 
-  .PaginationButton {
+  .Button {
     --button-size: 30px;
     font-size: 12px;
   }
 
-  .PaginationButtonIcon {
+  .Icon {
     width: 8px;
     height: 12px;
   }

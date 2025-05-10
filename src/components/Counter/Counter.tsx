@@ -38,18 +38,18 @@ export default function Counter({className, minValue, maxValue, initialValue, on
   return (
     <div className={classNames(Style.Counter, `${className}`)}>
       <Button
-        className={Style.CounterButton}
+        className={Style.Button}
         onClick={decrement}
         disabled={isDecrementDisabled}
       >-</Button>
       <input
-        className={Style.CounterInput}
+        className={Style.Input}
         type="text"
         value={value}
         onChange={handleChange}
       />
       <Button
-        className={Style.CounterButton}
+        className={Style.Button}
         onClick={increment}
         disabled={isIncrementDisabled}
       >+</Button>

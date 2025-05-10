@@ -16,14 +16,6 @@
   border-radius: 14px 14px 0px 14px;
 }
 
-.Name {
-  color: #FFFFFF;
-  font-size: clamp(15.75px, 2.7vw, 18px);
-  font-weight: 750;
-  font-family: "Poppins-Medium", "Arial", sans-serif;
-  line-height: 1.1;
-}
-
 .Body {
   display: flex;
   flex-direction: row;
@@ -37,7 +29,6 @@
   text-align: left;
   overflow-wrap: break-word;
   word-break: break-word;
-  font-size: clamp(14px, 2.4vw, 16px);
 }
 
 .Timestamp {

@@ -1,8 +1,23 @@
 .Title {
+  --font-size: clamp(17.5px, 3vw, 20px); 
+
   color: #FFFFFF;
   font-family: "Poppins-Medium", "Arial", sans-serif;
   font-weight: 750;
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-size: var(--font-size);
+}
+
+.Small {
+  --font-size: clamp(15.75px, 2.7vw, 18px);
+}
+
+.Big {
+  --font-size: clamp(28px, 5.5vw, 36px);
+}
+
+.Huge {
+  --font-size: clamp(32px, 5vw, 40px);
 }

@@ -2,6 +2,7 @@
   --padding-size: 60px;
 
   background-color: transparent;
+  height: 50vh;
   width: calc(100% - 2*var(--padding-size));
   flex-direction: column;
   gap: 20px;

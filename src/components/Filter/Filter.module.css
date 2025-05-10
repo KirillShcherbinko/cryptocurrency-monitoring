@@ -16,7 +16,6 @@
 
 .Title {
   text-align: start;
-  font-size: 36px;
   width: 100%;
 }
 
@@ -45,11 +44,5 @@
 
   .Section {
     justify-content: center;
-  }
-}
-
-@media screen and (max-width: 350px) {
-  .Title {
-    font-size: 28px;
   }
 }

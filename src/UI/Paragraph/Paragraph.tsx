@@ -1,22 +1,27 @@
 import classNames from "classnames";
 import Style from "./Paragraph.module.css";
-import { ReactNode, RefObject } from "react";
+import { ReactNode } from "react";
+
+type ParagraphType = "normal" | "small" | "big";
 
 interface ParagraphProps {
-  ref?: RefObject<HTMLParagraphElement>;
+  type?: ParagraphType;
   className?: string;
   children: ReactNode;
 }
 
 export default function Paragraph({
-  ref,
   className,
+  type,
   children,
 }: ParagraphProps) {
   return (
     <p
-      ref={ref}
-      className={classNames(Style.Paragraph, className ? className : null)}
+      className={classNames(
+        Style.Paragraph,
+        type === "big" ? Style.Big : type === "small" ? Style.Small : null,
+        className ? className : null
+      )}
     >
       {children}
     </p>

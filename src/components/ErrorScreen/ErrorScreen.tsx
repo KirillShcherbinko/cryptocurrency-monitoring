@@ -22,8 +22,8 @@ export default function ErrorScreen({
   return (
     <Card className={Style.ErrorScreen}>
       <img className={Style.Image} src={image} alt={title} />
-      <Title className={Style.Title}>{title}</Title>
-      <Paragraph className={Style.Paragraph}>{description}</Paragraph>
+      <Title type="huge">{title}</Title>
+      <Paragraph type="big">{description}</Paragraph>
       {onClick && (
         <Button className={Style.Button} onClick={onClick}>
           {buttonText}

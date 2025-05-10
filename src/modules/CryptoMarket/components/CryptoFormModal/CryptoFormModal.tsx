@@ -45,8 +45,8 @@ export default function CryptoMarketModal() {
 
   return (
     <div className={Style.CryptoFormModal}>
-      <div className={Style.CryptoModalSection}>
-        <Title className={Style.CryptoModalTitle}>Sort by</Title>
+      <div className={Style.Section}>
+        <Title>Sort by</Title>
         <RadioForm
           items={changeItems as Record<ChangeType, string>}
           defaultValue={change}
@@ -55,14 +55,14 @@ export default function CryptoMarketModal() {
         <Select
           items={orderItems as Record<OrderType, string>}
           defaultValue={order}
-          className={Style.CryptoModalCenter}
+          className={Style.Center}
           onChange={setOrder}
         />
       </div>
-      <div className={Style.CryptoModalSection}>
-        <Title className={Style.CryptoModalTitle}>Cards per page</Title>
+      <div className={Style.Section}>
+        <Title>Cards per page</Title>
         <Slider
-          className={Style.CryptoModalCenter}
+          className={Style.Center}
           min={MIN_PER_PAGE_VALUE}
           max={MAX_PER_PAGE_VALUE}
           step={PER_PAGE_STEP}
@@ -70,28 +70,28 @@ export default function CryptoMarketModal() {
           onChange={setPerPage}
         />
       </div>
-      <div className={Style.CryptoModalSection}>
-        <Title className={Style.CryptoModalTitle}>Page number</Title>
+      <div className={Style.Section}>
+        <Title>Page number</Title>
         <Counter
-          className={Style.CryptoModalCenter}
+          className={Style.Center}
           minValue={MIN_PAGE_NUMBER}
           maxValue={MAX_PAGE_NUMBER}
           initialValue={pageNumber}
           onChange={setPageNumber}
         />
       </div>
-      <div className={Style.CryptoModalSection}>
-        <Title className={Style.CryptoModalTitle}>Currency</Title>
+      <div className={Style.Section}>
+        <Title>Currency</Title>
         <Select
           items={currencyItems as Record<CurrencyType, string>}
           defaultValue={currency}
-          className={Style.CryptoModalCenter}
+          className={Style.Center}
           onChange={setCurrency}
         />
       </div>
-      <div className={Style.CryptoModalButtonContainer}>
+      <div className={Style.ButtonContainer}>
         <Button
-          className={Style.CryptoModalButton}
+          className={Style.Button}
           onClick={() => {
             dispatchCryptoMarket({
               type: "set_crypto_params",
@@ -103,7 +103,7 @@ export default function CryptoMarketModal() {
           Reset
         </Button>
         <Button
-          className={Style.CryptoModalButton}
+          className={Style.Button}
           disabled={isSubmitDisabled}
           onClick={() => {
             dispatchCryptoMarket({

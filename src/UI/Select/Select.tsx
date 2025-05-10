@@ -42,7 +42,7 @@ export default function Select<T extends string>({
       >
         {selected as ReactNode}
         <motion.img
-          className={Style.SelectIcon}
+          className={Style.Icon}
           src={SelectIcon}
           alt="Выпадающий список"
           animate={{ rotate: isOpen ? 180 : 0, transition: { duration: 0.2 } }}

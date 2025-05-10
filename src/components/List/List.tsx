@@ -21,7 +21,7 @@ export default function List<T extends object>({
     <ul className={classNames(Style.List, className ? className : null)}>
       {items.map((item, index) => (
         <li
-          className={Style.ListElement}
+          className={Style.Element}
           key={item && "id" in item ? (item as Identifiable).id : index}
         >
           {render(item, index)}

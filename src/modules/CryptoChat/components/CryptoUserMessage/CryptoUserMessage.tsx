@@ -21,7 +21,7 @@ export default function CryptoUserMessage() {
         userId === id ? Style.MyMessage : null
       )}
     >
-      <Title className={Style.Name}>{username}</Title>
+      <Title type="small">{username}</Title>
       <div className={Style.Body}>
         <Paragraph className={Style.Paragraph}>{text}</Paragraph>
         <p className={Style.Timestamp}>{timestamp}</p>

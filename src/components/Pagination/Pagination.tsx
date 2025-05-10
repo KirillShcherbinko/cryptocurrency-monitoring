@@ -51,11 +51,11 @@ export default function Pagination({
     <div className={Style.Pagination}>
       {pageNumber > 1 && (
         <Button
-          className={Style.PaginationButton}
+          className={Style.Button}
           onClick={() => onSubmit(pageNumber - 1)}
         >
           <img
-            className={Style.PaginationButtonIcon}
+            className={Style.Icon}
             src={prevIcon}
             alt="Previous"
           />
@@ -67,7 +67,7 @@ export default function Pagination({
           <Button
             key={item}
             className={classNames(
-              Style.PaginationButton,
+              Style.Button,
               pageNumber === item && Style.Selected
             )}
             onClick={() => onSubmit(item)}
@@ -79,11 +79,11 @@ export default function Pagination({
 
       {isData && (
         <Button
-          className={Style.PaginationButton}
+          className={Style.Button}
           onClick={() => onSubmit(pageNumber + 1)}
         >
           <img
-            className={Style.PaginationButtonIcon}
+            className={Style.Icon}
             src={nextIcon}
             alt="Next"
           />

@@ -25,7 +25,7 @@ export default function ErrorMessage({children, onClose, duration = 3000}: Error
       transition={{ duration: 0.3 }}
     >
       <button className={Style.CloseButton} onClick={onClose}>✕</button>
-      <Paragraph className={Style.Paragraph}>{children}</Paragraph>
+      <Paragraph>{children}</Paragraph>
     </motion.div>
   );
 }

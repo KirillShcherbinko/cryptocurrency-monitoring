@@ -7,7 +7,3 @@
   padding: 0 0 15px;
   border-bottom: 2px solid #666666;
 }
-
-.Title {
-  font-size: clamp(28px, 6.4vw, 40px);
-}

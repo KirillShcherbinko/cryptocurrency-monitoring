@@ -32,10 +32,6 @@
   outline: none;
 }
 
-.Paragraph {
-  font-size: 14px;
-}
-
 @media screen and (max-width: 425px) {
   .CryptoChatModal {
     width: 90vw;

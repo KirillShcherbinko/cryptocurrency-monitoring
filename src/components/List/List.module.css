@@ -4,7 +4,7 @@
   margin: 0;
 }
 
-.ListElement {
+.Element {
   display: inline-flex;
   flex-direction: column;
   padding: 0;
