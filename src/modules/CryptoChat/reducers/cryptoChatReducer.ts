@@ -56,7 +56,7 @@ export const cryptoChatReducer = (
       return {
         ...state,
         currentMessage: {
-          type: "user",
+          type: "user" as "user",
           data: { ...data, text: "" },
         },
       };
