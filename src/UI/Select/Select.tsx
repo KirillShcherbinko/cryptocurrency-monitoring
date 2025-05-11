@@ -25,6 +25,7 @@ export default function Select<T extends string>({
   const [selected, setSelected] = useState<string>(items[defaultValue]);
 
   const selectRef = useRef<HTMLDivElement>(null);
+  const effect = { scale: 1.05, transition: { duration: 0.2 } }
 
   const filteredValues = useMemo(
     () => values.filter((value) => value !== selected),
@@ -38,7 +39,8 @@ export default function Select<T extends string>({
       <motion.button
         className={Style.SelectButton}
         onClick={() => setIsOpen(!isOpen)}
-        whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
+        whileHover={effect}
+        whileTap={effect}
       >
         {selected as ReactNode}
         <motion.img

@@ -58,29 +58,22 @@
   box-shadow: 0px 0.5px 4px rgba(0, 0, 0, 0.12), 0px 6px 13px rgba(0, 0, 0, 0.12);
 }
 
-.SliderThumb::-webkit-slider-thumb:hover {
+.SliderThumb::-webkit-slider-thumb:hover,
+.SliderThumb::-webkit-slider-thumb:active,
+.SliderThumb::-webkit-slider-thumb:focus {
   border: 2px solid #4CAF50;
   box-shadow: 0 0 5px rgba(76, 175, 80, 0.6);
   cursor: pointer;
 }
 
-.SliderThumb::-webkit-slider-thumb:active {
+.SliderThumb::-moz-range-thumb:hover,
+.SliderThumb::-moz-range-thumb:active,
+.SliderThumb::-moz-range-thumb:focus {
   border: 2px solid #4CAF50;
   box-shadow: 0 0 5px rgba(76, 175, 80, 0.6);
   cursor: pointer;
 }
 
-.SliderThumb::-moz-range-thumb:hover {
-  border: 2px solid #4CAF50;
-  box-shadow: 0 0 5px rgba(76, 175, 80, 0.6);
-  cursor: pointer;
-}
-
-.SliderThumb::-moz-range-thumb:active {
-  border: 2px solid #4CAF50;
-  box-shadow: 0 0 5px rgba(76, 175, 80, 0.6);
-  cursor: pointer;
-}
 
 .SliderTooltip {
   position: absolute;

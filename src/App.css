@@ -4,6 +4,7 @@ html, body {
   padding: 0;
   background-color: #1E1E1E;
   overscroll-behavior: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 @supports (-moz-appearance: none) {
@@ -36,6 +37,11 @@ body::-webkit-scrollbar-button {
 
 body::-webkit-scrollbar-thumb:hover {
   background-color: #777777;
+}
+
+body::selection {
+  color: #FFFFFF;
+  background-color: #3F3F3F;
 }
 
 #root {

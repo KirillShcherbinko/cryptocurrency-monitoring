@@ -16,7 +16,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: start;
+  align-items: end;
   gap: 25px;
   width: 50%;
 }
@@ -24,7 +24,9 @@
 .Badge {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  align-items: center;
+  text-align: start;
+  gap: 5px;
   width: 100%;
 }
 
@@ -33,13 +35,13 @@
 }
 
 .Image {
-  display: block;
-  object-fit: cover;
+  margin-top: 15px;
   max-width: 120px;
   width: 50%;
 }
 
 .Paragraph {
+  font-size: clamp(14px, 6.25vw, 20px);
   word-break: break-all;
   line-clamp: 1;
   overflow: hidden;

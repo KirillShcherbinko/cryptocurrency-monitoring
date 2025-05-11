@@ -1,8 +1,8 @@
 .Symbol {
-  font-size: 14px;
+  font-size: clamp(10px, 4.375vw, 14px);
   font-family: "Poppins-Regular", "Arial", sans-serif;
-  letter-spacing: 1px;
-  font-weight: 400;
+  letter-spacing: 2px;
+  font-weight: 300;
   margin: 0;
   padding: 0;
   color: #AB9F9F;

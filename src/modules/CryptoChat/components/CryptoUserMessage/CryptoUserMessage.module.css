@@ -23,6 +23,10 @@
   flex-wrap: wrap;
 }
 
+.Name {
+  user-select: none;
+}
+
 .Paragraph {
   flex-shrink: 1;
   flex-grow: 1;
@@ -39,6 +43,7 @@
   margin-left: 5px;
   white-space: nowrap;
   align-self: end;
+  user-select: none;
 }
 
 @media screen and (max-width: 650px) {

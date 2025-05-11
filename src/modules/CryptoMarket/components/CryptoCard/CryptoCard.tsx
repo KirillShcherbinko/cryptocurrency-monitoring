@@ -19,7 +19,8 @@ export default function CryptoCard() {
   const currensySymbol = data.currencySymbol;
   const modal = useMemo(() => <CryptoCardModal />, []);
 
-  const effect = { scale: 1.05, transition: { duration: 0.2 } }
+  const effect = { scale: 1.05, transition: { duration: 0.2 } };
+  console.log(price_change_percentage_24h);
 
   return (
     <Card
@@ -30,10 +31,10 @@ export default function CryptoCard() {
     >
       <img className={Style.Image} src={image} alt={name} />
       <div className={Style.Info}>
-        <Symbol>{symbol}</Symbol>
+        <Symbol className={Style.Symbol}>{symbol.toUpperCase()}</Symbol>
         <div className={Style.Badge}>
           <Paragraph className={Style.Paragraph}>{name}</Paragraph>
-          <Paragraph>{`${currensySymbol} ${rounded(
+          <Paragraph className={Style.Paragraph}>{`${currensySymbol} ${rounded(
             current_price,
             PRICE_DECIMALS
           )}`}</Paragraph>

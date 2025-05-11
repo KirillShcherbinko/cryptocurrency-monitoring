@@ -1,8 +1,24 @@
 .PercentageIndicator {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  font-size: clamp(18px, 7.5vw, 24px);
   gap: 1px;
-  
+  margin: 0;
+  margin-right: 8px;
+  color: #ab9f9f;
+  text-shadow: 0px 0px 139.86px #645f5f, 0px 0px 79.92px #645f5f,
+    0px 0px 46.62px #645f5f, 0px 0px 23.31px #645f5f, 0px 0px 6.66px #645f5f,
+    0px 0px 3.33px #645f5f;
+}
+
+.Red {
+  color: #a13d2f;
+  text-shadow: 0px 0px 139.86px #7c1f13, 0px 0px 79.92px #7c1f13,
+    0px 0px 46.62px #7c1f13, 0px 0px 23.31px #7c1f13, 0px 0px 6.66px #7c1f13,
+    0px 0px 3.33px #7c1f13;
+}
+
+.Green {
+  color: #2fa15d;
+  text-shadow: 0px 0px 173.88px #286c39, 0px 0px 99.36px #286c39,
+    0px 0px 57.96px #286c39, 0px 0px 28.98px #286c39, 0px 0px 8.28px #286c39,
+    0px 0px 4.14px #286c39;
 }
