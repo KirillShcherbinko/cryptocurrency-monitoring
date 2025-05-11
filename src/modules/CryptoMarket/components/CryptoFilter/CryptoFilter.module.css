@@ -1,3 +1,15 @@
 .CryptoFilter {
   width: 100%;
 }
+
+@media screen and (max-width: 1024px) {
+  .CryptoFilter {
+    max-width: 650px;
+  }
+}
+
+@media screen and (max-width: 625px) {
+  .CryptoFilter {
+    max-width: 350px;
+  }
+}

@@ -1,4 +1,6 @@
 .CryptoCardList {
+  align-self: center;
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   justify-content: center;
@@ -9,12 +11,16 @@
 
 @media screen and (max-width: 1024px) {
   .CryptoCardList {
+    max-width: 650px;
+    width: auto;
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 625px) {
   .CryptoCardList {
+    width: 100%;
+    align-items: center;
     grid-template-columns: 1fr;
   }
 }

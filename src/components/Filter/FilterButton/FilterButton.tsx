@@ -13,7 +13,7 @@ export default function FilterButton() {
 
   return (
     <Button className={Style.FilterButton} onClick={() => openModal(filterContent)}>
-      {width > 350 ? "Filters" : null}
+      {width > 320 ? "Filters" : null}
       <img className={Style.Icon} src={FilterIcon} alt="Filter Icon"/>
     </Button>
   );

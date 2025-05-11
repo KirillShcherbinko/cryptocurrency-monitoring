@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: clamp(10px, 20px);
 }
 
 .Header {
@@ -30,12 +30,12 @@
 }
 
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 625px) {
   .Header {
     flex-direction: column;
     justify-content: center;
     align-items: cener;
-    gap: 20px;
+    gap: 25px;
   }
 
   .Title {

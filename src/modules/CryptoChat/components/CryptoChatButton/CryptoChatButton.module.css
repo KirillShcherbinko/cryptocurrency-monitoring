@@ -46,22 +46,11 @@
 
 @media screen and (max-width: 768px) {
   .CryptoChatButton {
-    --button-size: calc(80px - (768px - 100vw) * 20 / 343);
-    right: calc(20px - (768px - 100vw) * 12 / 343);
+    --button-size: clamp(60px, 10.41667vw, 80px);
+    right: clamp(12px, 2.6041667, 20px);
   }
 
   .Icon {
-    --icon-size: calc(35px - (768px - 100vw) * 11 / 343);
-  }
-}
-
-@media screen and (max-width: 425px) {
-  .CryptoChatButton {
-    --button-size: 60px;
-    right: 5px;
-  }
-
-  .Icon {
-    --icon-size: 24px;
+    --icon-size: clamp(24px, 4.557291667vw, 35px);
   }
 }
